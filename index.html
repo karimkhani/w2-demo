@@ -1248,6 +1248,168 @@ html.th-anim, html.th-anim *, html.th-anim *::before, html.th-anim *::after{tran
 .lg-n .lg-n-tip{display:flex;gap:8px;align-items:flex-start;text-align:right;font-size:12.5px;color:var(--fg-2);padding:10px 12px;border-radius:14px;background:rgba(217,178,106,.08);border:1px solid rgba(217,178,106,.25)}
 .lg-n .lg-n-tip svg{flex:none;color:var(--bullion);margin-top:4px}
 .sheet.lg-notice .sheet-body{gap:16px}
+
+/* ===== v21 · wealth tiers ===== */
+.mcard.photo .mcard-sig,.mcard.photo .mcard-pan{display:none}
+.mcard .tc-name{position:absolute;right:22px;bottom:18px;font-weight:700;font-size:15px;letter-spacing:0;color:#ECEAE5;text-shadow:0 1px 2px rgba(0,0,0,.55);max-width:58%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mcard .tc-tier{position:absolute;right:22px;top:20px;font-size:11px;font-weight:700;color:rgba(236,234,229,.72);letter-spacing:.02em}
+.mcard .tc-pan{position:absolute;left:24px;right:24px;bottom:50px;display:flex;justify-content:space-between;font:600 19px/1 var(--f-num,inherit);letter-spacing:.06em;color:#F2F0EA;text-shadow:0 1px 2px rgba(0,0,0,.55);direction:ltr}
+.mcard .tc-pan.sm{left:auto;right:auto;inset-inline-end:22px;bottom:19px;gap:8px;font-size:13px;color:rgba(236,234,229,.8);justify-content:flex-start}
+.mcard:not(.full) .tc-pan.sm{left:22px;right:auto}
+.mcard .tc-meta{position:absolute;left:24px;bottom:20px;display:flex;gap:16px;font-size:11px;color:rgba(236,234,229,.72)}
+.mcard .tc-meta b{font-size:12.5px;color:#F2F0EA;margin-inline-start:4px}
+.mcard.tc-gen .tc-name,.mcard.tc-gen .tc-pan,.mcard.tc-gen .tc-meta b{color:#2B1F08;text-shadow:0 1px 0 rgba(255,236,190,.45)}
+.mcard.tc-gen .tc-tier,.mcard.tc-gen .tc-meta,.mcard.tc-gen .tc-pan.sm{color:rgba(43,31,8,.72);text-shadow:none}
+.mcard.tc-prem .tc-name,.mcard.tc-prem .tc-pan{color:#F4F5F7}
+.mcard.full .pan-full{display:none}
+
+.tr-pips{display:inline-flex;gap:3px;align-items:center;flex:none}
+.tr-pips i{width:7px;height:7px;border-radius:2px;transform:rotate(45deg);background:var(--ink-4);display:block}
+.tr-pips i.on{background:var(--bullion)}
+.tr-bar{display:block;height:5px;border-radius:3px;background:var(--ink-3);overflow:hidden;width:100%}
+.tr-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--bullion),var(--bullion-hi,#F0D59A))}
+
+.tr-strip{display:flex;flex-direction:column;gap:7px;width:100%;max-width:340px;margin:0 auto 14px;padding:11px 14px;border-radius:16px;background:var(--ink-1);border:1px solid var(--line);text-align:right;color:var(--fg)}
+.tr-strip-top{display:flex;align-items:center;gap:8px;font-size:13.5px}
+.tr-strip-top b{flex:1;font-weight:700}
+.tr-strip-top svg{color:var(--fg-3)}
+.tr-strip small{font-size:11.5px;color:var(--fg-3)}
+.tr-strip.lv3{border-color:color-mix(in srgb,var(--bullion) 45%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--bullion) 12%,var(--ink-1)),var(--ink-1))}
+
+.tr-pill{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 12px 0 10px;border-radius:999px;background:var(--ink-1);border:1px solid var(--line-2,var(--line));font-size:12.5px;color:var(--fg-2);max-width:100%}
+.tr-pill b{color:var(--fg)}
+.tr-pill small{font-size:11px;color:var(--fg-3);white-space:nowrap}
+.tr-pill-ic{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--ink-3);color:var(--fg)}
+.tr-pill.t-prem .tr-pill-ic{background:linear-gradient(135deg,#3A3F48,#15181D);color:#E6E9EE}
+.tr-pill.t-gen .tr-pill-ic{background:linear-gradient(135deg,#F1D79A,#B98A33);color:#2B1F08}
+.tr-pill-bar{width:44px;height:4px;border-radius:2px;background:var(--ink-3);overflow:hidden;flex:none}
+.tr-pill-bar i{display:block;height:100%;background:var(--bullion)}
+
+.tr-tile{gap:12px}
+.tr-tile-row{display:flex;gap:14px;align-items:center}
+.tr-tile-card{width:86px;flex:none;aspect-ratio:1.586;border-radius:9px;overflow:hidden;box-shadow:0 8px 18px -8px rgba(0,0,0,.6)}
+.tr-tile-card img{width:100%;height:100%;object-fit:cover;display:block}
+.tr-tile-name{display:block;font-size:18px;font-weight:800;margin-bottom:6px}
+.tr-tile small{display:block;font-size:11.5px;color:var(--fg-3);margin-top:6px}
+
+.tr-page{display:flex;flex-direction:column;gap:18px}
+.tr-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding-top:6px}
+.tr-hero-card{position:relative;width:min(78%,300px);aspect-ratio:1.586;border-radius:16px;overflow:hidden;transform:perspective(900px) rotateX(10deg) rotateZ(-4deg);box-shadow:0 30px 50px -22px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06);margin-bottom:14px;animation:trfloat 7s ease-in-out infinite}
+.tr-hero-card img{width:100%;height:100%;object-fit:cover;display:block}
+.tr-hero-name{position:absolute;right:16px;bottom:12px;font-size:12.5px;font-weight:700;color:#ECEAE5;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.tr-hero.t-gen .tr-hero-name{color:#2B1F08;text-shadow:none}
+@keyframes trfloat{0%,100%{transform:perspective(900px) rotateX(10deg) rotateZ(-4deg) translateY(0)}50%{transform:perspective(900px) rotateX(6deg) rotateZ(-2deg) translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.tr-hero-card{animation:none}}
+.tr-hero h2{font-size:28px;font-weight:800;display:flex;align-items:center;gap:8px}
+.tr-hero h2 svg{width:24px;height:24px;color:var(--bullion)}
+.tr-hero p{font-size:13px;color:var(--fg-3)}
+.tr-hero p b{color:var(--fg)}
+.tr-grace{display:flex;gap:6px;align-items:center}
+
+.tr-ladder{position:relative;height:96px;margin:4px 14px 0}
+.tr-ladder-track{position:absolute;top:18px;inset-inline:0;height:6px;border-radius:3px;background:var(--ink-3)}
+.tr-ladder-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--bullion),var(--bullion-hi,#F0D59A))}
+[dir=rtl] .tr-ladder-track i,.tr-ladder-track i{margin-inline-start:0}
+.tr-node{position:absolute;top:0;transform:translateX(50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;white-space:nowrap}
+.tr-node.n0{transform:none;align-items:flex-end;text-align:right}.tr-node.n2{transform:translateX(100%);align-items:flex-start;text-align:left}
+.tr-node i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--ink-2);border:1px solid var(--line);color:var(--fg-3)}
+.tr-node i svg{width:18px;height:18px}
+.tr-node.on i{background:linear-gradient(135deg,var(--bullion-hi,#F0D59A),var(--bullion));color:var(--on-light);border-color:transparent}
+.tr-node b{font-size:12.5px}
+.tr-node small{font-size:10.5px;color:var(--fg-3)}
+.tr-you{position:absolute;top:30px;transform:translateX(50%)}
+.tr-you small{display:block;font-size:10px;font-weight:700;color:var(--bullion);padding-top:4px;border-top:2px solid var(--bullion)}
+
+.tr-next{display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:18px;background:var(--ink-1);border:1px solid var(--line)}
+.tr-next b{font-size:15px}
+.tr-next small{font-size:12.5px;color:var(--fg-3)}
+.tr-next.sm{padding:12px 14px;margin:2px 0}
+.tr-next.sm b{font-size:13.5px}
+.tr-cta{display:flex;gap:10px;margin-top:8px}
+.tr-cta .btn{height:48px;font-size:14px}
+
+.tr-seg{display:grid;grid-template-columns:repeat(3,1fr)}
+.tr-perks{display:flex;flex-direction:column;border-radius:22px;background:var(--ink-1);border:1px solid var(--line);overflow:hidden}
+.tr-perks-head{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.tr-perks-head img{width:64px;aspect-ratio:1.586;border-radius:7px;object-fit:cover}
+.tr-perks-head>span:nth-child(2){flex:1;display:flex;flex-direction:column}
+.tr-perks-head b{font-size:16px}
+.tr-perks-head small{font-size:11.5px;color:var(--fg-3)}
+.tr-badge{display:inline-flex;gap:4px;align-items:center;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--ink-3);color:var(--fg-3)}
+.tr-badge.on{background:color-mix(in srgb,var(--gain) 16%,transparent);color:var(--gain)}
+.tr-perk{display:flex;gap:12px;align-items:flex-start;padding:12px 16px}
+.tr-perk+.tr-perk{border-top:1px solid var(--line)}
+.tr-perk .ri{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--ink-2);flex:none;color:var(--bullion)}
+.tr-perk .ri svg{width:17px;height:17px}
+.tr-perk .rt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.tr-perk b{font-size:13.5px}
+.tr-perk small{font-size:12.5px;color:var(--fg-2)}
+.tr-cardrow{border-radius:18px;background:var(--ink-1);border:1px solid var(--line)}
+
+.tr-clist{display:flex;flex-direction:column;border-radius:22px;background:var(--ink-1);border:1px solid var(--line);overflow:hidden}
+.tr-crow{display:flex;align-items:center;gap:12px;padding:10px 14px;text-align:right;color:var(--fg)}
+.tr-crow+.tr-crow{border-top:1px solid var(--line)}
+.tr-crow-art{width:52px;height:52px;flex:none;border-radius:14px;overflow:hidden;background:var(--ink-0)}
+.tr-crow-art .media{width:100%;height:100%}
+.tr-crow-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.tr-crow-main b{font-size:14px}
+.tr-crow-main b small{font-weight:500;color:var(--fg-3);font-size:12px}
+.tr-crow-main>small{font-size:11.5px;color:var(--fg-3)}
+
+.tr-why{border-radius:18px;background:var(--ink-1);border:1px solid var(--line);padding:4px 16px}
+.tr-why summary{list-style:none;cursor:pointer;display:flex;gap:8px;align-items:center;font-weight:700;font-size:13.5px;padding:12px 0}
+.tr-why summary::-webkit-details-marker{display:none}
+.tr-why p{font-size:12.5px;color:var(--fg-2);line-height:1.9;margin:0 0 10px}
+.tr-why-t{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.tr-why-t div{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:14px;background:var(--ink-2)}
+.tr-why-t span{font-size:11px;color:var(--fg-3)}
+.tr-why-t b{font-size:14px}
+.tr-why-t small{font-size:10.5px;color:var(--fg-3)}
+.tr-why-n{display:block;font-size:11px;color:var(--fg-3);padding-bottom:12px}
+
+.tr-sheet .sheet-body{display:flex;flex-direction:column;gap:14px}
+.tr-lv3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tr-lv{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 6px 10px;border-radius:16px;background:var(--ink-1);border:1px solid var(--line);color:var(--fg);text-align:center}
+.tr-lv.sel{border-color:var(--bullion);box-shadow:0 0 0 1px var(--bullion) inset}
+.tr-lv-art{width:100%;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--ink-0)}
+.tr-lv-art .media{width:100%;height:100%}
+.tr-lv.lock .tr-lv-art{filter:saturate(.35) brightness(.7)}
+.tr-lv b{font-size:12px}
+.tr-lv small{font-size:10.5px;color:var(--fg-3);display:flex;gap:3px;align-items:center}
+.tr-lv-big{width:min(70%,260px);aspect-ratio:1;margin:0 auto;border-radius:22px;overflow:hidden}
+.tr-lv-big .media{width:100%;height:100%}
+.kv.dim>span,.kv.dim b{opacity:.6}
+.kv>span .tr-pips{margin-inline-end:6px}
+
+.tr-lock-ic{width:58px;height:58px;border-radius:50%;margin:4px auto 0;display:grid;place-items:center;background:linear-gradient(135deg,var(--bullion-hi,#F0D59A),var(--bullion));color:var(--on-light)}
+.tr-lock-p{font-size:13.5px;color:var(--fg-2);text-align:center;line-height:1.9}
+[data-sheet="trLock"] .sheet-body,[data-sheet="trCard"] .sheet-body{display:flex;flex-direction:column;gap:14px}
+
+.tr-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tr-cardopt{display:flex;flex-direction:column;gap:5px;align-items:center;padding:8px;border-radius:14px;background:var(--ink-1);border:1px solid var(--line);color:var(--fg);text-align:center}
+.tr-cardopt img{width:100%;aspect-ratio:1.586;object-fit:cover;border-radius:8px;box-shadow:0 8px 16px -8px rgba(0,0,0,.6)}
+.tr-cardopt b{font-size:11.5px}
+.tr-cardopt small{font-size:10.5px;color:var(--fg-3);display:flex;gap:3px;align-items:center}
+.tr-cardopt.sel{border-color:var(--bullion);box-shadow:0 0 0 1px var(--bullion) inset}
+.tr-cardopt.lock img{filter:grayscale(.6) brightness(.7)}
+
+.tr-billfee{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:18px;background:var(--ink-1);border:1px solid var(--line)}
+.tr-billfee .ri{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--ink-2);color:var(--bullion);flex:none}
+.tr-billfee .rt{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tr-billfee b{font-size:13.5px}
+.tr-billfee small{font-size:11.5px;color:var(--fg-3)}
+
+:root[data-w2theme="light"] .tr-tile-card,:root[data-w2theme="light"] .tr-cardopt img{box-shadow:0 8px 18px -8px rgba(60,40,10,.35)}
+:root[data-w2theme="light"] .tr-hero-card{box-shadow:0 30px 50px -24px rgba(60,40,10,.45),0 0 0 1px rgba(0,0,0,.05)}
+:root[data-w2theme="light"] .tr-crow-art,:root[data-w2theme="light"] .tr-lv-art{background:var(--ink-2)}
+.tr-plist{display:flex;flex-direction:column;border-radius:18px;background:var(--ink-1);border:1px solid var(--line);overflow:hidden}
+.tr-prow{display:flex;align-items:center;gap:12px;padding:12px 14px;color:var(--fg-3)}
+.tr-prow+.tr-prow{border-top:1px solid var(--line)}
+.tr-prow>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.tr-prow b{font-size:13px;color:var(--fg-2);font-weight:600}
+.tr-prow small{font-size:11px;color:var(--fg-3)}
+.tr-prow.on b{color:var(--fg)}
+.tr-prow.on>svg{color:var(--gain)}
 </style>
 </head>
 <body>
@@ -1284,7 +1446,7 @@ html.th-anim, html.th-anim *, html.th-anim *::before, html.th-anim *::after{tran
 
 <!-- Service Worker source. Browsers only register a worker from a same-origin file, so this exact text also ships as sw.js next to index.html. -->
 <script type="text/plain" id="sw-source">
-const CACHE = 'w2-shell-v20';
+const CACHE = 'w2-shell-v21';
 const SHELL = ['./', './index.html', './img/onb_wealth.jpg', './img/onb_wonder.jpg', './img/onb_wisdom.jpg', './img/onb_worth.jpg', './img/asset_gold.jpg', './img/asset_silver.jpg', './img/asset_property.jpg', './img/asset_copper.jpg', './img/asset_fund.jpg', './img/bill_mobile.jpg', './img/bill_elec.jpg', './img/bill_water.jpg', './img/bill_gas.jpg', './img/bill_phone.jpg', './img/bill_id.jpg', './img/asset_oil.jpg', './img/onb_well.jpg', './img/onb_world.jpg', './img/onb_wheels.jpg', './img/card_front.jpg', './img/ticket_gold.jpg', './img/ticket_holo.jpg', './img/asset_debt.jpg', './img/asset_lease.jpg', './img/car_tara.jpg', './img/car_shahin.jpg', './img/car_tiggo7.jpg', './img/car_arrizo8.jpg', './img/pf_hero.jpg', './img/asset_pf.jpg', './img/pf_hi.jpg', './img/pf_dig.jpg', './img/pf_grw.jpg', './img/svc_inst.jpg', './img/svc_stake.jpg', './img/svc_guard.jpg', './img/svc_save.jpg', './img/svc_credit.jpg', './img/gift_classic.jpg', './img/gift_birthday.jpg', './img/gift_nowruz.jpg', './img/gift_love.jpg', './img/w2-icon-192.png', './img/w2-icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -6463,6 +6625,314 @@ if (CONFIG.publicDemo && !lgLS.get('w2.notice')) {
   const _obMountLg = Screens.onboarding.mount;
   Screens.onboarding.mount = (el, p) => { const r = _obMountLg(el, p); if (!lgLS.get('w2.notice')) later(() => { if (!S.sheets.some(s => s.name === 'lgNotice')) { openSheet('lgNotice'); lgLog('consent', 'shown'); } }, 900); return r; };
 }
+
+/* =========================================================
+   v21 — W² wealth tiers (gamification)
+   Benchmarked on Wealthsimple status tiers (Core $1+ · Premium $100k+ · Generation $500k+,
+   a 5× ladder; status = higher of net deposits or portfolio value) and calibrated on
+   Wallex user-capital distribution (۱۲۸٬۳۶۳ users, 1405/01–04: 8.1% ≥ $1k, 0.46% ≥ $10k).
+   Overall:  پایه 0 · ممتاز 200M toman (≈ $1k, top ~8%) · میراث 1B toman (5×)
+   Per asset class: سطح ۱ · سطح ۲ from 40M toman (⅕ of ممتاز) · سطح ۳ from 200M toman (5×)
+   ========================================================= */
+const TR_USD = 1950000; // ریال به ازای هر دلار (≈ ۱۹۵ هزار تومان)
+const TR_T = [
+  { id: 'core', fa: 'پایه', en: 'Core', min: 0, ic: 'circle-dot', c: '#9AA6BC', card: 'core', cardFa: 'کارت مشکی مات' },
+  { id: 'prem', fa: 'ممتاز', en: 'Premium', min: 2e9, ic: 'gem', c: '#CDD3DE', card: 'prem', cardFa: 'کارت فلزی تیتانیوم' },
+  { id: 'gen', fa: 'میراث', en: 'Generation', min: 1e10, ic: 'crown', c: '#D9B26A', card: 'gen', cardFa: 'کارت فلزی طلایی' }
+];
+const TR_CLS = [0, 4e8, 2e9];
+const TR_FEE0 = { gold: .01, silver: .02, property: .02, copper: .02, oil: .01, fund: 0, debt: .005, pf: 0, lease: 0 };
+const TR_DISC = [0, .2, .5];
+const TR_NAMES = {
+  gold: ['ذرهٔ طلا', 'قطعهٔ طلا', 'گنجینهٔ طلا'], silver: ['قطرهٔ نقره', 'موج نقره', 'شمش نقره'],
+  property: ['یک واحد', 'یک ساختمان', 'مجموعهٔ برج‌ها'], copper: ['سنگ مس', 'کلوخهٔ مس', 'شمش و سیم مس'],
+  oil: ['یک قطره', 'چکهٔ نفت', 'بشکهٔ نفت'], fund: ['نخستین سکه', 'ستون سکه', 'گنجینهٔ سکه'],
+  debt: ['یک سهم تولید', 'خط تولید', 'کارخانه'], pf: ['نخستین سهم', 'سبد جهانی', 'سبد جهانیِ کامل'],
+  lease: ['کلید اول', 'خودروی شهری', 'خودروی لوکس']
+};
+const TR_L3 = {
+  gold: 'تحویل فیزیکی شمش بدون کارمزد', silver: 'تحویل فیزیکی شمش بدون کارمزد', copper: 'تحویل فیزیکی بدون کارمزد',
+  property: 'اولویت در پیش‌فروش طرح‌های تازهٔ ملک', oil: 'گزارش هفتگی اختصاصی بازار انرژی', fund: 'برداشت آنی تا سقف ۵۰۰ میلیون تومان',
+  debt: 'دسترسی زودتر به طرح‌های تازهٔ تولید', pf: 'بازتنظیم شخصی سبد با مشاور', lease: 'اولویت رزرو و تحویل خودرو'
+};
+/* perks — each row maps a Wealthsimple benefit to its W² equivalent */
+const TR_PERKS = [
+  { ic: 'credit-card', t: 'کارت W²', v: ['کارت مجازی رایگان · کارت فیزیکی مشکی ۳۰۰ هزار تومان (با واریز حقوق ۸ میلیون تومان+ رایگان)', 'کارت فلزی تیتانیوم رایگان', 'کارت فلزی طلایی رایگان + ارسال فوری'], ws: 'کارت پلاستیکی ← کارت فلزی' },
+  { ic: 'receipt', t: 'پرداخت قبض', v: ['کارمزد خدمات ۱٬۰۰۰ تومان هر قبض', '۱۰ قبض رایگان در ماه', 'همهٔ قبض‌ها رایگان'], ws: 'Bill pay' },
+  { ic: 'smartphone', t: 'پرداخت خودکار قبض موبایل', v: ['فقط یادآوری سررسید', 'خودکار برای خط خودتان', 'خودکار تا ۵ خط خانواده'], ws: 'Auto-pay' },
+  { ic: 'percent', t: 'کارمزد فروش دارایی', v: ['کارمزد پایه', '۲۰٪ تخفیف', '۵۰٪ تخفیف'], ws: 'کارمزد مدیریت ۰٫۵ → ۰٫۴ → ۰٫۲٪' },
+  { ic: 'zap', t: 'سقف واریز آنی روزانه', v: ['۱۰۰ میلیون تومان', '۵۰۰ میلیون تومان', '۵۰۰ میلیون تومان'], ws: 'Instant deposit $50k → $250k' },
+  { ic: 'sparkles', t: 'نرخ اعتبار به پشتوانهٔ دارایی', v: ['نرخ پایه', '۰٫۵ واحد کمتر', '۱ واحد کمتر'], ws: 'Line of credit 4.95 → 4.45 → 3.95٪' },
+  { ic: 'headphones', t: 'پشتیبانی', v: ['چت ۲۴ ساعته', 'تماس تلفنی با اولویت', 'مشاور اختصاصی ثروت'], ws: 'Priority phone · advisor team' },
+  { ic: 'gift', t: 'پاداش نقطهٔ عطف', v: ['—', 'تا ۳ پاداش: از ۴۰۰ میلیون، هر ۲۰۰ میلیون یک بار', '۳ پاداش'], ws: 'Milestone rewards from $200k' }
+];
+
+/* ---------- core ---------- */
+const trIdx = v => v >= TR_T[2].min ? 2 : v >= TR_T[1].min ? 1 : 0;
+const trClsLvl = a => { const v = a ? valueOf(a) : 0; return v >= TR_CLS[2] ? 3 : v >= TR_CLS[1] ? 2 : 1; };
+function trState() {
+  if (!DB.tier) DB.tier = { lvl: -1, at: null, cls: {}, peak: 0 };
+  return DB.tier;
+}
+function trCalc() { // like Wealthsimple: status holds once reached (30-day grace after a drop)
+  const T = trState(), v = totalWealth(), raw = trIdx(v);
+  const keep = T.lvl > raw && T.at && Date.now() - new Date(T.at).getTime() < 30 * 864e5;
+  return { v, raw, idx: keep ? T.lvl : raw, grace: keep };
+}
+const trTier = () => TR_T[trCalc().idx];
+const trDisc = a => Math.max(TR_DISC[trClsLvl(a) - 1], TR_DISC[trCalc().idx]);
+function trNext(v, idx) { const n = TR_T[idx + 1]; if (!n) return null; const p = TR_T[idx].min; return { t: n, need: n.min - v, pct: Math.max(0, Math.min(1, (v - p) / (n.min - p))) }; }
+function trClsNext(a) { const L = trClsLvl(a), v = valueOf(a); if (L >= 3) return null; const lo = TR_CLS[L - 1], hi = TR_CLS[L]; return { lvl: L + 1, need: hi - v, pct: Math.max(0, Math.min(1, (v - lo) / (hi - lo))) }; }
+const trM = rial => { const t = Math.max(0, rial) / 10;
+  if (t >= 1e9) return faDec(t / 1e9, t >= 1e10 ? 0 : 1) + ' میلیارد';
+  if (t >= 1e6) return faDec(t / 1e6, t >= 1e8 ? 0 : 1) + ' میلیون';
+  if (t >= 1e3) return fa(Math.round(t / 1e3)) + ' هزار';
+  return fa(t); };
+const trUsd = rial => '$' + fa(Math.round(rial / TR_USD));
+
+/* fee discount: sale fees follow the better of class level and membership */
+function trSync(quiet) {
+  DB.assets.forEach(a => {
+    if (!(a.id in TR_FEE0)) return;
+    const d = Object.getOwnPropertyDescriptor(a, 'fee');
+    if (!d || !d.get) Object.defineProperty(a, 'fee', { get() { return +(TR_FEE0[this.id] * (1 - trDisc(this))).toFixed(5); }, set() {}, enumerable: true, configurable: true });
+  });
+  const T = trState(), c = trCalc();
+  if (c.raw > T.lvl) {
+    const first = T.lvl < 0; T.lvl = c.raw; T.at = new Date();
+    if (!first && !quiet) setTimeout(() => { vib([12, 40, 12, 40, 20]); toast({ title: `به سطح «${TR_T[c.raw].fa}» رسیدید`, body: `${TR_T[c.raw].cardFa} و مزایای تازه برای شما باز شد.`, ic: TR_T[c.raw].ic, ms: 4200, action: { label: 'مزایا', act: 'trOpen' } }); }, 500);
+  } else if (c.raw === T.lvl) T.at = new Date();
+  DB.assets.forEach(a => {
+    if (!(a.id in TR_FEE0)) return;
+    const L = trClsLvl(a), was = T.cls[a.id];
+    if (was && L > was && !quiet) setTimeout(() => { vib([10, 30, 10]); toast({ title: `${a.short}: سطح ${faD(L)}`, body: `دارایی ${a.short} شما به «${TR_NAMES[a.id][L - 1]}» رسید.`, ic: 'trending-up', ms: 3800 }); }, 900);
+    T.cls[a.id] = L;
+  });
+}
+
+/* ---------- media: carousel art follows each class level ---------- */
+Object.keys(TR_FEE0).forEach(id => [1, 3].forEach(t => {
+  const k = `asset_${id}_${t}`; IMAGES[k] = `img/${k}.jpg`; VIDEOS[k] = `vid/${k}.mp4`; TH_IMG.add(k); TH_VID.add(k);
+}));
+['core', 'prem', 'gen'].forEach(k => { IMAGES['card_' + k] = `img/card_${k}.jpg`; });
+const _mediaV21 = media;
+media = (key, kind, cls = '') => {
+  const m = /^asset_(\w+)$/.exec(key);
+  if (m && m[1] in TR_FEE0 && !S.trNoTier) { const L = trClsLvl(asset(m[1])); if (L !== 2) key = `${key}_${L}`; }
+  return _mediaV21(key, kind, cls);
+};
+const trMediaAt = (id, L, kind = 'vid') => { S.trNoTier = true; try { return media(L === 2 ? 'asset_' + id : `asset_${id}_${L}`, id, kind); } finally { S.trNoTier = false; } };
+
+const _hydV21 = hydrate;
+hydrate = el => { try { trSync(); } catch (e) {} _hydV21(el); };
+
+/* ---------- card: Persian, Iranian-style face per membership ---------- */
+const trCardKey = () => (DB.card && DB.card.design) || 'core';
+const trExp = e => { const [m, y] = String(e || '').split('/'); return y ? faD(`۱۴${y}/${m}`) : ''; };
+const trPanFa = (c, reveal) => (reveal ? c.pan : [c.pan[0], c.pan[1].slice(0, 2) + '••', '••••', c.pan[3]]).map(p => faD(p));
+mcard = function (full = false, reveal = false) {
+  const c = DB.card, k = trCardKey(), pan = trPanFa(c, reveal);
+  return `<button class="mcard tap photo tc-${k} ${c.frozen ? 'frozen' : ''} ${full ? 'full' : ''}" data-act="${full ? 'noop' : 'cardOpen'}" aria-label="کارت W²">
+    <img class="mcard-photo" src="${IMAGES['card_' + k]}" alt="" onerror="this.src='${IMAGES.card_front}'"><span class="mcard-sheen"></span>
+    ${full ? `<span class="tc-pan" dir="ltr">${pan.map(p => `<span>${p}</span>`).join('')}</span>
+      <span class="tc-meta"><span>انقضا <b class="num">${reveal ? trExp(c.exp) : '••••/••'}</b></span><span>CVV2 <b class="num">${reveal ? faD(c.cvv) : '•••'}</b></span></span>`
+      : `<span class="tc-pan sm" dir="ltr"><span>••••</span><span>${faD(c.pan[3])}</span></span>`}
+    <span class="tc-name">${DB.user.name || ''}</span>
+    <span class="tc-tier">${TR_T.find(t => t.card === k).fa}</span>
+    ${c.frozen ? `<span class="frost"><span>${icon('snowflake')} کارت موقتاً فریز است</span></span>` : ''}</button>`;
+};
+
+/* ---------- UI pieces ---------- */
+const trPips = (L, n = 3) => `<span class="tr-pips">${Array.from({ length: n }, (_, i) => `<i class="${i < L ? 'on' : ''}"></i>`).join('')}</span>`;
+function trStrip(a) {
+  if (!(a.id in TR_FEE0)) return '';
+  const L = trClsLvl(a), nx = trClsNext(a);
+  return `<button class="tr-strip tap lv${L}" data-act="trCls" data-id="${a.id}">
+    <span class="tr-strip-top">${trPips(L)}<b>${TR_NAMES[a.id][L - 1]} · سطح ${faD(L)}</b>${icon('chevron-left', 'w-4 h-4')}</span>
+    ${nx ? `<span class="tr-bar"><i style="width:${(nx.pct * 100).toFixed(1)}%"></i></span><small>${trM(nx.need)} تومان تا «${TR_NAMES[a.id][nx.lvl - 1]}»${TR_DISC[nx.lvl - 1] ? `، با ${faD(TR_DISC[nx.lvl - 1] * 100)}٪ تخفیف کارمزد` : ''}</small>`
+      : `<small>بالاترین سطح ${a.short}؛ ${TR_L3[a.id]}</small>`}
+  </button>`;
+}
+function trPill() {
+  const c = trCalc(), t = TR_T[c.idx], nx = trNext(c.v, c.idx);
+  return `<button class="tr-pill tap t-${t.id}" data-act="trOpen"><span class="tr-pill-ic">${icon(t.ic, 'w-4 h-4')}</span><span>عضویت <b>${t.fa}</b></span>
+    ${nx ? `<span class="tr-pill-bar"><i style="width:${(nx.pct * 100).toFixed(1)}%"></i></span><small class="num">${faD(Math.floor(nx.pct * 100))}٪ تا ${nx.t.fa}</small>` : '<small>بالاترین سطح</small>'}${icon('chevron-left', 'w-4 h-4')}</button>`;
+}
+function trTile() {
+  const c = trCalc(), t = TR_T[c.idx], nx = trNext(c.v, c.idx);
+  return `<button class="tile wide tap tr-tile t-${t.id}" data-act="trOpen">
+    <span class="tile-k"><span>${icon(t.ic, 'w-4 h-4')} سطح عضویت W²</span>${icon('chevron-left')}</span>
+    <span class="tr-tile-row"><span class="tr-tile-card"><img alt="" src="${IMAGES['card_' + t.card]}"></span>
+      <span style="min-width:0;flex:1"><b class="tr-tile-name">${t.fa}</b>
+      ${nx ? `<span class="tr-bar"><i style="width:${(nx.pct * 100).toFixed(1)}%"></i></span><small>${trM(nx.need)} تومان تا «${nx.t.fa}» و ${nx.t.cardFa}</small>` : `<small>همهٔ مزایای W² برای شما باز است</small>`}</span></span>
+  </button>`;
+}
+function trLadder(c) {
+  const v = c.v, pos = x => x >= TR_T[2].min ? 100 : x >= TR_T[1].min ? 50 + 50 * (x - TR_T[1].min) / (TR_T[2].min - TR_T[1].min) : 50 * x / TR_T[1].min;
+  return `<div class="tr-ladder"><div class="tr-ladder-track"><i style="width:${pos(v).toFixed(1)}%"></i></div>
+    ${TR_T.map((t, i) => `<span class="tr-node n${i} ${i <= c.idx ? 'on' : ''}" style="inset-inline-start:${pos(t.min).toFixed(1)}%"><i>${icon(t.ic)}</i><b>${t.fa}</b><small class="num">${i ? trM(t.min) : 'از اولین واریز'}</small></span>`).join('')}
+    <span class="tr-you" style="inset-inline-start:${Math.min(96, Math.max(4, pos(v))).toFixed(1)}%"><small>شما</small></span></div>`;
+}
+function trClsRow(a) {
+  const L = trClsLvl(a), nx = trClsNext(a), v = valueOf(a);
+  return `<button class="tr-crow tap" data-act="trCls" data-id="${a.id}"><span class="tr-crow-art">${media('asset_' + a.id, a.id)}</span>
+    <span class="tr-crow-main"><b>${a.short} <small>· ${TR_NAMES[a.id][L - 1]}</small></b>
+      <span class="tr-bar"><i style="width:${((nx ? nx.pct : 1) * 100).toFixed(1)}%"></i></span>
+      <small>${v ? trM(v) + ' تومان' : 'هنوز ندارید'}${nx ? `؛ ${trM(nx.need)} تا سطح ${faD(nx.lvl)}` : '؛ بالاترین سطح'}</small></span>${trPips(L)}</button>`;
+}
+
+/* ---------- pages & sheets ---------- */
+Pages.tiers = {
+  render: () => {
+    const c = trCalc(), t = TR_T[c.idx], nx = trNext(c.v, c.idx), sel = S.trSel == null ? c.idx : S.trSel;
+    const held = DB.assets.filter(a => a.id in TR_FEE0);
+    return `<div class="scroll">${pghead('سطح عضویت', helpBtn(), backBtn())}
+      <div class="gut tr-page">
+        <div class="tr-hero t-${t.id}">
+          <div class="tr-hero-card"><img alt="" src="${IMAGES['card_' + t.card]}"><span class="tr-hero-name">${DB.user.name || ''}</span></div>
+          <span class="eyebrow">عضویت فعلی شما</span>
+          <h2>${icon(t.ic)} ${t.fa}</h2>
+          <p class="num">ارزش کل دارایی‌ها در W²: <b>${S.maskBal ? '••••' : trM(c.v) + ' تومان'}</b></p>
+          ${c.grace ? `<p class="tr-grace">${icon('shield-check', 'w-4 h-4')} سطح شما تا ۳۰ روز پس از افت ارزش حفظ می‌شود.</p>` : ''}
+        </div>
+        ${trLadder(c)}
+        ${nx ? `<div class="tr-next"><b>${trM(nx.need)} تومان تا «${nx.t.fa}»</b><small>با رسیدن به ${trM(nx.t.min)} تومان دارایی، ${nx.t.cardFa} و ${TR_PERKS[1].v[nx.t === TR_T[1] ? 1 : 2]} برایتان باز می‌شود.</small>
+          <div class="tr-cta"><button class="btn btn-gold tap" data-act="sheet" data-to="deposit">${icon('plus', 'w-5 h-5')} افزایش دارایی</button><button class="btn btn-ghost tap" data-act="tab" data-to="assets">خرید دارایی</button></div></div>` : ''}
+        <div class="sgm tr-seg" role="tablist">${TR_T.map((x, i) => `<button class="tap ${sel === i ? 'on' : ''}" data-act="trSel" data-i="${i}" role="tab">${x.fa}${i === c.idx ? ' ●' : ''}</button>`).join('')}</div>
+        <div class="tr-perks t-${TR_T[sel].id}">
+          <div class="tr-perks-head"><img alt="" src="${IMAGES['card_' + TR_T[sel].card]}"><span><b>${TR_T[sel].fa}</b><small class="num">${sel ? `از ${trM(TR_T[sel].min)} تومان · ≈ ${trUsd(TR_T[sel].min)}` : 'از اولین واریز'}</small></span>${sel <= c.idx ? `<span class="tr-badge on">${icon('check', 'w-4 h-4')} فعال</span>` : `<span class="tr-badge">${icon('lock', 'w-4 h-4')} قفل</span>`}</div>
+          ${TR_PERKS.map(p => `<div class="tr-perk"><span class="ri">${icon(p.ic)}</span><span class="rt"><b>${p.t}</b><small>${p.v[sel]}</small></span></div>`).join('')}
+        </div>
+        <button class="row tap tr-cardrow" data-act="trCard"><span class="ri gold">${icon('credit-card')}</span><span class="rt"><b>سفارش کارت ${TR_T[c.idx].cardFa.replace('کارت ', '')}</b><small>${DB.cardOrder ? 'سفارش ثبت شده · ' + DB.cardOrder.status : 'طرح کارت متناسب با سطح عضویت'}</small></span>${icon('chevron-left', 'chev')}</button>
+        <div><div class="group-t" style="display:flex;justify-content:space-between"><span>سطح هر دارایی</span><span class="num">${faD(held.filter(a => trClsLvl(a) >= 2).length)} از ${faD(held.length)} در سطح ۲+</span></div>
+          <div class="tr-clist">${held.map(trClsRow).join('')}</div></div>
+        <details class="tr-why"><summary>${icon('scale', 'w-4 h-4')} این آستانه‌ها از کجا آمده‌اند؟</summary>
+          <p><b>الگو: ولث‌سیمپل.</b> سه سطح Core (از ۱ دلار)، Premium (از ۱۰۰ هزار دلار) و Generation (از ۵۰۰ هزار دلار) — هر پله ۵ برابر پلهٔ قبل. سطح بر اساس بیشترِ «خالص واریز» یا «ارزش سبد» سنجیده می‌شود و مزایا (کارت فلزی، کارمزد کمتر، اعتبار ارزان‌تر، پشتیبانی اولویت‌دار) با هر پله باز می‌شوند.</p>
+          <p><b>کالیبره با دادهٔ والکس.</b> در پنجرهٔ ۱۴۰۵/۰۱ تا ۰۴ از ۱۲۸٬۳۶۳ کاربر فعال، فقط ۸٫۱٪ بیش از ۱٬۰۰۰ دلار و ۰٫۴۶٪ بیش از ۱۰٬۰۰۰ دلار دارایی داشته‌اند؛ میانهٔ سرمایهٔ ردهٔ ۱٬۰۰۰ تا ۱۰٬۰۰۰ دلار حدود ۱٬۸۵۰ دلار است.</p>
+          <div class="tr-why-t">
+            <div><span>ممتاز</span><b class="num">۲۰۰ میلیون تومان</b><small>≈ ۱٬۰۰۰ دلار · مرز ۸٪ بالایی کاربران</small></div>
+            <div><span>میراث</span><b class="num">۱ میلیارد تومان</b><small>۵× ممتاز · همان نسبت ولث‌سیمپل</small></div>
+            <div><span>سطح ۲ هر دارایی</span><b class="num">۴۰ میلیون تومان</b><small>⅕ آستانهٔ ممتاز</small></div>
+            <div><span>سطح ۳ هر دارایی</span><b class="num">۲۰۰ میلیون تومان</b><small>۵× سطح ۲ · برابر ممتاز</small></div>
+          </div>
+          <small class="tr-why-n">نرخ تبدیل: هر دلار ≈ ۱۹۵ هزار تومان. سطح شما تا ۳۰ روز پس از افت ارزش حفظ می‌شود.</small>
+        </details>
+      </div><div style="height:calc(var(--sab) + 28px)"></div></div>`;
+  },
+  unmount: () => { S.trSel = null; }
+};
+Sheets.trCls = {
+  render: p => {
+    const a = asset(p.id), L = trClsLvl(a), nx = trClsNext(a), sel = S.trClsSel || L;
+    const perks = [
+      ['خرید و فروش آنی، انتقال و وثیقه', `کارمزد فروش ${faDec(TR_FEE0[a.id] * 100, 1)}٪`],
+      [`${faD(20)}٪ تخفیف کارمزد فروش ${a.short}`, `از ${trM(TR_CLS[1])} تومان`],
+      [`${faD(50)}٪ تخفیف کارمزد · ${TR_L3[a.id]}`, `از ${trM(TR_CLS[2])} تومان`]
+    ];
+    return `<div class="sh-head"><div><h3>${a.name}</h3><p>${TR_NAMES[a.id][L - 1]} · سطح ${faD(L)} از ۳</p></div>${closeBtn('closeSheet')}</div>
+      <div class="tr-lv3">${[1, 2, 3].map(k => `<button class="tr-lv tap ${k === sel ? 'sel' : ''} ${k <= L ? 'on' : 'lock'}" data-act="trClsSel" data-k="${k}"><span class="tr-lv-art">${trMediaAt(a.id, k, '')}</span><b>${TR_NAMES[a.id][k - 1]}</b><small>سطح ${faD(k)}${k > L ? ' ' + icon('lock', 'w-3 h-3') : ''}</small></button>`).join('')}</div>
+      <div class="tr-lv-big">${trMediaAt(a.id, sel, 'vid')}</div>
+      <div class="tr-plist">${perks.map(([t, s], i) => `<div class="tr-prow ${i + 1 <= L ? 'on' : ''}">${trPips(i + 1)}<span><b>${t}</b><small>سطح ${faD(i + 1)}، ${s}</small></span>${i + 1 <= L ? icon('check-circle-2', 'w-5 h-5') : icon('lock', 'w-4 h-4')}</div>`).join('')}</div>
+      ${nx ? `<div class="tr-next sm"><b>${trM(nx.need)} تومان ${a.short} دیگر تا «${TR_NAMES[a.id][nx.lvl - 1]}»</b><span class="tr-bar"><i style="width:${(nx.pct * 100).toFixed(1)}%"></i></span></div>` : ''}
+      <button class="btn btn-gold tap" data-act="trClsBuy" data-id="${a.id}">${icon('plus', 'w-5 h-5')} ${a.fund ? 'واریز به' : 'خرید'} ${a.short}</button>`;
+  },
+  cls: 'tr-sheet'
+};
+Sheets.trLock = {
+  render: p => {
+    const need = TR_T[p.t], c = trCalc(), nx = trNext(c.v, c.idx);
+    return `<div class="tr-lock-ic">${icon('lock')}</div>
+      <div class="sh-head" style="justify-content:center;text-align:center"><div><h3>${p.title}</h3><p>این امکان از سطح «${need.fa}» به بعد فعال است.</p></div></div>
+      <p class="tr-lock-p">${p.body}</p>
+      <div class="tr-next sm"><b>${trM(need.min - c.v)} تومان تا «${need.fa}»</b><span class="tr-bar"><i style="width:${((nx ? nx.pct : 1) * 100).toFixed(1)}%"></i></span></div>
+      <button class="btn btn-gold tap" data-act="trLockGo">${icon('gem', 'w-5 h-5')} دیدن مسیر ${need.fa}</button>
+      <button class="btn btn-ghost tap" data-act="closeSheet">باشه</button>`;
+  }
+};
+/* card order */
+const TR_CARD_FEE = 3000000; // ریال
+const trSalaryOk = () => DB.bankTx.some(t => t.amount >= 80000000 && /حقوق/.test(t.title) && Date.now() - new Date(t.date).getTime() < 35 * 864e5);
+Sheets.trCard = {
+  render: () => {
+    const c = trCalc(), sel = S.trCardSel || TR_T[c.idx].card;
+    const fee = k => k === 'core' && c.idx === 0 && !trSalaryOk() ? TR_CARD_FEE : 0;
+    const st = TR_T.find(t => t.card === sel), ok = TR_T.indexOf(st) <= c.idx;
+    return `<div class="sh-head"><div><h3>سفارش کارت W²</h3><p>طرح کارت با سطح عضویت شما باز می‌شود</p></div>${closeBtn('closeSheet')}</div>
+      <div class="tr-cards">${TR_T.map((t, i) => `<button class="tr-cardopt tap ${sel === t.card ? 'sel' : ''} ${i > c.idx ? 'lock' : ''}" data-act="trCardSel" data-k="${t.card}"><img alt="" src="${IMAGES['card_' + t.card]}"><b>${t.cardFa}</b><small>${i > c.idx ? icon('lock', 'w-3 h-3') + ' از ' + t.fa : fee(t.card) ? fa(fee(t.card) / 10) + ' تومان' : 'رایگان'}</small></button>`).join('')}</div>
+      <div class="group">
+        <div class="kv"><span>نام روی کارت</span><b>${DB.user.name || '—'}</b></div>
+        <div class="kv"><span>ارسال به</span><b>نشانی ثبت‌شده در پروفایل</b></div>
+        <div class="kv"><span>هزینهٔ صدور</span><b>${ok ? (fee(sel) ? fa(fee(sel)) + ' ریال' : '<span style="color:var(--gain)">رایگان</span>') : '—'}</b></div>
+        ${sel === 'core' && c.idx === 0 ? `<div class="kv"><span>واریز حقوق ۸ میلیون تومان+</span><b>${trSalaryOk() ? '<span style="color:var(--gain)">دارید · صدور رایگان</span>' : 'ندارید'}</b></div>` : ''}
+      </div>
+      ${ok ? `<button class="btn btn-gold tap" data-act="trCardGo">${icon('package-check', 'w-5 h-5')} ثبت سفارش ${st.cardFa}</button>` : `<button class="btn btn-ghost tap" data-act="trLockCard" data-t="${TR_T.indexOf(st)}">${icon('lock', 'w-5 h-5')} از سطح ${st.fa} · ${trM(st.min - c.v)} تومان مانده</button>`}`;
+  }
+};
+
+/* ---------- actions ---------- */
+Object.assign(A, {
+  trOpen: () => { closeAllSheets && S.sheets.length && closeAllSheets(); push('tiers'); },
+  trSel: d => { S.trSel = +d.i; vib(4); rerenderPage('tiers'); },
+  trCls: d => { S.trClsSel = null; openSheet('trCls', { id: d.id }); },
+  trClsSel: d => { S.trClsSel = +d.k; vib(4); refreshSheet(); },
+  trClsBuy: d => { closeSheet(); setTimeout(() => A.trade({ id: d.id, side: 'buy' }), 300); },
+  trLockGo: () => { closeSheet(); setTimeout(() => push('tiers'), 250); },
+  trLockCard: d => { S.trSel = +d.t; closeSheet(); setTimeout(() => push('tiers'), 250); },
+  trCard: () => { S.trCardSel = null; openSheet('trCard'); },
+  trCardSel: d => { S.trCardSel = d.k; vib(4); refreshSheet(); },
+  trCardGo: () => {
+    const c = trCalc(), k = S.trCardSel || TR_T[c.idx].card, fee = k === 'core' && c.idx === 0 && !trSalaryOk() ? TR_CARD_FEE : 0;
+    if (fee > DB.rial) return toast({ title: 'موجودی کافی نیست', body: `هزینهٔ صدور ${fa(fee)} ریال است`, ic: 'alert-circle' });
+    const t = TR_T.find(x => x.card === k), track = String(Math.floor(1e9 + Math.random() * 9e9));
+    if (fee) { DB.rial -= fee; DB.bankTx.push({ id: 'b' + Date.now(), title: 'صدور کارت فیزیکی', sub: t.cardFa, amount: -fee, date: new Date(), kind: 'fee' }); }
+    DB.cardOrder = { design: k, at: new Date(), fee, track, status: 'در حال چاپ · تحویل ۵ تا ۷ روز کاری' };
+    DB.card.design = k; closeSheet(); vib([10, 30, 10]);
+    setTimeout(() => push('receipt', { title: 'سفارش کارت ثبت شد', hero: `<img alt="" src="${IMAGES['card_' + k]}" style="width:100%;border-radius:14px">`, amount: fee, amountText: fee ? '' : 'رایگان', sub: 'صدور و ارسال بدون هزینه', status: 'کارت مجازی هم‌اکنون با طرح جدید فعال است', rows: [['طرح', t.cardFa], ['نام روی کارت', DB.user.name || '—'], ['زمان تحویل', '۵ تا ۷ روز کاری'], ['شماره پیگیری', faD(track), track]] }), 300);
+  }
+});
+
+/* ---------- wire into existing screens ---------- */
+const _asInfoV21 = assetInfo;
+assetInfo = a => trStrip(a) + _asInfoV21(a);
+const _asRenderV21 = Tabs.assets.render;
+Tabs.assets.render = () => _asRenderV21().replace('<div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">', m => m + `<div class="gut" style="display:flex;justify-content:center">${trPill()}</div>`);
+const _bankV21 = Tabs.bank.render;
+Tabs.bank.render = () => _bankV21().replace('<div class="actions">', trTile() + '<div class="actions">');
+const _profV21 = Pages.profile.render;
+Pages.profile.render = p => _profV21(p).replace('<div><div class="group-t">تنظیمات</div>', `<div class="group"><button class="row tap" data-act="trOpen"><span class="ri gold">${icon(trTier().ic)}</span><span class="rt"><b>سطح عضویت</b><small>${trTier().fa} · ${trTier().cardFa}</small></span>${icon('chevron-left', 'chev')}</button></div><div><div class="group-t">تنظیمات</div>`);
+const _cardV21 = Pages.card.render;
+Pages.card.render = p => _cardV21(p).replace('<div><div class="group-t">امنیت کارت</div>', `<div class="group"><button class="row tap" data-act="trCard"><span class="ri gold">${icon('package')}</span><span class="rt"><b>سفارش کارت فیزیکی</b><small>${DB.cardOrder ? DB.cardOrder.status : TR_T.find(t => t.card === trCardKey()).cardFa + ' · طرح‌ها با سطح عضویت باز می‌شوند'}</small></span>${icon('chevron-left', 'chev')}</button></div><div><div class="group-t">امنیت کارت</div>`);
+
+/* bills: free payments by membership */
+const trMonth = () => { const d = new Date(); return d.getFullYear() + '-' + d.getMonth(); };
+const trBillsUsed = () => { const T = trState(); return T.billM === trMonth() ? (T.billN || 0) : 0; };
+const trBillFee = () => { const i = trCalc().idx; return i === 2 ? 0 : i === 1 ? (trBillsUsed() < 10 ? 0 : 10000) : 10000; };
+const _bpV21 = Pages.billPay.render;
+Pages.billPay.render = p => {
+  const i = trCalc().idx, fee = trBillFee(), left = Math.max(0, 10 - trBillsUsed());
+  const note = `<div class="tr-billfee t-${TR_T[i].id}"><span class="ri">${icon('receipt')}</span><span class="rt"><b>کارمزد خدمات: ${fee ? fa(fee) + ' ریال' : '<span style="color:var(--gain)">رایگان</span>'}</b>
+    <small>${i === 2 ? 'عضویت میراث · همهٔ قبض‌ها رایگان' : i === 1 ? `عضویت ممتاز · ${faD(left)} قبض رایگان دیگر در این ماه` : `در سطح ممتاز ۱۰ قبض در ماه رایگان است · ${trM(TR_T[1].min - trCalc().v)} تومان مانده`}</small></span>${i < 2 ? `<button class="mini-btn tap" data-act="trOpen">مزایا</button>` : ''}</div>`;
+  return _bpV21(p).replace('<div id="bpMsg"></div>', note + '<div id="bpMsg"></div>');
+};
+const _billExecV21 = billExec;
+billExec = src => {
+  const fee = trBillFee(), b = S.bill, B = BT[b.type];
+  _billExecV21(src);
+  const T = trState(); if (T.billM !== trMonth()) { T.billM = trMonth(); T.billN = 0; } T.billN++;
+  if (fee) { DB.rial -= fee; DB.bankTx.push({ id: 'bf' + Date.now(), title: 'کارمزد خدمات قبض', sub: B.fa, amount: -fee, date: new Date(), kind: 'fee' }); }
+};
+/* mobile auto-pay: ممتاز (own line) · میراث (up to 5 lines) */
+const trMobAutoCap = () => [0, 1, 5][trCalc().idx];
+const trMobAutoN = () => DB.bills.filter(s => s.type === 'mobile' && s.autopay).length;
+const trMobLock = () => openSheet('trLock', trCalc().idx === 0
+  ? { t: 1, title: 'پرداخت خودکار قبض موبایل', body: 'در سطح ممتاز، قبض سیم‌کارت خودتان هر دوره در سررسید خودکار پرداخت می‌شود؛ در سطح میراث تا ۵ خط خانواده.' }
+  : { t: 2, title: 'پرداخت خودکار خطوط بیشتر', body: 'در سطح ممتاز یک خط و در سطح میراث تا ۵ خط موبایل را می‌توانید خودکار کنید.' });
+const _billAutoV21 = A.billAuto;
+A.billAuto = d => { const s = DB.bills.find(x => x.id === d.id); if (s && s.type === 'mobile' && !s.autopay && trMobAutoN() >= trMobAutoCap()) return trMobLock(); return _billAutoV21(d); };
+const _billAutoNewV21 = A.billAutoNew;
+if (_billAutoNewV21) A.billAutoNew = d => { if (S.bill && S.bill.type === 'mobile' && !S.billAutoNew && trMobAutoN() >= trMobAutoCap()) return trMobLock(); return _billAutoNewV21(d); };
+
+trSync(true);
 
 /* ---------- global listeners ---------- */
 document.addEventListener('click', e => {
