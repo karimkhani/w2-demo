@@ -6352,8 +6352,8 @@ setRoot = (name, p = {}) => {
 
 /* ---------- name on signup (account step) ---------- */
 const lgNameOk = v => (v || '').trim().split(/\s+/).filter(Boolean).length >= 2;
-const _suRenderLg = Screens.su.render;
-Screens.su.render = p => { let h = _suRenderLg(p); const U = S.su;
+const _suHTMLLg = suHTML;
+suHTML = () => { let h = _suHTMLLg(); const U = S.su;
   if (U && U.step === 'email') { const bad = U.touched && !lgNameOk(U.fname);
     h = h.replace('<label class="inp', `<label class="inp ${bad ? 'err' : ''}"><span>نام و نام خانوادگی</span><input id="suName" type="text" autocomplete="name" placeholder="مثلاً سارا رحیمی" value="${(U.fname || '').replace(/"/g, '&quot;')}"></label>${bad ? `<div class="msg err">${icon('alert-circle')}نام و نام خانوادگی را کامل بنویسید.</div>` : ''}<label class="inp`)
       .replace('ایمیلتان را وارد کنید تا کد تأیید برایتان بفرستیم.', 'نام و ایمیلتان را وارد کنید تا کد تأیید برایتان بفرستیم.'); }
