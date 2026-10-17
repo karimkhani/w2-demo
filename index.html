@@ -1570,6 +1570,160 @@ button.tr-perk{width:100%;text-align:right;color:var(--fg)}
 .sh-prev.big{max-height:70vh}.sh-prev.big img{width:100%}
 .sh-prev.busy{min-height:260px;background:linear-gradient(90deg,var(--ink-2),var(--ink-3),var(--ink-2));background-size:200% 100%;animation:shimmer 1.2s linear infinite}
 @keyframes shimmer{to{background-position:-200% 0}}
+/* v23 · progressive onboarding */
+.ky-prog{display:flex;gap:6px;flex:1;max-width:120px;margin:0 auto}
+.ky-prog i{flex:1;height:4px;border-radius:4px;background:var(--ink-3)}
+.ky-prog i.on{background:var(--bullion)}
+.ky-tt{flex:1;text-align:center;font-size:15px}
+.ky-terms{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--fg-2);line-height:1.8}
+.ky-terms .bx{flex:none;width:24px;height:24px;border-radius:8px;border:1.5px solid var(--line-2);background:var(--ink-1);display:grid;place-items:center;color:var(--on-light,#111);padding:0}
+.ky-terms .bx.on{background:var(--bullion);border-color:var(--bullion)}
+.ky-terms .bx svg{width:15px;height:15px}
+.ky-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.inp .su-sel{height:26px;border:0;padding:0 0 0 24px;background-color:transparent;background-position:4px 11px,9px 11px;font-size:15.5px;width:100%}
+.inp textarea{background:transparent;border:0;outline:none;color:var(--fg);font:inherit;font-size:15px;line-height:1.8;resize:none;width:100%}
+.inp input::placeholder,.inp textarea::placeholder{color:var(--fg-4,var(--fg-3));opacity:.7}
+.ky-page .form{min-height:100%}
+[data-sheet="kyNeed"] .sheet-body{display:flex;flex-direction:column;gap:14px}
+.ky-need-ic{width:64px;height:64px;border-radius:22px;margin:4px auto 0;display:grid;place-items:center;background:rgba(217,178,106,.12);color:var(--bullion)}
+.ky-need-ic svg{width:30px;height:30px}
+.ky-need-list{display:flex;flex-direction:column;border-radius:20px;background:var(--ink-1);border:1px solid var(--line);overflow:hidden}
+.ky-need-row{display:flex;align-items:center;gap:12px;padding:13px 14px}
+.ky-need-row+.ky-need-row{border-top:1px solid var(--line)}
+.ky-need-row .rt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ky-need-row .rt b{font-size:14px}.ky-need-row .rt small{font-size:11.5px;color:var(--fg-3)}
+.ky-need-row>svg{color:var(--fg-3);flex:none}
+.ky-need-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;font-weight:800;background:var(--ink-3);color:var(--fg)}
+.ky-need-row.ok .ky-need-n{background:var(--gain-bg);color:var(--gain)}
+.ky-need-row.ok .ky-need-n svg{width:14px;height:14px}
+.ky-need-row.ok .rt b{color:var(--fg-3);text-decoration:line-through;text-decoration-color:var(--fg-4,var(--fg-3))}
+.ky-need-why{display:flex;gap:8px;align-items:flex-start;margin:0;font-size:12px;line-height:1.9;color:var(--fg-3)}
+.ky-need-why svg{flex:none;margin-top:4px;color:var(--bullion)}
+
+/* v23 · family: two-way consent */
+.fm-badge{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;margin-inline-start:6px;border-radius:999px;background:var(--bullion);color:var(--on-light,#111);font-size:11px;font-weight:800}
+.fm-pill{flex:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(217,178,106,.14);color:var(--bullion)}
+.fm-join{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:var(--ink-1);border:1px dashed var(--line-2)}
+.fm-join .ri{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--ink-2);color:var(--bullion);flex:none}
+.fm-join div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.fm-join b{font-size:13.5px}.fm-join small{font-size:11.5px;color:var(--fg-3)}
+.fm-how{display:flex;flex-direction:column;gap:2px;padding:14px;border-radius:18px;background:var(--ink-1);border:1px solid var(--line)}
+.fm-how>b{font-size:14px;margin-bottom:8px}
+.fm-how>small{font-size:11.5px;color:var(--fg-3);margin-top:8px;line-height:1.8}
+.fm-step{display:flex;gap:12px;position:relative;padding-bottom:12px}
+.fm-step:last-of-type{padding-bottom:0}
+.fm-step>span{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;background:var(--ink-1);z-index:1}
+.fm-step:not(:last-of-type)::before{content:"";position:absolute;inset-inline-start:10px;top:22px;bottom:0;width:2px;background:var(--line)}
+.fm-step.ok>span{background:var(--gain);border-color:var(--gain);color:#fff}
+.fm-step.ok>span svg{width:12px;height:12px}
+.fm-step.cur>span{border-color:var(--bullion)}
+.fm-step.cur>span i{width:8px;height:8px;border-radius:50%;background:var(--bullion);animation:fmPulse 1.4s ease-in-out infinite}
+@keyframes fmPulse{50%{opacity:.35}}
+.fm-step div{display:flex;flex-direction:column;gap:1px;min-width:0}.fm-step b{font-size:13.5px}.fm-step small{font-size:11.5px;color:var(--fg-3);line-height:1.7}
+.fm-code{display:flex;align-items:center;gap:12px;padding:14px;border-radius:18px;background:linear-gradient(135deg,rgba(217,178,106,.1),transparent 70%),var(--ink-1);border:1px solid rgba(217,178,106,.28)}
+.fm-code div{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.fm-code span{font-size:11.5px;color:var(--fg-3)}.fm-code b{font-size:17px;letter-spacing:.06em;text-align:right}.fm-code small{font-size:11.5px;color:var(--fg-3);line-height:1.7}
+.fm-code .icon-btn{flex:none;color:var(--bullion)}
+.fm-other{background:var(--ink-1);border:1px solid var(--line);border-radius:18px}
+.fm-prog{display:flex;gap:6px}.fm-prog i{flex:1;height:3px;border-radius:3px;background:var(--ink-3)}.fm-prog i.on{background:var(--bullion)}
+.fm-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border-radius:14px;background:var(--ink-2)}
+.fm-seg button{height:38px;border-radius:11px;border:0;background:transparent;color:var(--fg-2);font:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+.fm-seg button.on{background:var(--ink-0);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.fm-qr{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;border-radius:20px;background:var(--ink-1);border:1px solid var(--line);text-align:center}
+.fm-qr>svg{width:188px;height:188px;border-radius:14px;background:#fff;padding:8px}
+.fm-qr.big>svg{width:220px;height:220px}
+.row .rt b .fam-role{display:inline-block;vertical-align:middle;font-size:11px}
+.fm-qr b{font-size:17px;letter-spacing:.08em}.fm-qr small{font-size:12px;color:var(--fg-3);line-height:1.9}
+.fm-qr .btn{width:100%}
+.fm-look{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.8;padding:10px 12px;border-radius:14px;background:var(--ink-1);border:1px solid var(--line);color:var(--fg-2)}
+.fm-look svg{flex:none;margin-top:3px;width:16px;height:16px;color:var(--fg-3)}
+.fm-look.ok svg{color:var(--gain)}
+.fm-teen{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:18px;border:1px dashed var(--line-2)}
+.fm-teen>b{display:flex;align-items:center;gap:6px;font-size:13.5px}.fm-teen>small{font-size:11.5px;color:var(--fg-3);line-height:1.8}
+.fm-note{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.9;color:var(--fg-3)}
+.fm-note svg{flex:none;margin-top:4px;color:var(--bullion)}
+.fm-acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fm-acts button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px;border-radius:16px;background:var(--ink-1);border:1px solid var(--line);color:var(--fg);font:inherit;font-size:12px;font-weight:700}
+.fm-acts svg{color:var(--bullion);width:20px;height:20px}
+[data-sheet="famInv"] .sheet-body,[data-sheet="famReq"] .sheet-body,[data-sheet="famJoin"] .sheet-body,[data-sheet="famQr"] .sheet-body,[data-sheet="famSend"] .sheet-body,[data-sheet="famPick"] .sheet-body{display:flex;flex-direction:column;gap:14px}
+[data-sheet="famAdd"] .sh-head .link{display:inline-flex;align-items:center;gap:2px;font-size:12.5px;margin-bottom:4px}
+
+/* v23 · tickets, invitation gate, waitlist */
+.tk-art{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.28))}
+.tk-art .tk-sheen{animation:tkSheen 4.8s ease-in-out infinite}
+@keyframes tkSheen{0%,55%{transform:skewX(-18deg) translateX(0)}100%{transform:skewX(-18deg) translateX(560px)}}
+.tk-page{display:flex;flex-direction:column;gap:18px;padding-top:4px}
+.tk-intro{display:flex;flex-direction:column;gap:4px;text-align:center}.tk-intro b{font-size:16px}.tk-intro small{font-size:12.5px;color:var(--fg-3);line-height:1.8}
+.tk-fan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:end}
+.tk-card{padding:0;border:0;background:none;border-radius:16px;transition:transform .25s;opacity:.72}
+.tk-card.on{transform:translateY(-6px) scale(1.04);opacity:1}
+.tk-card.on .tk-art{filter:drop-shadow(0 12px 22px rgba(217,178,106,.35))}
+.tk-sel{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:22px;background:var(--ink-1);border:1px solid var(--line)}
+.tk-sel h2{font-size:20px;margin:0}
+.tk-sel ul,.tk-gets{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.tk-sel li,.tk-gets li{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--fg-2)}
+.tk-sel li svg,.tk-gets li svg{color:var(--gain);flex:none}
+.tk-quota{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:16px;background:var(--ink-2)}
+.tk-quota>div:first-child{display:flex;justify-content:space-between;font-size:13px;color:var(--fg-2)}.tk-quota b{color:var(--fg)}
+.tk-quota small{font-size:11.5px;color:var(--fg-3)}
+.tk-pips{display:flex;gap:6px}.tk-pips i{flex:1;height:8px;border-radius:4px;background:var(--ink-3)}.tk-pips i.on{background:linear-gradient(90deg,var(--bullion),var(--bullion-hi,#F0D59A))}
+.tk-lock{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--fg-2);padding:10px 12px;border-radius:14px;background:var(--ink-2)}
+.tk-coef{display:flex;gap:12px;padding:14px;border-radius:20px;background:var(--ink-1);border:1px dashed var(--line-2)}
+.tk-coef.on{border-style:solid;border-color:rgba(217,178,106,.45);background:linear-gradient(135deg,rgba(217,178,106,.12),transparent 60%),var(--ink-1)}
+.tk-coef .ri{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:rgba(217,178,106,.12);color:var(--bullion);flex:none}
+.tk-coef>div{display:flex;flex-direction:column;gap:4px;min-width:0}.tk-coef b{font-size:14.5px}.tk-coef small{font-size:12px;color:var(--fg-3);line-height:1.8}
+.tk-priv{display:flex;gap:5px;align-items:center;color:var(--fg-3)!important;font-size:11px!important}
+.tk-tbl{border-radius:18px;background:var(--ink-1);border:1px solid var(--line);overflow:hidden}
+.tk-tbl>div{display:grid;grid-template-columns:1.3fr repeat(3,1fr);align-items:center;padding:11px 14px;font-size:13px;text-align:center}
+.tk-tbl>div+div{border-top:1px solid var(--line)}
+.tk-tbl>div>span:first-child{text-align:right}
+.tk-tbl .h{font-size:11.5px;color:var(--fg-3)}.tk-tbl .h span{display:flex;align-items:center;justify-content:center;gap:5px}
+.tk-tbl .me{background:rgba(217,178,106,.08)}.tk-tbl em{font-style:normal;font-size:10.5px;padding:1px 7px;border-radius:999px;background:var(--bullion);color:var(--on-light,#111);margin-inline-start:4px}
+.tk-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.tk-dot.bronze,.tk-mini.bronze{background:linear-gradient(135deg,#F6D3AE,#9A5A2C)}.tk-dot.silver,.tk-mini.silver{background:linear-gradient(135deg,#FFFFFF,#8B94A1)}.tk-dot.gold,.tk-mini.gold{background:linear-gradient(135deg,#FFF1C4,#B8862A)}
+.tk-mini{color:#1b1b1b!important}
+.tk-foot{display:block;font-size:11.5px;color:var(--fg-3);margin-top:6px}
+.tk-made{padding:4px 10px}
+[data-sheet="tkSend"] .sheet-body,[data-sheet="tkInv"] .sheet-body{display:flex;flex-direction:column;gap:14px}
+.tk-gate{position:relative;height:150px;margin:4px 0 -6px}
+.tk-g{position:absolute;width:58%;left:21%;top:10px;transition:transform .4s}
+.tk-g.bronze{transform:rotate(-12deg) translate(-34%,16px)}.tk-g.silver{transform:rotate(9deg) translate(32%,14px)}.tk-g.gold{transform:translateY(-6px);z-index:2;animation:tkFloat 3.6s ease-in-out infinite}
+@keyframes tkFloat{50%{transform:translateY(-14px) rotate(-1.5deg)}}
+.tk-nocode{height:46px;color:var(--fg-2);display:flex;align-items:center;justify-content:center;gap:6px}
+.tk-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;margin:4px 0 6px;color:#1b1b1b}
+.tk-chip.bronze{background:linear-gradient(135deg,#F6D3AE,#C98A55)}.tk-chip.silver{background:linear-gradient(135deg,#fff,#AEB6C1)}.tk-chip.gold{background:linear-gradient(135deg,#FFF1C4,#E2B04C)}
+.tk-reveal{position:relative;padding:10px 18px 0;perspective:900px}
+.tk-flip{animation:tkFlip 1.1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes tkFlip{0%{transform:rotateY(-100deg) scale(.7);opacity:0}60%{transform:rotateY(12deg) scale(1.03);opacity:1}100%{transform:none}}
+.tk-gets{padding:14px;border-radius:18px;background:var(--ink-1);border:1px solid var(--line)}
+.tk-confetti{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.tk-confetti i{position:absolute;left:50%;top:45%;width:7px;height:12px;border-radius:2px;background:hsl(calc(var(--i)*20 + 30),80%,60%);animation:tkBoom 1.6s cubic-bezier(.1,.7,.3,1) both;animation-delay:.5s;--a:calc(var(--i)*20deg)}
+@keyframes tkBoom{0%{transform:rotate(var(--a)) translateY(0);opacity:1}100%{transform:rotate(var(--a)) translateY(-150px) rotate(360deg);opacity:0}}
+.wl{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.wl-gate{position:relative;width:78px;height:96px;border-radius:40px 40px 10px 10px;border:2px solid var(--bullion);display:grid;place-items:center;margin-top:4px}
+.wl-gate b{font-size:22px;color:var(--bullion);z-index:1}
+.wl-glow{position:absolute;inset:-18px;border-radius:50%;background:radial-gradient(circle,rgba(217,178,106,.35),transparent 65%);animation:wlGlow 2.4s ease-in-out infinite}
+@keyframes wlGlow{50%{opacity:.4;transform:scale(.9)}}
+.wl-q{width:100%;overflow:hidden;height:36px;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+.wl-line{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;animation:wlStep 1.6s ease-in-out infinite}
+.wl-line i{width:20px;height:20px;border-radius:50%;background:var(--ink-3);flex:none;animation:wlHop 1.6s ease-in-out infinite;animation-delay:calc(var(--i)*.08s)}
+.wl-line em{font-style:normal;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--bullion);color:var(--on-light,#111);flex:none;animation:wlHop 1.6s ease-in-out infinite .75s}
+@keyframes wlStep{0%{transform:translateX(0)}60%,100%{transform:translateX(32px)}}
+@keyframes wlHop{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.wl-num small{display:block;font-size:12px;color:var(--fg-3)}.wl-num b{font-size:46px;font-weight:900;letter-spacing:-.01em;display:inline-block}
+.wl-num b.pop{animation:wlPop .35s ease}
+@keyframes wlPop{40%{transform:scale(1.12);color:var(--bullion)}}
+.wl-bar{width:100%;height:10px;border-radius:5px;background:var(--ink-2);overflow:hidden}.wl-bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--bullion),var(--bullion-hi,#F0D59A));transition:width .5s linear}
+.wl-fun{margin:0;font-size:13px;color:var(--fg-2);min-height:22px}.wl-fun.in{animation:wlIn .5s ease}
+@keyframes wlIn{from{opacity:0;transform:translateY(6px)}}
+.wl-coin{width:74px;height:74px;border-radius:50%;border:0;padding:0;background:radial-gradient(circle at 35% 30%,#FFF1C4,#E2B04C 45%,#8C6216 90%);box-shadow:0 8px 20px rgba(140,98,22,.45),inset 0 -4px 8px rgba(0,0,0,.25);display:grid;place-items:center}
+.wl-coin span{font-weight:900;font-size:20px;color:#3A2600}
+.wl-coin.spin{animation:wlCoin .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes wlCoin{0%{transform:rotateY(0) scale(1)}50%{transform:rotateY(540deg) scale(1.12)}100%{transform:rotateY(720deg) scale(1)}}
+.wl-hint{font-size:11.5px;color:var(--fg-3);margin-top:-4px}
+.wl-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+.wl-stats div{display:flex;flex-direction:column;gap:2px;padding:10px 6px;border-radius:14px;background:var(--ink-1);border:1px solid var(--line)}
+.wl-stats b{font-size:15px}.wl-stats span{font-size:11px;color:var(--fg-3)}
+.wl .ky-note{text-align:right;width:100%}
 </style>
 </head>
 <body>
@@ -1606,7 +1760,7 @@ button.tr-perk{width:100%;text-align:right;color:var(--fg)}
 
 <!-- Service Worker source. Browsers only register a worker from a same-origin file, so this exact text also ships as sw.js next to index.html. -->
 <script type="text/plain" id="sw-source">
-const CACHE = 'w2-shell-v22';
+const CACHE = 'w2-shell-v23';
 const SHELL = ['./', './index.html', './img/onb_wealth.jpg', './img/onb_wonder.jpg', './img/onb_wisdom.jpg', './img/onb_worth.jpg', './img/asset_gold.jpg', './img/asset_silver.jpg', './img/asset_property.jpg', './img/asset_copper.jpg', './img/asset_fund.jpg', './img/bill_mobile.jpg', './img/bill_elec.jpg', './img/bill_water.jpg', './img/bill_gas.jpg', './img/bill_phone.jpg', './img/bill_id.jpg', './img/asset_oil.jpg', './img/onb_well.jpg', './img/onb_world.jpg', './img/onb_wheels.jpg', './img/card_front.jpg', './img/ticket_gold.jpg', './img/ticket_holo.jpg', './img/asset_debt.jpg', './img/asset_lease.jpg', './img/car_tara.jpg', './img/car_shahin.jpg', './img/car_tiggo7.jpg', './img/car_arrizo8.jpg', './img/pf_hero.jpg', './img/asset_pf.jpg', './img/pf_hi.jpg', './img/pf_dig.jpg', './img/pf_grw.jpg', './img/svc_inst.jpg', './img/svc_stake.jpg', './img/svc_guard.jpg', './img/svc_save.jpg', './img/svc_credit.jpg', './img/gift_classic.jpg', './img/gift_birthday.jpg', './img/gift_nowruz.jpg', './img/gift_love.jpg', './img/w2-icon-192.png', './img/w2-icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -2330,7 +2484,7 @@ const Screens = {
       S.activePad = 'otp';
       Screens.otp.fill = () => { if (busy) return; v = ''; [...'016980'].forEach((d, i) => later(() => { v += d; draw(); if (v.length === 6) verify(); }, i * 70)); };
       Screens.otp.resend = () => { left = 119; tick(); later(smsToast, 1500); };
-      const smsToast = () => toast({ ic: 'message-square', title: 'پیامک · W²', body: 'کد ورود به W²: ۰۱۶۹۸۰ — این کد را به کسی ندهید.', action: { label: 'درج کد', act: 'otpFill' }, ms: 7000 });
+      const smsToast = () => toast({ ic: 'message-square', title: 'پیامک · W² · نسخهٔ آزمایشی', body: 'کد ورود به W²: ۰۱۶۹۸۰ — این کد را به کسی ندهید.', action: { label: 'درج کد', act: 'otpFill' }, ms: 7000 });
       draw(); tick(); every(tick, 1000); later(smsToast, 1600);
     }
   },
@@ -4293,7 +4447,7 @@ Object.assign(Sheets, {
         return `<div class="sh-head"><div><h3>کد هدیه را وارد کنید</h3><p>کد ۱۶ کاراکتری روی کارت هدیه</p></div>${closeBtn('closeSheet')}</div>
           <div class="field" style="font-size:15px;gap:8px"><button class="pill tap" style="flex:none" data-act="grPaste">${icon('clipboard', 'w-4 h-4')} جایگذاری</button><input id="grCode" dir="ltr" maxlength="19" autocomplete="off" placeholder="XXXX - XXXX - XXXX - XXXX" value="${R.code}" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:var(--fg);font:600 15px var(--f-lat);letter-spacing:.08em;text-align:left;text-transform:uppercase"></div>
           ${R.err ? `<div class="msg err">${icon('x-circle')}${R.err}</div>` : ''}
-          <p class="hint" style="text-align:right">کد نمونه برای امتحان: <button class="link lat" data-act="grSample">W2KD-29QF-MX4P-8TRA</button></p>
+          
           <button class="btn btn-primary tap" id="grBtn" data-act="grCheck" ${ok ? '' : 'disabled'}>تأیید و ادامه</button>`; }
       if (R.step === 'otp') return `<div class="sh-head"><div><h3>تأیید نهایی و مشاهدهٔ هدیه</h3><p>کد ۶ رقمی پیامک‌شده به ${DB.user.phone} را وارد کنید</p></div>${closeBtn('closeSheet')}</div>
           <div class="otp ${R.bad ? 'bad' : ''}" id="grOtp">${Array.from({ length: 6 }, (_, i) => `<span class="${i < R.otp.length ? 'fill' : ''} ${i === R.otp.length ? 'cur' : ''}">${R.otp[i] ? faD(R.otp[i]) : ''}</span>`).join('')}</div>
@@ -4442,7 +4596,7 @@ function addCardHTML(ctx) {
   const panErr = st.pan && st.pan.length === 16 && !v.pan, expErr = st.exp && st.exp.length === 4 && !v.exp;
   return `${head}
     <div class="form-body" style="padding-top:0;gap:16px">
-      <div><h1 class="h-title" style="font-size:22px">${ctx.root ? 'شروع با کارت بانکی' : 'افزودن کارت بانکی'}</h1><p class="h-sub">کارت عضو شتاب به نام خودتان؛ شماره کارت و کد ملی باید متعلق به یک شخص باشند. ${!st.pan ? `<button class="link tap" style="font-size:13px" data-act="acSample">پرکردن با کارت نمونه</button>` : ''}</p></div>
+      <div><h1 class="h-title" style="font-size:22px">${ctx.root ? 'شروع با کارت بانکی' : 'افزودن کارت بانکی'}</h1><p class="h-sub">کارت عضو شتاب به نام خودتان؛ شماره کارت و کد ملی باید متعلق به یک شخص باشند.</p></div>
       ${bcard(st, flip)}
       <div class="acfs">${fld('pan', 'شماره کارت', st.pan ? faD(panSpaced(st.pan)) : '', '۱۶ رقم روی کارت', v.pan, panErr)}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${fld('exp', 'تاریخ انقضا', st.exp ? faD(st.exp.slice(0, 2) + (st.exp.length > 2 ? ' / ' + st.exp.slice(2) : '')) : '', 'ماه / سال', v.exp, expErr)}${fld('cvv', 'CVV2', st.cvv ? '•'.repeat(st.cvv.length) : '', '۳ یا ۴ رقم', v.cvv, false)}</div></div>
@@ -4466,7 +4620,7 @@ function acMount(el) {
   }
 }
 function acRe() { const ctx = S.acCtx; if (ctx.root) { const el = $('#root').lastElementChild; el.innerHTML = Screens.addCard.render(); hydrate(el); acMount(el); } else rerenderPage('addCard'); }
-function acSms() { toast({ ic: 'message-square', title: 'پیامک · شاپرک', body: `کد فعال‌سازی کارت ${faD(S.ac.pan.slice(-4))} برای W²: ${faD(S.ac.code)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'acFill' }, ms: 7000 }); }
+function acSms() { toast({ ic: 'message-square', title: 'پیامک · شاپرک · نسخهٔ آزمایشی', body: `کد فعال‌سازی کارت ${faD(S.ac.pan.slice(-4))} برای W²: ${faD(S.ac.code)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'acFill' }, ms: 7000 }); }
 function acSave() {
   const st = S.ac; clearInterval(st.iv);
   DB.cards.forEach(c => c.def = false);
@@ -4587,13 +4741,13 @@ Object.assign(A, {
       setTimeout(() => push('giftDone', { g }), 120); }); },
   popAllX: () => popAll(),
   gfRedeem: () => { S.gr = { step: 'code', code: '', otp: '', err: '', left: 120 }; openSheet('giftRedeem'); },
-  grPaste: async () => { let t = ''; try { t = await navigator.clipboard.readText(); } catch (e) {} t = (t || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); if (t.length !== 16) { t = 'W2KD29QFMX4P8TRA'; toast({ title: 'کلیپ‌بورد خالی بود', body: 'کد نمونه جایگذاری شد', ic: 'clipboard', ms: 1800 }); } S.gr.code = t.replace(/(.{4})(?=.)/g, '$1-'); refreshSheet(); },
+  grPaste: async () => { let t = ''; try { t = await navigator.clipboard.readText(); } catch (e) {} t = (t || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); if (t.length !== 16) return toast({ title: 'کد ۱۶ کاراکتری در کلیپ‌بورد نبود', body: 'کد پشت کارت هدیه را وارد کنید.', ic: 'clipboard', ms: 2400 }); S.gr.code = t.replace(/(.{4})(?=.)/g, '$1-'); refreshSheet(); },
   grSample: () => { S.gr.code = 'W2KD-29QF-MX4P-8TRA'; S.gr.err = ''; refreshSheet(); },
   grCheck: (d, el) => { const R = S.gr, g = DB.svc.inbox.find(x => x.code === R.code); el.disabled = true; el.innerHTML = '<span class="spin"></span>';
     setTimeout(() => { if (!g) { R.err = DB.svc.gifts.find(x => x.code === R.code) ? 'این کد قبلاً استفاده شده است' : 'کد واردشده صحیح نیست'; vib([30, 40, 30]); refreshSheet(); return; }
-      R.g = g; R.step = 'otp'; R.otp = ''; R.left = 120; refreshSheet(); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W²', body: `کد تأیید دریافت کارت هدیه: ${faD(g.otp)}`, action: { label: 'درج کد', act: 'grFill' }, ms: 7000 }), 1300); }, 700); },
+      R.g = g; R.step = 'otp'; R.otp = ''; R.left = 120; refreshSheet(); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W² · نسخهٔ آزمایشی', body: `کد تأیید دریافت کارت هدیه: ${faD(g.otp)}`, action: { label: 'درج کد', act: 'grFill' }, ms: 7000 }), 1300); }, 700); },
   grFill: () => { $('#toasts').innerHTML = ''; const g = S.gr.g; [...g.otp].forEach((k, i) => setTimeout(() => S.pads.gr && S.pads.gr(k), i * 70)); },
-  grResend: () => { S.gr.left = 120; refreshSheet(); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W²', body: `کد تأیید دریافت کارت هدیه: ${faD(S.gr.g.otp)}`, action: { label: 'درج کد', act: 'grFill' }, ms: 7000 }), 1000); },
+  grResend: () => { S.gr.left = 120; refreshSheet(); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W² · نسخهٔ آزمایشی', body: `کد تأیید دریافت کارت هدیه: ${faD(S.gr.g.otp)}`, action: { label: 'درج کد', act: 'grFill' }, ms: 7000 }), 1000); },
   grDone: () => { const g = S.gr.g; closeSheet(); popAll(); if (g.src === 'rial') switchTab('bank'); else { S.assetIdx = DB.assets.findIndex(a => a.id === g.src); switchTab('assets'); } },
   /* credit */
   crOpen: () => { S.cr = S.cr || { amount: 300000000, days: 30, col: 'gold' }; push('credit'); },
@@ -4714,7 +4868,7 @@ Object.assign(Pages, {
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:6px 0 4px">${billArt(t, 118)}<h1 class="h-title" style="font-size:20px">استعلام ${B.fa}</h1></div>
           ${form}
           <div id="bfMsg"></div>
-          <div class="chips" style="justify-content:center">${t === 'mobile' ? `<button class="chip tap" data-act="bfMine">شمارهٔ خودم</button>` : ''}<button class="chip tap" data-act="bfSample">پرکردن نمونه</button></div>
+          <div class="chips" style="justify-content:center">${t === 'mobile' ? `<button class="chip tap" data-act="bfMine">شمارهٔ خودم</button>` : ''}</div>
           ${saved.length ? `<div><div class="group-t">قبض‌های ذخیره‌شدهٔ ${B.short}</div><div class="group">${saved.map(s => `<button class="row tap" data-act="bfPick" data-id="${s.id}"><span class="ri">${icon('bookmark')}</span><span class="rt"><b>${s.title}</b><small class="num">${billKeyFa({ type: s.type, key: s.key })}</small></span>${icon('chevron-left', 'chev')}</button>`).join('')}</div></div>` : ''}
         </div></div>
         <div class="cat-bar on gut"><button class="btn btn-primary tap" style="flex:1;height:54px" id="bfGo" data-act="bfGo" data-t="${t}">استعلام</button></div>`;
@@ -5048,15 +5202,14 @@ Object.assign(Sheets, {
   xScanSheet: {
     cls: 'tall',
     render: () => `<div class="sh-head"><div><h3>اسکن</h3><p>کد QR آدرس کیف پول یا روی کارت بانکی</p></div>${closeBtn('closeSheet')}</div>
-      <div class="xcam"><video id="xCam" playsinline muted autoplay></video><span class="xcam-f"></span><span class="xcam-m" id="xCamMsg">در حال روشن کردن دوربین…</span></div>
-      <div class="chips" style="justify-content:center"><button class="chip tap" data-act="xScanDemo" data-k="card">نمونهٔ کارت</button><button class="chip tap" data-act="xScanDemo" data-k="sheba">نمونهٔ شبا</button><button class="chip tap" data-act="xScanDemo" data-k="evm">نمونهٔ آدرس BNB</button><button class="chip tap" data-act="xScanDemo" data-k="tron">نمونهٔ آدرس Tron</button></div>`,
+      <div class="xcam"><video id="xCam" playsinline muted autoplay></video><span class="xcam-f"></span><span class="xcam-m" id="xCamMsg">در حال روشن کردن دوربین…</span></div>`,
     mount: async wrap => {
       S.activePad = null; const v = $('#xCam', wrap), m = $('#xCamMsg', wrap);
       try {
         const st = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }); S.xStream = st; v.srcObject = st; m.textContent = 'QR را داخل کادر بگیرید';
         if ('BarcodeDetector' in window) { const det = new BarcodeDetector({ formats: ['qr_code'] }); const loop = async () => { if (!v.isConnected) return; try { const r = await det.detect(v); if (r[0]) { A.xScanUse(r[0].rawValue.replace(/^ethereum:|^tron:/i, '').split(/[@?]/)[0]); return; } } catch (e) {} setTimeout(loop, 400); }; loop(); }
-        else m.textContent = 'تشخیص خودکار QR در این مرورگر نیست؛ از نمونه‌ها استفاده کنید';
-      } catch (e) { m.textContent = 'دسترسی به دوربین داده نشد؛ از نمونه‌ها استفاده کنید'; }
+        else m.textContent = 'تشخیص خودکار QR در این مرورگر نیست؛ شماره را دستی وارد کنید';
+      } catch (e) { m.textContent = 'دسترسی به دوربین داده نشد؛ شماره را دستی وارد کنید'; }
     },
     unmount: () => { if (S.xStream) { S.xStream.getTracks().forEach(t => t.stop()); S.xStream = null; } }
   }
@@ -5249,7 +5402,7 @@ Object.assign(Sheets, {
         if (v.length === 6) { busy = true; if (v !== code) { draw('bad shake'); vib([30, 40, 30]); setTimeout(() => { v = ''; busy = false; draw(); }, 700); return; } draw('ok'); setTimeout(() => { closeSheet(); p.onOk(); }, 450); } };
       S.activePad = 'o2'; draw(); $('#o2t', wrap).textContent = 'کد را از پیامک وارد کنید';
       S.o2fill = () => { if (busy) return; v = ''; [...code].forEach(c => S.pads.o2(c)); };
-      setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W²', body: `کد تأیید تراکنش: ${faD(code)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'o2Fill' }, ms: 7000 }), 700);
+      setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W² · نسخهٔ آزمایشی', body: `کد تأیید تراکنش: ${faD(code)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'o2Fill' }, ms: 7000 }), 700);
     }
   },
   reqLink: {
@@ -6368,7 +6521,7 @@ function suHTML() {
   const note = t => `<div class="ky-note">${icon('info', 'w-4 h-4')}<span><b>توجه!</b>${t}</span></div>`;
   switch (s) {
     case 'email': { const ok = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(U.email || ''), bad = U.touched && !ok;
-      return wrap(`<div><h1 class="h-title">ساخت حساب W²</h1><p class="h-sub">ایمیلتان را وارد کنید تا کد تأیید برایتان بفرستیم. <button class="link tap" data-act="suSample" data-k="email">پرکردن نمونه</button></p></div>
+      return wrap(`<div><h1 class="h-title">ساخت حساب W²</h1><p class="h-sub">ایمیلتان را وارد کنید تا کد تأیید برایتان بفرستیم.</p></div>
         <label class="inp ${bad ? 'err' : ''}"><span>ایمیل</span><input id="suEmail" type="email" inputmode="email" dir="ltr" autocomplete="email" placeholder="name@example.com" value="${U.email || ''}"></label>
         <div id="suMsg">${bad ? `<div class="msg err">${icon('alert-circle')}ایمیل را با قالب درست وارد کنید؛ مثل name@example.com</div>` : ''}</div>`,
         `<button class="btn btn-primary tap" id="suGo" data-act="suEmailGo" ${ok ? '' : 'disabled'}>دریافت کد تأیید</button><p class="hint">با ادامه، <button class="link tap" data-act="suTerms">قوانین و حریم خصوصی W²</button> را می‌پذیرید.</p>`); }
@@ -6382,21 +6535,21 @@ function suHTML() {
     case 'pin1': case 'pin2': return wrap(`<div class="pin" style="padding-top:8px"><span class="xedu-ic">${icon('key-round')}</span><b style="font-size:18px">${s === 'pin1' ? 'رمز ورود سریع' : 'تکرار رمز ورود سریع'}</b><small style="color:var(--fg-3);text-align:center;line-height:1.8">${s === 'pin1' ? 'هر بار که اپ را باز می‌کنید، با این رمز ۴ رقمی وارد می‌شوید.' : 'رمز را یک بار دیگر وارد کنید.'}</small><div id="suDots">${dots(4, (U.pin || '').length, U.bad ? 'bad' : '')}</div><p class="hint" id="suPinMsg">${U.pinMsg || ''}</p></div>`, keypad('sup'));
     case 'levels': return wrap(levelsHTML(false), DB.kyc.level !== 'none' ? `<button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="suEnter">بعداً؛ ورود به W²</button>` : '');
     case 'mob': { const v = U.mob || '', ok = /^09\d{9}$/.test(v), bad = v.length >= 2 && !v.startsWith('09');
-      return wrap(`${kycStepper(BK, 0)}<div><h1 class="h-title" style="font-size:22px">شماره موبایل</h1><p class="h-sub">شماره موبایل باید به نام خودتان باشد. <button class="link tap" data-act="suSample" data-k="mob">پرکردن نمونه</button></p></div>
+      return wrap(`${kycStepper(BK, 0)}<div><h1 class="h-title" style="font-size:22px">شماره موبایل</h1><p class="h-sub">شماره موبایل باید به نام خودتان باشد.</p></div>
         <div class="field focus ${bad ? 'err' : ''}">${icon('phone')}<span class="val ltr num">${v ? faD(v.replace(/^(\d{4})(\d{0,3})(\d{0,4}).*/, (m, a, b, c) => [a, b, c].filter(Boolean).join(' '))) : '<span class="ph">۰۹۱۲ ۱۲۳ ۴۵۶۷</span>'}</span><span class="caret"></span></div>
         ${bad ? `<div class="msg err">${icon('alert-circle')}شماره باید با ۰۹ شروع شود</div>` : ''}`,
         `<button class="btn btn-primary tap" data-act="suMobGo" ${ok ? '' : 'disabled'}>ارسال کد تأیید</button>${keypad('sum', '', true)}`); }
     case 'motp': return wrap(`${kycStepper(BK, 0)}<div><h1 class="h-title" style="font-size:22px">کد تأیید پیامکی</h1><p class="h-sub">کد ۶ رقمی ارسال‌شده به <bdi dir="ltr" class="num">${faD(U.mob)}</bdi> را وارد کنید. <button class="link tap" data-act="suEdit" data-k="mob">ویرایش</button></p></div>${box(6, U.code || '', U.bad ? 'bad shake' : U.ok ? 'ok' : '')}${U.bad ? `<div class="msg err" style="justify-content:center">${icon('x-circle')}کد تأیید معتبر نیست</div>` : ''}${timer}`, keypad('suk'));
     case 'nid': { const v = U.nid || '', ok = nidOk(v), bad = v.length === 10 && !ok, bOk = U.by && U.bm && U.bd;
       const sel = (id, opts, val, ph) => `<select id="${id}" class="su-sel"><option value="">${ph}</option>${opts.map(([k, t]) => `<option value="${k}" ${String(val) === String(k) ? 'selected' : ''}>${t}</option>`).join('')}</select>`;
-      return wrap(`${kycStepper(BK, 1)}<div><h1 class="h-title" style="font-size:22px">کد ملی و تاریخ تولد</h1><p class="h-sub">مشخصات هویتی را از ثبت احوال استعلام می‌کنیم. <button class="link tap" data-act="suSample" data-k="nid">پرکردن نمونه</button></p></div>
+      return wrap(`${kycStepper(BK, 1)}<div><h1 class="h-title" style="font-size:22px">کد ملی و تاریخ تولد</h1><p class="h-sub">مشخصات هویتی را از ثبت احوال استعلام می‌کنیم.</p></div>
         <div class="field focus ${bad ? 'err' : ''}">${icon('contact')}<span class="val ltr num">${v ? faD(v) : '<span class="ph">کد ملی ۱۰ رقمی</span>'}</span><span class="caret"></span></div>
         ${bad ? `<div class="msg err">${icon('alert-circle')}کد ملی معتبر نیست؛ دوباره بررسی کنید.</div>` : ''}
         <div><div class="group-t">تاریخ تولد</div><div class="su-date">${sel('suBd', Array.from({ length: 31 }, (_, i) => [i + 1, faD(i + 1)]), U.bd, 'روز')}${sel('suBm', PM_FA.map((m, i) => [i + 1, m]), U.bm, 'ماه')}${sel('suBy', Array.from({ length: 88 }, (_, i) => [1387 - i, faD(1387 - i)]), U.by, 'سال')}</div></div>
         ${note('کد ملی باید با شماره موبایل مطابقت داشته باشد.')}`,
         `<button class="btn btn-primary tap" data-act="suNidGo" ${ok && bOk && !U.busy ? '' : 'disabled'}>${U.busy ? '<span class="spin"></span> استعلام از ثبت احوال…' : 'استعلام و ادامه'}</button>${keypad('sun', '', true)}`); }
     case 'card': { const v = U.pan || '', bank = v.length >= 6 ? BANKS[v.slice(0, 6)] : '', ok = v.length === 16 && LUHN(v) && !!bank, bad = (v.length === 16 && !ok) || (v.length >= 6 && !bank);
-      return wrap(`${kycStepper(BK, 2)}<div><h1 class="h-title" style="font-size:22px">کارت بانکی</h1><p class="h-sub">شماره کارتی به نام خودتان. صاحب حساب: <b>${DB.user.name}</b> (از ثبت احوال). <button class="link tap" data-act="suSample" data-k="pan">پرکردن نمونه</button></p></div>
+      return wrap(`${kycStepper(BK, 2)}<div><h1 class="h-title" style="font-size:22px">کارت بانکی</h1><p class="h-sub">شماره کارتی به نام خودتان. صاحب حساب: <b>${DB.user.name}</b> (از ثبت احوال).</p></div>
         <div class="field focus ${bad ? 'err' : ''}">${icon('credit-card')}<span class="val ltr num">${v ? faD(panSpaced(v)) : '<span class="ph">شماره ۱۶ رقمی کارت</span>'}</span>${bank ? `<span class="su-bank">${bank}</span>` : ''}<span class="caret"></span></div>
         ${bad ? `<div class="msg err">${icon('alert-circle')}${v.length >= 6 && !bank ? 'بانک این کارت شناسایی نشد.' : 'شماره کارت معتبر نیست.'}</div>` : ''}
         ${note('کد ملی باید با کارت بانکی مطابقت داشته باشد.')}`,
@@ -6410,13 +6563,13 @@ function suHTML() {
         <ul class="ky-tips">${['همهٔ لبه‌های کارت داخل کادر باشد', 'نور کافی، بدون انعکاس و تاری', 'نوشته‌ها کامل خوانا باشند'].map(t => `<li>${t}</li>`).join('')}</ul>
         <input type="file" id="suIdIn" accept="image/*" capture="environment" hidden>`,
         U.idImg ? `<button class="btn btn-primary tap" data-act="suIdOk">تأیید و ادامه</button><button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="suIdShot">عکس دوباره</button>`
-          : `<button class="btn btn-primary tap" data-act="suIdShot">${icon('camera', 'w-5 h-5')} عکس گرفتن</button><button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="suIdDemo">استفاده از تصویر نمونه (نسخهٔ نمایشی)</button>`);
+          : `<button class="btn btn-primary tap" data-act="suIdShot">${icon('camera', 'w-5 h-5')} عکس گرفتن</button>`);
     case 'vintro': return wrap(`${kycStepper(AK, 1, [0])}<div><h1 class="h-title" style="font-size:22px">ویدئوی سلفی</h1><p class="h-sub">یک ویدئوی کوتاه می‌گیرید و متن تعهد را بلند می‌خوانید. قبل از شروع:</p></div>
         <ul class="ky-tips">${['در جای ساکت و با نور کافی باشید', 'بدون کلاه، عینک آفتابی یا ماسک', 'اجازهٔ دسترسی به دوربین و میکروفون را بدهید', 'ویدئو حداکثر ۶۰ ثانیه است'].map(t => `<li>${t}</li>`).join('')}</ul>`,
         `<button class="btn btn-primary tap" data-act="suVid">تأیید و ادامه</button><button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="suHand">به‌جای ویدئو، عکس با متن دست‌نویس</button>`);
     case 'hand': return wrap(`${kycStepper(AK, 1, [0])}<div><h1 class="h-title" style="font-size:22px">عکس با متن دست‌نویس</h1><p class="h-sub">متن زیر را روی کاغذ بنویسید و با کارت ملی کنار صورتتان عکس بگیرید.</p></div>
         <div class="ky-consent">${suConsent()}</div><input type="file" id="suHandIn" accept="image/*" capture="user" hidden>${U.handImg ? `<div class="ky-frame has"><img src="${U.handImg}" alt="عکس سلفی"></div>` : ''}`,
-        U.handImg ? `<button class="btn btn-primary tap" data-act="suReview">ارسال برای بررسی</button>` : `<button class="btn btn-primary tap" data-act="suHandShot">${icon('camera', 'w-5 h-5')} عکس گرفتن</button><button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="suHandDemo">تصویر نمونه (نسخهٔ نمایشی)</button>`);
+        U.handImg ? `<button class="btn btn-primary tap" data-act="suReview">ارسال برای بررسی</button>` : `<button class="btn btn-primary tap" data-act="suHandShot">${icon('camera', 'w-5 h-5')} عکس گرفتن</button>`);
     case 'vrec': { const R = U.rec || 'idle', C = 2 * Math.PI * 76;
       return wrap(`${kycStepper(AK, 1, [0])}<p class="h-sub" style="margin:0">روی «شروع ضبط» بزنید، متن زیر را با صدای واضح بخوانید و بعد «پایان ضبط» را بزنید.</p>
         <div class="ky-consent">${suConsent()}</div>
@@ -6478,13 +6631,13 @@ Object.assign(A, {
   suEmailGo: (d, el) => { const U = S.su; U.touched = true; if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(U.email || '')) return suRe(); el.disabled = true; el.innerHTML = '<span class="spin"></span>';
     setTimeout(() => { U.ecode = rnd(5); U.left = 119; suGo('ecode'); setTimeout(() => toast({ ic: 'mail', title: 'ایمیل · W²', body: `کد ایجاد حساب کاربری: ${faD(U.ecode)} — ۵ دقیقه اعتبار دارد.`, action: { label: 'درج کد', act: 'suFill' }, ms: 8000 }), 1200); }, 700); },
   suFill: () => { $('#toasts').innerHTML = ''; const U = S.su, c = U.step === 'ecode' ? U.ecode : U.mcode; U.code = ''; [...c].forEach((k, i) => setTimeout(() => S.pads.suk && S.pads.suk(k), i * 70)); },
-  suResend: () => { const U = S.su; if (U.step === 'ecode') { U.ecode = rnd(5); suTimer(119, 'ارسال دوباره تا'); setTimeout(() => toast({ ic: 'mail', title: 'ایمیل · W²', body: `کد ایجاد حساب کاربری: ${faD(U.ecode)}`, action: { label: 'درج کد', act: 'suFill' }, ms: 8000 }), 900); } else { U.mcode = rnd(6); suTimer(119, 'ارسال دوباره تا'); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W²', body: `کد تأیید W²: ${faD(U.mcode)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'suFill' }, ms: 8000 }), 900); } },
+  suResend: () => { const U = S.su; if (U.step === 'ecode') { U.ecode = rnd(5); suTimer(119, 'ارسال دوباره تا'); setTimeout(() => toast({ ic: 'mail', title: 'ایمیل · W²', body: `کد ایجاد حساب کاربری: ${faD(U.ecode)}`, action: { label: 'درج کد', act: 'suFill' }, ms: 8000 }), 900); } else { U.mcode = rnd(6); suTimer(119, 'ارسال دوباره تا'); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W² · نسخهٔ آزمایشی', body: `کد تأیید W²: ${faD(U.mcode)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'suFill' }, ms: 8000 }), 900); } },
   suEye: () => { S.su.eye = !S.su.eye; suRe(); },
   suPassGo: () => suGo('pin1', { pin: '' }),
   kyToggle: d => { S.kyOpen = S.kyOpen === d.k ? (d.k === 'basic' ? 'advanced' : 'basic') : d.k; S.root === 'su' ? suRe() : rerenderPage('kycLevels'); },
   kyBasic: () => { if (S.root !== 'su') { S.su = { step: 'mob', from: 'app', entry: 'mob' }; S.flow = 'signup'; return setRoot('su'); } suGo('mob'); },
   kyAdv: () => { if (S.root !== 'su') { S.su = { step: 'idcard', from: 'app', entry: 'idcard' }; S.flow = 'signup'; return setRoot('su'); } suGo('idcard'); },
-  suMobGo: (d, el) => { el.disabled = true; el.innerHTML = '<span class="spin"></span>'; setTimeout(() => { const U = S.su; U.mcode = rnd(6); U.left = 119; suGo('motp'); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W²', body: `کد تأیید W²: ${faD(U.mcode)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'suFill' }, ms: 8000 }), 1300); }, 700); },
+  suMobGo: (d, el) => { el.disabled = true; el.innerHTML = '<span class="spin"></span>'; setTimeout(() => { const U = S.su; U.mcode = rnd(6); U.left = 119; suGo('motp'); setTimeout(() => toast({ ic: 'message-square', title: 'پیامک · W² · نسخهٔ آزمایشی', body: `کد تأیید W²: ${faD(U.mcode)} — این کد را به کسی ندهید.`, action: { label: 'درج کد', act: 'suFill' }, ms: 8000 }), 1300); }, 700); },
   suNidGo: () => { const U = S.su; U.busy = true; suRe(); setTimeout(() => { U.busy = false; suGo('card'); toast({ ic: 'badge-check', title: 'هویت شما تأیید شد', body: `${DB.user.name} · کد ملی با شمارهٔ موبایل مطابقت دارد.`, ms: 2600 }); }, 1500); },
   suCardGo: () => { const U = S.su; U.busy = true; suRe(); setTimeout(() => { U.busy = false; DB.kyc.level = 'basic'; S.suPan = U.pan; S.kyOpen = null; suGo('bkdone'); vib([10, 30, 10]); }, 1500); },
   suIdShot: () => { const i = $('#suIdIn'); i && i.click(); },
@@ -6777,7 +6930,7 @@ Sheets.lgNotice = {
   render: () => `<div class="lg-n"><span class="xedu-ic">${icon('flask-conical')}</span>
     <h3>نسخهٔ آزمایشی W²</h3>
     <p>این نسخه برای آزمودن محصول ساخته شده و حساب واقعی بانکی باز نمی‌کند. صفحه‌هایی که می‌بینید و اطلاعاتی که وارد می‌کنید برای تیم محصول W² ثبت می‌شود تا تجربه را بهتر کنیم. رمز عبور، رمز ۴ رقمی و CVV2 ثبت نمی‌شوند.</p>
-    <p class="lg-n-tip">${icon('info', 'w-4 h-4')} لطفاً اطلاعات واقعی کارت بانکی یا رمز وارد نکنید؛ در هر مرحله «پرکردن نمونه» هست.</p></div>
+    <p class="lg-n-tip">${icon('info', 'w-4 h-4')} در این نسخه پیامکی واقعی فرستاده نمی‌شود و کد تأیید روی صفحه نمایش داده می‌شود. رمز دوم و CVV2 کارت اصلی‌تان را وارد نکنید.</p></div>
     <button class="btn btn-primary tap" data-act="lgNoticeOk">متوجه شدم، شروع کنیم</button>`
 };
 A.lgNoticeOk = () => { lgLS.set('w2.notice', '1'); lgLog('consent', 'accepted'); closeSheet(); };
@@ -6828,7 +6981,7 @@ const TR_PERKS = [
   { g: 'سرمایه‌گذاری', ic: 'headphones', t: 'پشتیبانی و مشاوره', v: ['چت ۲۴ ساعته', 'تماس تلفنی با اولویت', 'مشاور اختصاصی ثروت'] },
   { g: 'سلامت و سفر', ic: 'heart-pulse', t: 'بیمهٔ تکمیلی سلامت', v: ['۱۰٪ تخفیف خرید بیمهٔ تکمیلی', 'بستهٔ «سلامت پلاس» رایگان برای شما', 'بستهٔ «سلامت کامل» رایگان برای کل خانواده'], act: 'trHealth' },
   { g: 'سلامت و سفر', ic: 'plane', t: 'تشریفات فرودگاهی CIP', v: ['—', '۲۰٪ تخفیف رزرو CIP', '۴ سفر در سال برای شما و یک همراه'], act: 'trCip' },
-  { g: 'خانواده', ic: 'users', t: 'حساب خانواده', v: ['تا ۲ عضو؛ دارایی خانوار در سطح حساب می‌شود', 'تا ۵ عضو و کارت نوجوان', 'تا ۸ عضو، کارت نوجوان و بیمهٔ سلامت خانواده'], act: 'famOpen' }
+  { g: 'خانواده', ic: 'users', t: 'حساب خانواده', v: ['تا ۳ عضو؛ دارایی خانوار در سطح حساب می‌شود', 'تا ۵ عضو و کارت نوجوان', 'تا ۸ عضو، کارت نوجوان و بیمهٔ سلامت خانواده'], act: 'famOpen' }
 ];
 /* health packages (supplementary insurance, partner insurer) */
 const TR_HEALTH = [
@@ -7202,7 +7355,7 @@ if (!DB.family) DB.family = {
 };
 function famPooled() { const F = DB.family; if (!F || !F.pool || !F.members) return 0; return F.members.filter(m => m.status === 'active').reduce((s, m) => s + (m.avg || 0), 0); }
 function famSummary() { const F = DB.family, n = F ? F.members.filter(m => m.status === 'active').length : 0; return n ? `${faD(n + 1)} عضو${F.pool ? '؛ دارایی خانوار در سطح حساب می‌شود' : ''}` : 'اعضای خانواده را اضافه کنید'; }
-const famCap = () => [2, 5, 8][trCalc().idx];
+const famCap = () => [3, 5, 8][trCalc().idx];
 const famInit = n => (n || '؟').trim().slice(0, 1);
 
 /* ---------- bank: actions right under the balance, membership tile after credit ---------- */
@@ -7570,6 +7723,743 @@ recurCard = a => { const h = _recurCardV22(a), s = DB.sched.find(x => x.kind ===
 
 avApply();
 trSync(true);
+
+/* =========================================================
+   v23 — family: joining without the bank network, by two-way consent
+   Benchmarks: Wealthsimple Households (invite → invitee accepts in their own app,
+   each side chooses what it shares, status pooled, authorized trader, leave any time),
+   Apple Card Family (roles, teen participant 13+, owner limits/lock),
+   Revolut <18 (teen signs up and the parent approves from a to-do; request expires).
+   In W² a member needs only a W² account verified by mobile + SMS. No bank card, no
+   sheba, no joint account: money between members moves inside W² (instant, free).
+   ========================================================= */
+const FAM_ROLES = ['همسر', 'فرزند', 'والدین', 'خواهر یا برادر'];
+const FAM_EXP = 7 * 864e5;
+function famEnsure() {
+  const F = DB.family || (DB.family = { pool: true, members: [], goals: [] });
+  F.members = F.members || []; F.goals = F.goals || []; F.invites = F.invites || []; F.requests = F.requests || [];
+  if (!F.code) { const c = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', r = () => Array.from({ length: 4 }, () => c[Math.floor(Math.random() * c.length)]).join(''); F.code = `W2F-${r()}-${r()}`; }
+  F.members.forEach(m => { m.perms = m.perms || { pool: true, mine: m.kind === 'adult', theirs: m.kind === 'adult', trade: false }; });
+  /* invites created by v22 lived among members */
+  F.members.filter(m => m.status === 'invited').forEach(m => F.invites.push({ id: 'i' + m.id, name: m.name, role: m.role, kind: m.kind, phone: m.phone, onW2: true, perms: m.perms, at: Date.now(), sends: 1 }));
+  F.members = F.members.filter(m => m.status !== 'invited');
+  return F;
+}
+famEnsure();
+if (DB.family.members.some(m => m.id === 'm1') && !DB.family.seeded23) { DB.family.seeded23 = true;
+  DB.family.requests.push({ id: 'r1', name: 'پروین', role: 'والدین', phone: '09123856412', at: Date.now() - 3 * 36e5, via: 'اسکن کد خانواده', share: true }); }
+const famMask = p => p ? faD(p.slice(0, 4) + ' ••• ' + p.slice(-4)) : '';
+const famLeft = at => { const ms = at + FAM_EXP - Date.now(); if (ms <= 0) return 'منقضی شد'; const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5); return d ? `${faD(d)} روز و ${faD(h)} ساعت تا انقضا` : `${faD(h)} ساعت تا انقضا`; };
+const famOnW2 = p => [...p].reduce((s, c) => s + +c, 0) % 3 !== 0;   /* directory lookup stand-in */
+const famUsed = () => { const F = DB.family; return F.members.length + F.invites.length; };
+famPooled = () => { const F = DB.family; if (!F || !F.pool) return 0; return F.members.filter(m => m.status === 'active' && (!m.perms || m.perms.pool)).reduce((s, m) => s + (m.avg || 0), 0); };
+const famStepRow = (done, cur, t, s) => `<div class="fm-step ${done ? 'ok' : cur ? 'cur' : ''}"><span>${done ? icon('check') : cur ? '<i></i>' : ''}</span><div><b>${t}</b>${s ? `<small>${s}</small>` : ''}</div></div>`;
+const famPermRow = (ic, t, s, on, act, extra = '') => `<div class="row"><span class="ri">${icon(ic)}</span><span class="rt"><b>${t}</b><small>${s}</small></span>${toggle(on, act, extra)}</div>`;
+
+/* ---------- the family page ---------- */
+Pages.family = {
+  render: () => {
+    const F = famEnsure(), act = F.members.filter(m => m.status === 'active'), own = trNow(), house = own + act.reduce((s, m) => s + (m.avg || 0), 0), c = trCalc();
+    const me = { name: DB.user.name, photo: DB.user.photo }, pend = F.invites.length + F.requests.length;
+    const svc = [['zap', 'انتقال آنی بین اعضا', 'رایگان و بدون کارت بانکی', 'famSendPick'], ['gem', 'هدیهٔ طلا و دارایی', 'از ۰٫۱ گرم به حساب عضو', 'famGold'],
+      ['credit-card', 'کارت نوجوان', 'سقف خرج، دسته‌های مسدود و فریز', 'famTeen'], ['coins', 'پول توجیبی خودکار', 'واریز هفتگی از حساب شما', 'famTeen'],
+      ['trending-up', 'سود تشویقی پس‌انداز', 'شما به سود پس‌انداز فرزند اضافه می‌کنید', 'famBonus'], ['hand-coins', 'درخواست پول از والدین', 'نوجوان درخواست می‌دهد، شما تأیید می‌کنید', 'famAsk'],
+      ['user-cog', 'معامله از طرف عضو', 'فقط با تأیید خودِ او؛ برداشت هرگز', 'famTradeInfo'], ['shield-plus', 'ذی‌نفع دارایی', 'تعیین وارث برای دارایی‌ها', 'famBenef'],
+      ['heart-pulse', 'بیمهٔ سلامت خانواده', c.idx >= 2 ? 'بستهٔ «سلامت کامل» فعال' : 'در سطح میراث رایگان', 'trHealth']];
+    return `<div class="scroll">${pghead('حساب خانواده', helpBtn(), backBtn())}
+      <div class="gut fam-page">
+        <div class="fam-hero">
+          <div class="fam-avs">${famAv(me, 'me')}${act.map(m => famAv(m, m.status)).join('')}${F.invites.map(i => famAv(i, 'invited')).join('')}<button class="fam-av add tap" data-act="famAdd" aria-label="افزودن عضو">${icon('plus')}</button></div>
+          <b>${act.length ? `شما و ${faD(act.length)} عضو` : 'فقط شما'} · ظرفیت ${faD(famCap())} عضو</b>
+          <small>مدیر حساب: ${DB.user.name}</small>
+        </div>
+        ${act.length ? `<div class="fam-stats"><div><span>دارایی خانوار</span><b class="num">${trM(house)} تومان</b></div><div><span>سطح عضویت</span><b>${trTier().fa}</b></div></div>
+        <div class="row" style="background:var(--ink-1);border:1px solid var(--line);border-radius:18px"><span class="ri gold">${icon('layers')}</span><span class="rt"><b>تجمیع دارایی خانوار در سطح عضویت</b><small>میانگین ماندگاری اعضایی که اجازه داده‌اند به میانگین شما اضافه می‌شود</small></span>${toggle(F.pool, 'famPool')}</div>` : ''}
+        ${pend ? `<div><div class="group-t">در انتظار تأیید <span class="fm-badge">${faD(pend)}</span></div><div class="group">
+          ${F.requests.map(r => `<button class="row tap" data-act="famReq" data-id="${r.id}"><span class="ri" style="padding:0;background:none">${famAv(r, 'sm')}</span><span class="rt"><b>${r.name} می‌خواهد به خانواده بپیوندد</b><small>${r.role} · ${famMask(r.phone)} · ${r.via}</small></span><span class="fm-pill">بررسی</span></button>`).join('')}
+          ${F.invites.map(i => `<button class="row tap" data-act="famInv" data-id="${i.id}"><span class="ri" style="padding:0;background:none">${famAv(i, 'sm invited')}</span><span class="rt"><b>${i.name} <small class="fam-role">${i.role}</small></b><small>${i.onW2 ? 'دعوت در اپ W² او رسید' : 'لینک دعوت پیامک شد'} · منتظر پذیرش · ${famLeft(i.at)}</small></span>${icon('chevron-left', 'chev')}</button>`).join('')}
+        </div></div>` : ''}
+        ${F.joinReq ? `<div class="fm-join"><span class="ri">${icon('hourglass')}</span><div><b>درخواست پیوستن شما ارسال شد</b><small>کد <bdi dir="ltr" class="lat">${F.joinReq.code}</bdi> · منتظر تأیید مدیر آن خانواده · ${famLeft(F.joinReq.at)}</small></div><button class="link tap" data-act="famJoinCancel">لغو</button></div>` : ''}
+        <div><div class="group-t">اعضا</div><div class="group">
+          <div class="row"><span class="ri" style="padding:0;background:none">${famAv(me, 'me sm')}</span><span class="rt"><b>${DB.user.name}</b><small>مدیر حساب · کارت ${TR_T.find(t => t.card === trCardKey()).cardFa}</small></span></div>
+          ${act.map(m => `<button class="row tap" data-act="famMem" data-id="${m.id}"><span class="ri" style="padding:0;background:none">${famAv(m, 'sm')}</span><span class="rt"><b>${m.name} <small class="fam-role">${m.role}</small></b><small>${m.kind === 'teen' ? `کارت نوجوان ${m.card ? '••' + m.card : 'مجازی'} · پول توجیبی هفتگی ${trM(m.allowance)} تومان` : m.perms.theirs ? `میانگین ماندگاری ${trM(m.avg)} تومان` : 'موجودی‌اش را خصوصی نگه داشته'}</small></span>${icon('chevron-left', 'chev')}</button>`).join('')}
+          <button class="row tap" data-act="famAdd"><span class="ri gold">${icon('user-plus')}</span><span class="rt"><b>افزودن عضو</b><small>با شمارهٔ موبایل یا QR حضوری؛ بدون کارت بانکی</small></span>${icon('chevron-left', 'chev')}</button>
+        </div></div>
+        ${act.length ? '' : `<div class="fm-how"><b>عضو چطور اضافه می‌شود؟</b>
+          ${famStepRow(false, false, 'دعوت با موبایل یا QR', 'شما نقش و دسترسی‌ها را انتخاب و با رمز تأیید می‌کنید.')}
+          ${famStepRow(false, false, 'پذیرش در اپ خودِ عضو', 'عضو با موبایل و پیامک وارد W² می‌شود و دعوت را با رمز خودش می‌پذیرد.')}
+          ${famStepRow(false, false, 'هر طرف، سهم خودش را انتخاب می‌کند', 'هر کس تصمیم می‌گیرد موجودی‌اش را نشان بدهد یا نه؛ هر زمان قابل تغییر است.')}
+          <small>کارت بانکی، شبا یا حساب مشترک لازم نیست. پول بین اعضا داخل W² جابه‌جا می‌شود.</small></div>`}
+        <div class="fm-code"><div><span>کد خانوادهٔ شما</span><b class="lat" dir="ltr">${F.code}</b><small>عضو این کد را در اپ خودش وارد یا اسکن می‌کند؛ درخواستش اینجا برای تأیید شما می‌آید.</small></div><button class="icon-btn tap" data-act="famQr" aria-label="نمایش QR">${icon('qr-code')}</button></div>
+        ${F.goals.length || act.length ? `<div><div class="group-t" style="display:flex;justify-content:space-between"><span>هدف‌های مشترک</span><button class="link tap" data-act="famGoalNew">${icon('plus', 'w-4 h-4')} هدف تازه</button></div>
+          ${F.goals.map(g => `<div class="fam-goal"><span class="ri">${icon(g.ic || 'target')}</span><span class="rt"><b>${g.title}</b><span class="tr-bar"><i style="width:${Math.min(100, g.saved / g.target * 100).toFixed(1)}%"></i></span><small class="num">${trM(g.saved)} از ${trM(g.target)} تومان · ${faD(Math.round(g.saved / g.target * 100))}٪</small></span><button class="mini-btn tap" data-act="famGoalAdd" data-id="${g.id}">واریز</button></div>`).join('') || '<p class="hint">هنوز هدفی ندارید؛ همهٔ اعضا می‌توانند به هدف مشترک واریز کنند.</p>'}</div>` : ''}
+        <div><div class="group-t">خدمات خانواده</div><div class="fam-feats">${svc.map(([ic, t, s, a]) => `<button class="tap" data-act="${a}">${icon(ic)}<b>${t}</b><small>${s}</small></button>`).join('')}</div></div>
+        ${act.length ? `<div><div class="group-t">خرج این ماه خانواده</div><div class="fam-spend">${[[DB.user.first || 'شما', 18.4], ...act.filter(m => m.kind === 'teen' || m.perms.theirs).map((m, i) => [m.name, [12.7, 2.6][i] || 3])].map(([n, v], i, arr) => { const mx = Math.max(...arr.map(x => x[1])); return `<div><span>${n}</span><i style="width:${(v / mx * 100).toFixed(0)}%"></i><b class="num">${faDec(v, 1)} م</b></div>`; }).join('')}</div></div>` : ''}
+        <button class="row tap fm-other" data-act="famJoin"><span class="ri">${icon('log-in')}</span><span class="rt"><b>پیوستن به خانوادهٔ دیگر</b><small>با کد یا QR خانوادهٔ مدیر؛ پس از تأیید او فعال می‌شود</small></span>${icon('chevron-left', 'chev')}</button>
+        <input type="file" id="famIn" accept="image/*" hidden>
+      </div><div style="height:calc(var(--sab) + 28px)"></div></div>`;
+  }
+};
+
+/* ---------- add a member: who → access → review → PIN ---------- */
+Sheets.famAdd = {
+  cls: 'tall',
+  render: () => { const A2 = S.famA, st = A2.step, teen = A2.role === 'فرزند' && A2.age === 'teen', py = persianYear();
+    const ph = A2.phone, phOk = /^09\d{9}$/.test(ph), dup = phOk && (ph === DB.user.mobile || DB.family.members.some(m => m.phone === ph) || DB.family.invites.some(i => i.phone === ph));
+    const head = (t, sub) => `<div class="sh-head"><div>${st !== 'who' ? `<button class="link tap" data-act="famBackStep">${icon('chevron-right', 'w-4 h-4')} قبلی</button>` : ''}<h3>${t}</h3><p>${sub}</p></div>${closeBtn('closeSheet')}</div><div class="fm-prog">${['who', 'perm', 'rev'].map((k, i) => `<i class="${['who', 'perm', 'rev'].indexOf(st) >= i ? 'on' : ''}"></i>`).join('')}</div>`;
+    if (st === 'who') { const nOk = A2.name.trim().length >= 2, tOk = !teen || (nidOk(A2.nid) && A2.by), ok = A2.how === 'mob' && nOk && phOk && !dup && tOk;
+      return `${head('افزودن عضو خانواده', `${faD(famCap() - famUsed())} جای خالی از ${faD(famCap())} در سطح ${trTier().fa}`)}
+        <div><div class="group-t">نسبت</div><div class="chips">${FAM_ROLES.map(r => `<button class="chip tap ${A2.role === r ? 'on' : ''}" data-act="famRole" data-r="${r}">${r}</button>`).join('')}</div></div>
+        ${A2.role === 'فرزند' ? `<div class="fm-seg"><button class="tap ${A2.age === 'teen' ? 'on' : ''}" data-act="famAge" data-a="teen">۱۲ تا ۱۷ سال</button><button class="tap ${A2.age !== 'teen' ? 'on' : ''}" data-act="famAge" data-a="adult">۱۸ سال و بالاتر</button></div>` : ''}
+        <div class="fm-seg"><button class="tap ${A2.how === 'mob' ? 'on' : ''}" data-act="famHow" data-h="mob">${icon('smartphone', 'w-4 h-4')} با شمارهٔ موبایل</button><button class="tap ${A2.how === 'qr' ? 'on' : ''}" data-act="famHow" data-h="qr">${icon('qr-code', 'w-4 h-4')} QR حضوری</button></div>
+        ${A2.how === 'qr' ? `<div class="fm-qr">${shQrSvg('https://w2.app/f/' + DB.family.code, 188)}<b class="lat" dir="ltr">${DB.family.code}</b><small>${teen ? 'نوجوان در اپ W² خود (ورود با موبایل و پیامک) «پیوستن به خانواده» را می‌زند و این کد را اسکن می‌کند.' : 'عضو در اپ W² خود «پیوستن به خانواده» را می‌زند و این کد را اسکن می‌کند.'} درخواستش در صفحهٔ خانواده برای تأیید شما می‌آید.</small><button class="btn btn-ghost tap" data-act="famCopyCode">${icon('copy', 'w-4 h-4')} کپی کد</button></div>`
+        : `<label class="inp"><span>نامی که او را صدا می‌زنید</span><input id="famName" placeholder="مثلاً نگار" value="${A2.name.replace(/"/g, '&quot;')}"></label>
+        <label class="inp ${phOk && dup ? 'err' : ''}"><span>موبایل ${teen ? 'نوجوان' : 'عضو'}</span><input id="famPhone" inputmode="numeric" maxlength="11" dir="ltr" placeholder="۰۹۱۲۳۴۵۶۷۸۹" value="${faD(ph)}"></label>
+        ${phOk ? dup ? `<div class="msg err">${icon('alert-circle')}این شماره قبلاً در خانواده هست یا متعلق به خودتان است.</div>` : `<div class="fm-look ${famOnW2(ph) ? 'ok' : ''}">${icon(famOnW2(ph) ? 'badge-check' : 'send')}<span>${famOnW2(ph) ? 'این شماره در W² حساب دارد؛ دعوت در اپ او نمایش داده می‌شود.' : 'هنوز در W² حساب ندارد؛ لینک دعوت پیامک می‌شود تا با موبایل ثبت‌نام کند و دعوت را بپذیرد.'}</span></div>` : ''}
+        ${teen ? `<div class="fm-teen"><b>${icon('baby', 'w-4 h-4')} مشخصات نوجوان</b><small>حساب زیر ۱۸ سال به نام شما به‌عنوان ولی ثبت می‌شود؛ کد ملی با ثبت احوال و نسبت فرزندی تطبیق داده می‌شود.</small>
+          <label class="inp ${A2.nid.length === 10 && !nidOk(A2.nid) ? 'err' : ''}"><span>کد ملی نوجوان</span><input id="famNid" inputmode="numeric" maxlength="10" dir="ltr" placeholder="کد ملی ۱۰ رقمی" value="${faD(A2.nid)}"></label>
+          <label class="inp"><span>سال تولد</span><select id="famBy" class="su-sel"><option value="">انتخاب</option>${Array.from({ length: 6 }, (_, i) => py - 12 - i).map(y => `<option value="${y}" ${+A2.by === y ? 'selected' : ''}>${faD(y)}</option>`).join('')}</select></label></div>` : ''}
+        <button class="btn btn-primary tap" id="famNext" data-act="famNextStep" ${ok ? '' : 'disabled'}>ادامه</button>`}`; }
+    if (st === 'perm') { const P = A2.perms;
+      return `${head('دسترسی‌ها', `شما انتخاب می‌کنید چه چیزی را با ${A2.name} به اشتراک بگذارید.`)}
+        <div class="group">
+          ${famPermRow('layers', 'دارایی‌اش در سطح عضویت حساب شود', 'فقط میانگین ماندگاری؛ جزئیات دارایی دیده نمی‌شود', P.pool, 'famPerm', 'data-k="pool"')}
+          ${famPermRow('eye', 'موجودی من را ببیند', 'فقط مشاهده؛ هیچ عضوی نمی‌تواند از حساب دیگری پول بردارد', P.mine, 'famPerm', 'data-k="mine"')}
+          ${famPermRow('target', 'به هدف‌های مشترک واریز کند', 'هدف‌ها را می‌بیند و می‌تواند سهم بگذارد', P.goals, 'famPerm', 'data-k="goals"')}
+          ${teen ? famPermRow('credit-card', 'کارت نوجوان مجازی', 'پرداخت QR و خرید اینترنتی با سقفی که شما تعیین می‌کنید', P.card, 'famPerm', 'data-k="card"')
+            : famPermRow('user-cog', 'از طرف من معامله کند', 'خرید و فروش دارایی؛ انتقال و برداشت هرگز', P.trade, 'famPerm', 'data-k="trade"')}
+        </div>
+        ${teen ? `<div><div class="group-t">پول توجیبی هفتگی</div><div class="chips">${[0, 1000000, 2000000, 5000000].map(v => `<button class="chip tap ${P.allowance === v ? 'on' : ''}" data-act="famPermAllow" data-v="${v}">${v ? trM(v) + ' تومان' : 'فعلاً نه'}</button>`).join('')}</div></div>` : ''}
+        <div class="fm-note">${icon('repeat', 'w-4 h-4')}<span>${A2.name} هم پس از پذیرش، خودش انتخاب می‌کند موجودی‌اش را به شما نشان بدهد یا نه. هر دو طرف هر زمان می‌توانند دسترسی‌ها را تغییر دهند یا از خانواده خارج شوند.</span></div>
+        <button class="btn btn-primary tap" data-act="famNextStep">ادامه</button>`; }
+    const P = A2.perms, on = famOnW2(A2.phone);
+    return `${head('بازبینی و ارسال دعوت', 'دعوت پس از پذیرشِ خودِ عضو فعال می‌شود.')}
+      <div class="group"><div class="kv"><span>عضو</span><b>${A2.name} · ${A2.role}${teen ? ' (زیر ۱۸ سال)' : ''}</b></div><div class="kv"><span>موبایل</span><b class="num">${faD(A2.phone)}</b></div>
+        <div class="kv"><span>دسترسی‌ها</span><b>${[P.pool && 'تجمیع سطح', P.mine && 'دیدن موجودی من', P.goals && 'هدف مشترک', teen ? P.card && 'کارت نوجوان' : P.trade && 'معامله از طرف من'].filter(Boolean).join('، ') || 'فقط عضویت'}</b></div>
+        ${teen && P.allowance ? `<div class="kv"><span>پول توجیبی</span><b>${trM(P.allowance)} تومان در هفته</b></div>` : ''}<div class="kv"><span>اعتبار دعوت</span><b>۷ روز</b></div></div>
+      <div class="fm-how">${famStepRow(false, true, 'تأیید شما با رمز', 'همین الان')}${famStepRow(false, false, `پذیرش ${A2.name}`, on ? 'در اپ W² او، با رمز خودش' : 'ثبت‌نام با موبایل و پیامک، سپس پذیرش با رمز')}${famStepRow(false, false, 'فعال شدن عضویت', 'به هر دو نفر اعلان می‌دهیم')}</div>
+      <button class="btn btn-gold tap" data-act="famInvite">${icon('send', 'w-5 h-5')} تأیید با رمز و ارسال دعوت</button>`;
+  },
+  mount: w => { const A2 = S.famA; if (A2.step !== 'who' || A2.how !== 'mob') return;
+    const chk = () => { const b = $('#famNext', w); if (!b) return; const teen = A2.role === 'فرزند' && A2.age === 'teen', ph = A2.phone, dup = ph === DB.user.mobile || DB.family.members.some(m => m.phone === ph) || DB.family.invites.some(i => i.phone === ph); b.disabled = !(A2.name.trim().length >= 2 && /^09\d{9}$/.test(ph) && !dup && (!teen || (nidOk(A2.nid) && A2.by))); };
+    const n = $('#famName', w); n && n.addEventListener('input', () => { A2.name = n.value; chk(); });
+    const bindNum = (id, k, max) => { const x = $('#' + id, w); x && x.addEventListener('input', () => { const was = A2[k].length; A2[k] = enD(x.value).replace(/\D/g, '').slice(0, max); x.value = faD(A2[k]); chk(); if ((A2[k].length === max) !== (was === max)) { const pos = id; refreshSheet(); setTimeout(() => { const y = $('#' + pos); if (y) { y.focus(); y.setSelectionRange(y.value.length, y.value.length); } }, 30); } }); };
+    bindNum('famPhone', 'phone', 11); bindNum('famNid', 'nid', 10);
+    const by = $('#famBy', w); by && by.addEventListener('change', () => { A2.by = +by.value || null; chk(); });
+    S.activePad = null; }
+};
+const famNewA = () => ({ step: 'who', role: 'همسر', age: 'teen', how: 'mob', name: '', phone: '', nid: '', by: null, perms: { pool: true, mine: false, goals: true, trade: false, card: true, allowance: 1000000 } });
+
+/* ---------- invite detail / incoming request / join / QR ---------- */
+Sheets.famInv = {
+  render: p => { const i = DB.family.invites.find(x => x.id === p.id); if (!i) return '';
+    return `<div class="sh-head"><div style="display:flex;gap:12px;align-items:center">${famAv(i, 'lg invited')}<div><h3>${i.name}</h3><p>${i.role} · ${faD(i.phone)}</p></div></div>${closeBtn('closeSheet')}</div>
+      <div class="fm-how">${famStepRow(true, false, 'دعوت را تأیید کردید', fmtDate(new Date(i.at)))}${famStepRow(false, true, `منتظر پذیرش ${i.name}`, i.onW2 ? 'دعوت در اپ W² او نمایش داده شده' : 'لینک دعوت پیامک شده؛ پس از ثبت‌نام با موبایل می‌تواند بپذیرد')}${famStepRow(false, false, 'فعال شدن عضویت', famLeft(i.at))}</div>
+      <div class="group"><div class="kv"><span>ارسال پیامک</span><b>${faD(i.sends)} از ۳ بار در ۲۴ ساعت</b></div></div>
+      <div class="xs-acts" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ghost tap" data-act="famResend" data-id="${i.id}" ${i.sends >= 3 ? 'disabled' : ''}>${icon('send', 'w-4 h-4')} ارسال دوباره</button><button class="btn btn-ghost tap" data-act="famCopyLink" data-id="${i.id}">${icon('link', 'w-4 h-4')} کپی لینک دعوت</button></div>
+      <button class="btn btn-ghost tap" data-act="famInvCancel" data-id="${i.id}" style="color:var(--loss)">${icon('x-circle', 'w-5 h-5')} لغو دعوت</button>`; }
+};
+Sheets.famReq = {
+  render: p => { const r = DB.family.requests.find(x => x.id === p.id); if (!r) return ''; const R = S.famR || (S.famR = { role: r.role, mine: false, pool: true });
+    return `<div class="sh-head"><div style="display:flex;gap:12px;align-items:center">${famAv(r, 'lg')}<div><h3>${r.name}</h3><p>درخواست پیوستن · ${r.via}</p></div></div>${closeBtn('closeSheet')}</div>
+      <div class="group"><div class="kv"><span>موبایل</span><b class="num">${famMask(r.phone)}</b></div><div class="kv"><span>هویت</span><b style="color:var(--gain)">${icon('badge-check', 'w-4 h-4')} تأییدشده در W²</b></div><div class="kv"><span>موجودی‌اش برای شما</span><b>${r.share ? 'نمایش می‌دهد' : 'خصوصی'}</b></div><div class="kv"><span>زمان درخواست</span><b>${fmtDate(new Date(r.at))}</b></div></div>
+      <div><div class="group-t">نسبت با شما</div><div class="chips">${FAM_ROLES.map(x => `<button class="chip tap ${R.role === x ? 'on' : ''}" data-act="famReqRole" data-r="${x}">${x}</button>`).join('')}</div></div>
+      <div class="group">${famPermRow('layers', 'دارایی‌اش در سطح عضویت حساب شود', 'فقط میانگین ماندگاری', R.pool, 'famReqPerm', 'data-k="pool"')}${famPermRow('eye', 'موجودی من را ببیند', 'فقط مشاهده', R.mine, 'famReqPerm', 'data-k="mine"')}</div>
+      <p class="hint" style="text-align:right">اگر این شخص را نمی‌شناسید، درخواست را رد کنید. W² هیچ‌وقت برای پیوستن به خانواده رمز یا کد پیامک شما را نمی‌خواهد.</p>
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:8px"><button class="btn btn-ghost tap" data-act="famReqNo" data-id="${r.id}">رد</button><button class="btn btn-gold tap" data-act="famReqYes" data-id="${r.id}">${icon('check', 'w-5 h-5')} تأیید با رمز</button></div>`; }
+};
+Sheets.famJoin = {
+  render: () => { const J = S.famJ || (S.famJ = { code: '' }), v = J.code, ok = /^W2F-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(v), mine = v === DB.family.code, mgr = DB.family.members.some(m => m.status === 'active');
+    return `<div class="sh-head"><div><h3>پیوستن به خانوادهٔ دیگر</h3><p>کد خانواده را از مدیر آن بگیرید یا QR او را اسکن کنید.</p></div>${closeBtn('closeSheet')}</div>
+      ${mgr ? `<div class="msg err">${icon('alert-circle')}شما مدیر یک خانواده با عضو فعال هستید. هر نفر فقط عضو یک خانواده است؛ برای پیوستن، ابتدا اعضا را جدا کنید.</div>` : ''}
+      <label class="inp ${v.length >= 13 && (!ok || mine) ? 'err' : ''}"><span>کد خانواده</span><input id="famJCode" dir="ltr" class="lat" autocapitalize="characters" maxlength="13" placeholder="W2F-XXXX-XXXX" value="${v}"></label>
+      ${mine ? `<div class="msg err">${icon('alert-circle')}این کد خانوادهٔ خودتان است.</div>` : v.length >= 13 && !ok ? `<div class="msg err">${icon('alert-circle')}کد معتبر نیست.</div>` : ''}
+      <button class="btn btn-ghost tap" data-act="famJScan">${icon('scan-line', 'w-5 h-5')} اسکن QR خانواده</button>
+      <div class="fm-note">${icon('shield-check', 'w-4 h-4')}<span>بعد از ارسال، مدیر خانواده نام و نسبت شما را می‌بیند و با رمز خودش تأیید می‌کند. شما هم پیش از فعال شدن، انتخاب می‌کنید موجودی‌تان دیده شود یا نه.</span></div>
+      <button class="btn btn-primary tap" id="famJGo" data-act="famJoinGo" ${ok && !mine && !mgr ? '' : 'disabled'}>ارسال درخواست</button>`; },
+  mount: w => { const i = $('#famJCode', w); i && i.addEventListener('input', () => { let t = i.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); if (t.startsWith('W2F')) t = t.slice(3); t = t.slice(0, 8); S.famJ.code = 'W2F-' + t.slice(0, 4) + (t.length > 4 ? '-' + t.slice(4) : ''); if (!t) S.famJ.code = ''; i.value = S.famJ.code; const ok = /^W2F-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(S.famJ.code); if (S.famJ.code.length === 13) { refreshSheet(); setTimeout(() => { const y = $('#famJCode'); y && y.focus(); }, 30); } else $('#famJGo', w).disabled = true; }); S.activePad = null; }
+};
+Sheets.famQr = {
+  render: () => `<div class="sh-head"><div><h3>QR خانواده</h3><p>عضو با اپ W² خودش این کد را اسکن کند.</p></div>${closeBtn('closeSheet')}</div>
+    <div class="fm-qr big">${shQrSvg('https://w2.app/f/' + DB.family.code, 220)}<b class="lat" dir="ltr">${DB.family.code}</b><small>هر درخواست تا تأیید شما غیرفعال می‌ماند. اگر کد به دست غریبه افتاد، آن را عوض کنید.</small></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ghost tap" data-act="famCopyCode">${icon('copy', 'w-4 h-4')} کپی کد</button><button class="btn btn-ghost tap" data-act="famNewCode">${icon('refresh-cw', 'w-4 h-4')} کد تازه</button></div>`
+};
+
+/* ---------- member sheet: two-sided access + in-W² money moves ---------- */
+const _famMemR = Sheets.famMem.render;
+Sheets.famMem.render = p => { const m = DB.family.members.find(x => x.id === p.id); if (!m) return ''; const P = m.perms;
+  let h = _famMemR(p);
+  const acts = `<div class="fm-acts"><button class="tap" data-act="famSend" data-id="${m.id}" data-k="rial">${icon('zap')}<span>انتقال آنی</span></button><button class="tap" data-act="famSend" data-id="${m.id}" data-k="gold">${icon('gem')}<span>هدیهٔ طلا</span></button>${m.kind === 'teen' ? `<button class="tap" data-act="famBonus">${icon('trending-up')}<span>سود تشویقی</span></button>` : `<button class="tap" data-act="famGoalPick">${icon('target')}<span>هدف مشترک</span></button>`}</div>`;
+  const perms = `<div><div class="group-t">دسترسی‌ها</div><div class="group">
+    ${famPermRow('eye', `موجودی شما برای ${m.name}`, P.mine ? 'می‌بیند؛ فقط مشاهده' : 'نمی‌بیند', P.mine, 'famMPerm', `data-id="${m.id}" data-k="mine"`)}
+    <div class="row"><span class="ri">${icon('eye-off')}</span><span class="rt"><b>موجودی ${m.name} برای شما</b><small>${P.theirs ? 'نمایش می‌دهد' : 'خصوصی نگه داشته'} · انتخاب خودِ ${m.name}</small></span>${m.kind === 'teen' ? '<span class="fm-pill">ولی</span>' : icon('lock', 'w-4 h-4')}</div>
+    ${famPermRow('layers', 'تجمیع در سطح عضویت', P.pool ? 'میانگین ماندگاری‌اش حساب می‌شود' : 'حساب نمی‌شود', P.pool, 'famMPerm', `data-id="${m.id}" data-k="pool"`)}
+    ${m.kind === 'teen' ? '' : famPermRow('user-cog', `${m.name} از طرف شما معامله کند`, P.trade === 'pending' ? `منتظر پذیرش ${m.name}` : P.trade ? 'فعال؛ انتقال و برداشت ممکن نیست' : 'خاموش', !!P.trade, 'famMPerm', `data-id="${m.id}" data-k="trade"`)}
+  </div></div>`;
+  const k = h.indexOf('</div>', h.indexOf('aria-label="بستن"')) + 6; h = h.slice(0, k) + acts + h.slice(k);
+  h = h.replace(/<button class="btn btn-ghost tap" data-act="famRemove"/, perms + '<button class="btn btn-ghost tap" data-act="famRemove"');
+  return h.replace(/<div class="kv"><span>اثر در سطح خانوار<\/span><b>[^<]*<\/b><\/div>/, '').replace(/<div class="kv"><span>میانگین ماندگاری دارایی<\/span><b class="num">[^<]*<\/b><\/div>/, P.theirs ? `<div class="kv"><span>میانگین ماندگاری دارایی</span><b class="num">${m.avg ? trM(m.avg) + ' تومان' : '—'}</b></div>` : '');
+};
+Sheets.famSend = {
+  render: p => { const m = DB.family.members.find(x => x.id === p.id); if (!m) return ''; const gold = p.k === 'gold', G = DB.assets.find(a => a.id === 'gold'), V = S.famS || (S.famS = { v: 0 });
+    const opts = gold ? [0.1, 0.5, 1] : [1000000, 5000000, 20000000], bal = gold ? G.qty : DB.rial, ok = V.v > 0 && V.v <= bal;
+    return `<div class="sh-head"><div><h3>${gold ? 'هدیهٔ طلا' : 'انتقال آنی'} به ${m.name}</h3><p>${gold ? 'گرم طلا مستقیم به حساب طلای او منتقل می‌شود' : 'داخل W²؛ رایگان، فوری و بدون کارت بانکی'}</p></div>${closeBtn('closeSheet')}</div>
+      <div class="chips">${opts.map(v => `<button class="chip tap ${V.v === v ? 'on' : ''}" data-act="famSendV" data-v="${v}">${gold ? faDec(v, 1) + ' گرم' : trM(v) + ' تومان'}</button>`).join('')}</div>
+      <div class="group"><div class="kv"><span>${gold ? 'موجودی طلای شما' : 'موجودی ریالی'}</span><b class="num">${gold ? faDec(bal, 3) + ' گرم' : trM(bal) + ' تومان'}</b></div><div class="kv"><span>کارمزد</span><b>رایگان</b></div></div>
+      ${V.v > bal ? `<div class="msg err">${icon('alert-circle')}موجودی کافی نیست</div>` : ''}
+      <button class="btn btn-primary tap" data-act="famSendGo" data-id="${m.id}" data-k="${p.k}" ${ok ? '' : 'disabled'}>تأیید با رمز</button>`; }
+};
+Sheets.famPick = {
+  render: p => `<div class="sh-head"><div><h3>${p.title}</h3><p>${p.sub || ''}</p></div>${closeBtn('closeSheet')}</div>
+    <div class="group">${DB.family.members.filter(m => m.status === 'active' && (!p.teen || m.kind === 'teen')).map(m => `<button class="row tap" data-act="${p.act}" data-id="${m.id}" data-k="${p.k || ''}"><span class="ri" style="padding:0;background:none">${famAv(m, 'sm')}</span><span class="rt"><b>${m.name}</b><small>${m.role}</small></span>${p.sel && p.sel === m.id ? icon('check-circle-2') : icon('chevron-left', 'chev')}</button>`).join('') || '<p class="hint">هنوز عضو فعالی ندارید.</p>'}</div>
+    ${p.foot || ''}`
+};
+
+/* ---------- actions ---------- */
+const famRe = () => { rerenderPage('family'); if (S.sheets.length) refreshSheet(); };
+const famActive = () => DB.family.members.filter(m => m.status === 'active');
+function famAccept(i) { const F = DB.family; if (!F.invites.find(x => x.id === i.id)) return;
+  F.invites = F.invites.filter(x => x.id !== i.id); const teen = i.kind === 'teen';
+  F.members.push({ id: 'm' + Date.now(), name: i.name, role: teen ? 'فرزند · زیر ۱۸' : i.role, kind: i.kind, status: 'active', avg: teen ? 0 : 0, phone: i.phone, card: '', allowance: i.perms.allowance || 0, spentWeek: 0, limit: 500000, blocks: [], saved: 0, frozen: false, perms: { pool: i.perms.pool, mine: i.perms.mine, theirs: teen ? true : false, trade: i.perms.trade ? 'pending' : false, goals: i.perms.goals }, at: Date.now() });
+  const m = F.members[F.members.length - 1]; if (m.perms.trade === 'pending') m.perms.trade = true;
+  if (S.root === 'app') { famRe(); if (S.tab === 'bank') rerenderTab(); }
+  toast({ ic: 'users', title: `${i.name} دعوت را پذیرفت`, body: teen ? 'کارت نوجوان مجازی صادر شد و پول توجیبی از هفتهٔ بعد واریز می‌شود.' : 'عضویت فعال شد. او موجودی‌اش را خصوصی نگه داشته؛ هر وقت بخواهد می‌تواند نمایش دهد.', action: { label: 'دیدن', act: 'famOpen' }, ms: 6000 });
+}
+Object.assign(A, {
+  famAdd: () => { if (famUsed() >= famCap()) return openSheet('trLock', { t: Math.min(2, trCalc().idx + 1), title: 'اعضای بیشتر در حساب خانواده', body: 'پایه تا ۳ عضو، ممتاز تا ۵ عضو و میراث تا ۸ عضو. دعوت‌های در انتظار هم جا می‌گیرند.' }); S.famA = famNewA(); openSheet('famAdd'); },
+  famRole: d => { S.famA.role = d.r; refreshSheet(); },
+  famAge: d => { S.famA.age = d.a; refreshSheet(); },
+  famHow: d => { S.famA.how = d.h; refreshSheet(); },
+  famCopyCode: () => copyText(DB.family.code, 'کد خانواده'),
+  famNextStep: () => { const A2 = S.famA; A2.step = A2.step === 'who' ? 'perm' : 'rev'; if (A2.role === 'فرزند' && A2.age === 'teen') { A2.perms.mine = false; A2.perms.trade = false; } refreshSheet(); },
+  famBackStep: () => { const A2 = S.famA; A2.step = A2.step === 'rev' ? 'perm' : 'who'; refreshSheet(); },
+  famPerm: d => { const P = S.famA.perms; P[d.k] = !P[d.k]; vib(5); refreshSheet(); },
+  famPermAllow: d => { S.famA.perms.allowance = +d.v; refreshSheet(); },
+  famInvite: () => { const A2 = S.famA, teen = A2.role === 'فرزند' && A2.age === 'teen';
+    openSheet('pinSheet', { title: 'تأیید دعوت', sub: `دعوت ${A2.name} به حساب خانواده`, face: DB.settings.face, onOk: () => {
+      const i = { id: 'i' + Date.now(), name: A2.name.trim(), role: A2.role, kind: teen ? 'teen' : 'adult', phone: A2.phone, nid: teen ? A2.nid : '', by: teen ? A2.by : null, onW2: famOnW2(A2.phone), perms: { ...A2.perms }, at: Date.now(), sends: 1 };
+      DB.family.invites.push(i); closeAllSheets(); vib([10, 30, 10]); famRe();
+      toast({ ic: 'send', title: 'دعوت ارسال شد', body: i.onW2 ? `${i.name} دعوت را در اپ W² خودش می‌بیند و با رمز خودش می‌پذیرد.` : `لینک دعوت به ${faD(i.phone)} پیامک شد.`, ms: 3600 });
+      setTimeout(() => famAccept(i), i.onW2 ? 18000 : 30000);   /* the other phone, in this test build */
+    } }); },
+  famInv: d => openSheet('famInv', { id: d.id }),
+  famResend: d => { const i = DB.family.invites.find(x => x.id === d.id); if (!i || i.sends >= 3) return; i.sends++; refreshSheet(); toast({ ic: 'send', title: 'دعوت دوباره پیامک شد', body: faD(i.phone), ms: 2200 }); },
+  famCopyLink: d => copyText(`https://w2.app/f/${DB.family.code}?i=${d.id.slice(-6)}`, 'لینک دعوت'),
+  famInvCancel: d => { DB.family.invites = DB.family.invites.filter(x => x.id !== d.id); closeSheet(); famRe(); toast({ ic: 'x-circle', title: 'دعوت لغو شد', body: 'لینک دعوت دیگر کار نمی‌کند.', ms: 2400 }); },
+  famReq: d => { S.famR = null; openSheet('famReq', { id: d.id }); },
+  famReqRole: d => { S.famR.role = d.r; refreshSheet(); },
+  famReqPerm: d => { S.famR[d.k] = !S.famR[d.k]; refreshSheet(); },
+  famReqNo: d => { DB.family.requests = DB.family.requests.filter(x => x.id !== d.id); closeSheet(); famRe(); toast({ ic: 'user-x', title: 'درخواست رد شد', body: 'به درخواست‌دهنده فقط «رد شد» اعلام می‌شود.', ms: 2400 }); },
+  famReqYes: d => { const r = DB.family.requests.find(x => x.id === d.id), R = S.famR; if (!r) return;
+    if (famUsed() >= famCap()) return openSheet('trLock', { t: Math.min(2, trCalc().idx + 1), title: 'خانواده پر است', body: 'برای افزودن عضو بیشتر، سطح عضویت بالاتر لازم است.' });
+    openSheet('pinSheet', { title: 'تأیید عضو', sub: `پیوستن ${r.name} به حساب خانواده`, face: DB.settings.face, onOk: () => {
+      DB.family.requests = DB.family.requests.filter(x => x.id !== r.id);
+      DB.family.members.push({ id: 'm' + Date.now(), name: r.name, role: R.role, kind: 'adult', status: 'active', avg: 640000000, phone: r.phone, card: '', perms: { pool: R.pool, mine: R.mine, theirs: r.share, trade: false }, at: Date.now() });
+      closeAllSheets(); vib([10, 30, 10]); famRe(); toast({ ic: 'users', title: `${r.name} به خانواده پیوست`, body: 'به او هم اعلان دادیم.', ms: 3200 }); } }); },
+  famJoin: () => { S.famJ = { code: '' }; openSheet('famJoin'); },
+  famJScan: () => { closeSheet(); setTimeout(() => { S.famScan = true; A.xScan && A.xScan(); }, 300); },
+  famJoinGo: () => { DB.family.joinReq = { code: S.famJ.code, at: Date.now() }; closeSheet(); famRe(); toast({ ic: 'send', title: 'درخواست پیوستن ارسال شد', body: 'پس از تأیید مدیر آن خانواده، عضویت شما فعال می‌شود.', ms: 3200 }); },
+  famJoinCancel: () => { DB.family.joinReq = null; famRe(); },
+  famQr: () => openSheet('famQr'),
+  famNewCode: () => { DB.family.code = null; famEnsure(); famRe(); toast({ ic: 'refresh-cw', title: 'کد خانواده عوض شد', body: 'کد و QR قبلی دیگر کار نمی‌کند.', ms: 2400 }); },
+  famMPerm: d => { const m = DB.family.members.find(x => x.id === d.id), P = m.perms;
+    if (d.k === 'trade') { if (P.trade) { P.trade = false; refreshSheet(); return toast({ ic: 'user-cog', title: 'مجوز معامله لغو شد', ms: 2000 }); }
+      return openSheet('pinSheet', { title: 'مجوز معامله از طرف شما', sub: `${m.name} بتواند دارایی‌های شما را خرید و فروش کند`, face: DB.settings.face, onOk: () => { P.trade = 'pending'; refreshSheet(); toast({ ic: 'send', title: `درخواست برای ${m.name} فرستاده شد`, body: 'مجوز پس از پذیرش او فعال می‌شود.', ms: 3000 }); setTimeout(() => { if (P.trade === 'pending') { P.trade = true; if (S.sheets.length) refreshSheet(); toast({ ic: 'user-cog', title: `${m.name} مجوز معامله را پذیرفت`, ms: 2600 }); } }, 9000); } }); }
+    P[d.k] = !P[d.k]; vib(5); famRe(); if (d.k === 'pool' && S.tab === 'bank') rerenderTab(); },
+  famSendPick: () => famActive().length ? openSheet('famPick', { title: 'انتقال آنی به عضو', sub: 'داخل W²؛ رایگان و فوری', act: 'famSend', k: 'rial' }) : A.famAdd(),
+  famSend: d => { const had = S.sheets.length; if (had) closeAllSheets(); S.famS = { v: 0 }; setTimeout(() => openSheet('famSend', { id: d.id, k: d.k || 'rial' }), had ? 300 : 0); },
+  famSendV: d => { S.famS.v = +d.v; refreshSheet(); },
+  famSendGo: d => { const m = DB.family.members.find(x => x.id === d.id), gold = d.k === 'gold', v = S.famS.v, G = DB.assets.find(a => a.id === 'gold');
+    openSheet('pinSheet', { title: gold ? 'تأیید هدیهٔ طلا' : 'تأیید انتقال', sub: `به ${m.name}`, face: DB.settings.face, onOk: () => {
+      const now = new Date(), ref = rnd(10);
+      if (gold) G.qty = +(G.qty - v).toFixed(4); else DB.rial -= v;
+      DB.bankTx.push({ id: 'b' + Date.now(), title: gold ? 'هدیهٔ طلا به عضو خانواده' : 'انتقال به عضو خانواده', sub: m.name, amount: gold ? 0 : -v, date: now, kind: gold ? 'asset' : 'out' });
+      closeAllSheets(); vib([10, 30, 10]);
+      push('receipt', { title: gold ? 'هدیهٔ طلا' : 'انتقال آنی', hero: gold ? media('asset_gold', 'gold') : undefined, amount: gold ? null : v, amountText: gold ? faDec(v, 1) + ' گرم طلا' : null, sub: `به ${m.name} · حساب خانواده`, status: 'انجام شد',
+        rows: [['گیرنده', `${m.name} (${m.role})`], ['مسیر', 'داخل W² · بدون شبکهٔ بانکی'], ['کارمزد', 'رایگان'], ['زمان', fmtDate(now)], ['شمارهٔ پیگیری', faD(ref), ref]] }); } }); },
+  famGold: () => famActive().length ? openSheet('famPick', { title: 'هدیهٔ طلا به عضو', sub: 'از ۰٫۱ گرم', act: 'famSend', k: 'gold' }) : A.famAdd(),
+  famBonus: () => { const t = famActive().filter(m => m.kind === 'teen'); if (!t.length) return toast({ ic: 'info', title: 'برای فرزند زیر ۱۸ سال', body: 'ابتدا فرزندتان را به خانواده اضافه کنید.', ms: 2600 });
+    if (S.sheets.length) closeAllSheets(); setTimeout(() => openSheet('famPick', { title: 'سود تشویقی پس‌انداز', sub: 'شما روی سود صندوق پس‌انداز فرزند، از حساب خودتان سود اضافه می‌دهید', act: 'famBonusSet', teen: 1, foot: `<div class="chips" style="justify-content:center">${[0, 5, 10].map(v => `<button class="chip tap ${(DB.family.bonus || 0) === v ? 'on' : ''}" data-act="famBonusV" data-v="${v}">${v ? '+' + faD(v) + '٪ سالانه' : 'خاموش'}</button>`).join('')}</div>` }), 260); },
+  famBonusV: d => { DB.family.bonus = +d.v; refreshSheet(); toast({ ic: 'trending-up', title: d.v === '0' ? 'سود تشویقی خاموش شد' : `${faD(d.v)}٪ سود تشویقی فعال شد`, body: 'ماهانه از حساب شما به پس‌انداز فرزند واریز می‌شود.', ms: 2600 }); },
+  famBonusSet: () => {},
+  famAsk: () => { const t = famActive().filter(m => m.kind === 'teen'); toast({ ic: 'hand-coins', title: 'درخواست پول از والدین', body: t.length ? `${t[0].name} از اپ خودش درخواست می‌فرستد؛ اینجا با یک لمس تأیید یا رد می‌کنید. سقف هر درخواست را شما تعیین می‌کنید.` : 'پس از افزودن فرزند زیر ۱۸ سال فعال می‌شود.', ms: 4200 }); },
+  famTradeInfo: () => { const a = famActive().filter(m => m.kind === 'adult'); a.length ? openSheet('famPick', { title: 'معامله از طرف عضو', sub: 'عضو را انتخاب کنید؛ مجوز فقط با پذیرش خودِ او فعال می‌شود', act: 'famMem' }) : A.famAdd(); },
+  famBenef: () => { const a = famActive(); if (!a.length) return A.famAdd(); openSheet('famPick', { title: 'ذی‌نفع دارایی‌ها', sub: 'در صورت فوت، دارایی‌ها طبق قانون و با ارائهٔ گواهی انحصار وراثت به ذی‌نفع منتقل می‌شود', act: 'famBenefSet', sel: DB.family.benef }); },
+  famBenefSet: d => { DB.family.benef = d.id; const m = DB.family.members.find(x => x.id === d.id); refreshSheet(); toast({ ic: 'shield-plus', title: `${m.name} ذی‌نفع شد`, body: 'به او اطلاع داده می‌شود؛ هر زمان قابل تغییر است.', ms: 2600 }); },
+  famGoalPick: () => { closeAllSheets(); setTimeout(() => { const g = DB.family.goals[0]; g ? A.famGoalAdd({ id: g.id }) : A.famGoalNew(); }, 280); },
+  famTeen: () => { const t = famActive().find(m => m.kind === 'teen'); t ? openSheet('famMem', { id: t.id }) : (S.famA = { ...famNewA(), role: 'فرزند', age: 'teen' }, openSheet('famAdd')); },
+  famRemove: d => { const m = DB.family.members.find(x => x.id === d.id);
+    openSheet('pinSheet', { title: `جدا کردن ${m.name}`, sub: 'دارایی‌های او دست نمی‌خورد', summary: `<p class="hint" style="text-align:right">${m.kind === 'teen' ? 'کارت نوجوان باطل و پول توجیبی متوقف می‌شود. ' : ''}دسترسی‌های دوطرفه و تجمیع سطح قطع می‌شود و به ${m.name} اعلان می‌دهیم.</p>`, face: DB.settings.face, onOk: () => {
+      DB.family.members = DB.family.members.filter(x => x.id !== d.id); if (DB.family.benef === d.id) DB.family.benef = null; closeAllSheets(); famRe(); if (S.tab === 'bank') rerenderTab(); toast({ title: `${m.name} از حساب خانواده جدا شد`, ic: 'user-minus', ms: 2400 }); } }); }
+});
+const _famSumV23 = famSummary;
+famSummary = () => { const F = DB.family, n = famActive().length, p = F.invites.length + F.requests.length; return n ? _famSumV23() + (p ? ` · ${faD(p)} در انتظار` : '') : p ? `${faD(p)} دعوت در انتظار پذیرش` : 'اعضا را با موبایل دعوت کنید؛ بدون کارت بانکی'; };
+/* a scanned family QR fills the join sheet */
+const _xScanUseFam = A.xScanUse;
+A.xScanUse = v => { if (S.famScan || /w2\.app\/f\/|^W2F-/i.test(v || '')) { S.famScan = false; const m = String(v).match(/W2F-[A-Z2-9]{4}-[A-Z2-9]{4}/i); closeAllSheets(); S.famJ = { code: m ? m[0].toUpperCase() : '' }; return setTimeout(() => openSheet('famJoin'), 280); } return _xScanUseFam(v); };
+
+/* =========================================================
+   v23 — progressive onboarding (just-in-time KYC)
+   Signup = mobile + SMS code + name + quick PIN → straight into the app.
+   Every service asks only for the data it needs, the moment it needs it:
+     id   کد ملی + تاریخ تولد (تطبیق شاهکار و ثبت احوال)
+     doc  عکس کارت ملی
+     card کارت بانکی به نام خود کاربر (ثبت در شاپرک)
+     addr نشانی و کد پستی
+     adv  ویدئوی سلفی (احراز تصویری)
+   No sample-fill shortcuts: every field is typed, uploaded or recorded by the user.
+   ========================================================= */
+const KY_ITEMS = {
+  id: { t: 'کد ملی و تاریخ تولد', s: 'تطبیق با شمارهٔ موبایل و ثبت احوال · ۳۰ ثانیه', ic: 'contact' },
+  doc: { t: 'عکس کارت ملی', s: 'کارت ملی هوشمند یا شناسنامهٔ جدید · ۱ دقیقه', ic: 'scan-line' },
+  card: { t: 'کارت بانکی به نام خودتان', s: 'ثبت یک‌باره در شاپرک با رمز دوم · ۱ دقیقه', ic: 'credit-card' },
+  addr: { t: 'نشانی و کد پستی', s: 'برای ارسال کارت، قرارداد و مدارک · ۱ دقیقه', ic: 'map-pin' },
+  adv: { t: 'ویدئوی سلفی', s: 'خواندن متن تعهد جلوی دوربین · بررسی چند ساعت', ic: 'video' }
+};
+const KY_REQ = {
+  buy: { t: 'خرید دارایی', r: ['id', 'doc'], why: 'دارایی به نام کد ملی شما ثبت و نگهداری می‌شود؛ برای همین خرید فقط برای کاربر احرازشده ممکن است.' },
+  sell: { t: 'فروش دارایی', r: ['id', 'doc'], why: 'وجه فروش فقط به حساب ریالی به نام خودتان واریز می‌شود.' },
+  deposit: { t: 'افزایش موجودی ریالی', r: ['id', 'card'], why: 'واریز ریالی فقط از کارت بانکی به نام خودتان پذیرفته می‌شود.' },
+  xfer: { t: 'انتقال پول', r: ['id'], why: 'برای انتقال از حساب ریالی، هویت صاحب حساب باید تأیید شده باشد.' },
+  xfer_card: { t: 'کارت به کارت', r: ['id', 'card'], why: 'کارت به کارت از کارتی انجام می‌شود که به نام خودتان در شاپرک ثبت شده باشد.' },
+  wallet: { t: 'برداشت به کیف پول', r: ['id', 'doc', 'addr', 'adv'], why: 'برداشت به آدرس کیف پول بیرونی فقط با احراز تصویری مجاز است.' },
+  bill: { t: 'پرداخت قبض', r: ['id'], why: 'پرداخت از حساب ریالی W² به هویت تأییدشده نیاز دارد.' },
+  topup: { t: 'خرید شارژ و اینترنت', r: ['id'], why: 'پرداخت از حساب ریالی W² به هویت تأییدشده نیاز دارد.' },
+  recur: { t: 'خرید دوره‌ای', r: ['id', 'doc'], why: 'خرید خودکار دارایی مثل خرید عادی به نام کد ملی شما ثبت می‌شود.' },
+  stake: { t: 'سپردن دارایی برای درآمد', r: ['id', 'doc'], why: 'قرارداد وکالت به نام شما تنظیم می‌شود.' },
+  guard: { t: 'تضمین قیمت', r: ['id', 'doc'], why: 'بیمه‌نامهٔ تضمین قیمت به نام شما صادر می‌شود.' },
+  inst: { t: 'خرید قسطی', r: ['id', 'doc', 'addr', 'adv'], why: 'خرید قسطی نوعی تسهیلات است و به احراز تصویری و نشانی نیاز دارد.' },
+  credit: { t: 'اعتبار به پشتوانهٔ دارایی', r: ['id', 'doc', 'addr', 'adv'], why: 'اعطای اعتبار طبق ضوابط به احراز تصویری و نشانی نیاز دارد.' },
+  tp: { t: 'توکن تولید', r: ['id', 'doc', 'addr', 'adv'], why: 'سرمایه‌گذاری در طرح تأمین مالی به احراز کامل نیاز دارد.' },
+  lease: { t: 'حساب خودرو', r: ['id', 'doc', 'addr', 'adv'], why: 'قرارداد خودرو و تحویل آن به احراز کامل و نشانی نیاز دارد.' },
+  pf: { t: 'سبد سهام', r: ['id', 'doc'], why: 'توکن سبد به نام کد ملی شما در دفتر کل ثبت می‌شود.' },
+  gift: { t: 'کارت هدیه', r: ['id'], why: 'خرید کارت هدیه از حساب ریالی شما انجام می‌شود.' },
+  family: { t: 'حساب خانواده', r: ['id'], why: 'مدیر حساب خانواده باید هویت تأییدشده داشته باشد.' },
+  req: { t: 'درخواست پول', r: ['id'], why: 'وجه به حساب ریالی به نام شما واریز می‌شود.' },
+  cardOrder: { t: 'سفارش کارت فیزیکی', r: ['id', 'addr'], why: 'کارت به نام و نشانی ثبت‌شدهٔ شما چاپ و ارسال می‌شود.' },
+  perks: { t: 'مزایای سطح عضویت', r: ['id'], why: 'بیمه و خدمات سفر به نام کد ملی شما صادر می‌شود.' },
+  basic: { t: 'احراز هویت پایه', r: ['id', 'doc'], why: 'با احراز پایه، خرید و فروش دارایی و حساب ریالی باز می‌شود.' },
+  advanced: { t: 'احراز هویت پیشرفته', r: ['id', 'doc', 'addr', 'adv'], why: 'با احراز پیشرفته، اعتبار، خرید قسطی، توکن تولید و سقف‌های بالاتر باز می‌شود.' }
+};
+const KY_STEP = { id: 'nid', doc: 'idcard', addr: 'addr', adv: 'vintro' };
+const KY_PROV = ['تهران', 'البرز', 'اصفهان', 'خراسان رضوی', 'فارس', 'آذربایجان شرقی', 'آذربایجان غربی', 'اردبیل', 'ایلام', 'بوشهر', 'چهارمحال و بختیاری', 'خراسان جنوبی', 'خراسان شمالی', 'خوزستان', 'زنجان', 'سمنان', 'سیستان و بلوچستان', 'قزوین', 'قم', 'کردستان', 'کرمان', 'کرمانشاه', 'کهگیلویه و بویراحمد', 'گلستان', 'گیلان', 'لرستان', 'مازندران', 'مرکزی', 'هرمزگان', 'همدان', 'یزد'];
+
+/* ---------- status ---------- */
+if (DB.kyc && DB.kyc.level === 'advanced' && DB.kyc.doc == null) DB.kyc.doc = true;      /* the fully verified demo account */
+if (DB.kyc && DB.kyc.level === 'advanced' && !DB.user.addr) DB.user.addr = { prov: 'تهران', city: 'تهران', line: 'شهرک غرب، بلوار فرحزادی، کوچهٔ نهم، پلاک ۱۲، واحد ۴', postal: '1467683111' };
+function kyHas(r) {
+  const K = DB.kyc || { level: 'none' };
+  if (r === 'id') return K.level !== 'none';
+  if (r === 'doc') return !!K.doc || K.level === 'pending' || K.level === 'advanced';
+  if (r === 'card') return (DB.cards || []).length > 0;
+  if (r === 'addr') return !!(DB.user && DB.user.addr);
+  if (r === 'adv') return K.level === 'advanced';
+  return true;
+}
+const kyMissing = reqs => reqs.filter(r => !kyHas(r));
+const kyOk = feat => !kyMissing(KY_REQ[feat].r).length;
+const persianYear = () => +new Intl.DateTimeFormat('en-u-ca-persian', { year: 'numeric' }).format(new Date()).replace(/\D/g, '');
+const kyAge = (y, m, d) => { const now = new Intl.DateTimeFormat('en-u-ca-persian', { year: 'numeric', month: 'numeric', day: 'numeric' }).formatToParts(new Date()); const g = k => +now.find(p => p.type === k).value; let a = g('year') - y; if (g('month') < m || (g('month') === m && g('day') < d)) a--; return a; };
+const postalOk = s => /^(?!(\d)\1{9})[13-9]{4}[1346-9][013-9]{5}$/.test(s);
+const faNameOk = v => { const w = (v || '').trim().split(/\s+/).filter(Boolean); return w.length >= 2 && w.every(x => x.length >= 2) && /^[؀-ۿ‌\s]+$/.test(v.trim()); };
+
+/* ---------- the "what we need and why" sheet ---------- */
+Sheets.kyNeed = {
+  render: p => { const F = KY_REQ[p.feat], miss = kyMissing(F.r), pend = miss.includes('adv') && DB.kyc.level === 'pending';
+    return `<div class="ky-need-ic">${icon('shield-check')}</div>
+      <div class="sh-head" style="justify-content:center;text-align:center"><div><h3>برای «${F.t}»</h3><p>فقط همین چند مورد را می‌خواهیم؛ یک بار برای همیشه.</p></div></div>
+      <div class="ky-need-list">${F.r.map((r, i) => { const ok = kyHas(r), I = KY_ITEMS[r];
+        return `<div class="ky-need-row ${ok ? 'ok' : ''}"><span class="ky-need-n">${ok ? icon('check') : faD(F.r.filter(x => !kyHas(x)).indexOf(r) + 1)}</span><span class="rt"><b>${I.t}</b><small>${ok ? 'انجام شده' : r === 'adv' && pend ? 'در دست بررسی' : I.s}</small></span>${icon(I.ic, 'w-5 h-5')}</div>`; }).join('')}</div>
+      <p class="ky-need-why">${icon('info', 'w-4 h-4')}<span>${F.why}</span></p>
+      ${pend ? `<button class="btn btn-ghost tap" data-act="closeSheet">احراز تصویری در دست بررسی است؛ نتیجه را خبر می‌دهیم</button>`
+        : `<button class="btn btn-primary tap" data-act="kyNeedGo">${miss.length === F.r.length ? 'شروع' : 'ادامه'} · ${faD(miss.length)} مرحله</button><button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="kyNeedLater">بعداً</button>`}`; }
+};
+function kyNeed(feat, then) {
+  const F = KY_REQ[feat]; if (!F) return then && then();
+  if (!kyMissing(F.r).length) return then && then();
+  S.need = { feat, reqs: F.r.slice(), then };
+  openSheet('kyNeed', { feat });
+}
+A.kyNeedGo = () => { closeSheet(); setTimeout(nextNeed, 320); };
+A.kyNeedLater = () => { S.need = null; closeSheet(); };
+const kyGate = (feat, fn) => function (...args) { const f = typeof feat === 'function' ? feat(...args) : feat; if (!f || kyOk(f)) return fn.apply(this, args); return kyNeed(f, () => fn.apply(this, args)); };
+
+/* ---------- running the missing steps inside the app (as a page) ---------- */
+Pages.kyFlow = {
+  render: () => S.su ? suHTML() : '',
+  mount: el => { el.classList.add('ky-page'); S.su && suMount(el); },
+  unmount: () => { const U = S.su; if (!U || U.mode !== 'page') return; if (U.stream) { U.stream.getTracks().forEach(t => t.stop()); U.stream = null; } clearInterval(U.iv); clearInterval(U.recIv); }
+};
+const _suReKy = suRe;
+suRe = () => { if (S.root === 'su') return _suReKy(); const s = S.stack.find(x => x.name === 'kyFlow'); if (!s || !S.su) return; s.el.innerHTML = suHTML(); hydrate(s.el); suMount(s.el); };
+function kyStart(r) {
+  if (r === 'card') { return kyClose(() => { S.need && (S.need.waitCard = true); A.bkAddCard(); }); }
+  const step = r === 'adv' && !kyHas('doc') ? 'idcard' : KY_STEP[r];
+  const top = S.stack.length && S.stack[S.stack.length - 1].name === 'kyFlow';
+  if (top && S.su) return suGo(step);
+  S.su = { step, mode: 'page', from: 'app', entry: step, nid: DB.user.nid || '' }; S.flow = 'kyc'; push('kyFlow');
+}
+function kyClose(cb) {
+  const i = S.stack.findIndex(x => x.name === 'kyFlow');
+  if (i < 0) { S.su = null; S.flow = null; return cb && cb(); }
+  while (S.stack.length > i) pop();
+  S.su = null; S.flow = null; setTimeout(() => cb && cb(), 450);
+}
+function nextNeed() {
+  const N = S.need; if (!N) return kyClose();
+  const miss = kyMissing(N.reqs);
+  if (!miss.length) { S.need = null; kyClose(() => { if (S.root === 'app' && S.tab === 'bank') rerenderTab(); N.then && N.then(); }); return; }
+  if (miss[0] === 'adv' && DB.kyc.level === 'pending') { S.need = null; S.kyResume = N; kyClose(() => toast({ ic: 'hourglass', title: 'احراز تصویری در دست بررسی است', body: 'به‌محض تأیید خبرتان می‌کنیم تا ادامه دهید.', ms: 4000 })); return; }
+  kyStart(miss[0]);
+}
+
+/* ---------- signup: mobile → code → name → PIN → app ---------- */
+const kyWrapPage = (body, foot, opt = {}) => { const U = S.su, page = U.mode === 'page';
+  const back = page ? backBtn('suBack') : U.step === 'mob' ? backBtn('toOnboarding') : backBtn('suBack');
+  const prog = !page && U.flow === 'new' ? `<div class="ky-prog">${['mob', 'name', 'pin'].map((k, i) => `<i class="${i <= ({ mob: 0, motp: 0, name: 1, pin1: 2, pin2: 2 }[U.step] || 0) ? 'on' : ''}"></i>`).join('')}</div>` : `<b class="ky-tt">${opt.tt || ''}</b>`;
+  return `<div class="form gut su" style="padding-top:calc(var(--sat) + 6px)"><div class="su-top">${back}${prog}${helpBtn()}</div><div class="form-body su-body">${body}</div><div class="form-foot">${foot}</div></div>`; };
+const kyBox = (n, v, cls = '') => `<div class="otp ${cls}" id="suBox">${Array.from({ length: n }, (_, i) => `<span class="${i < v.length ? 'fill' : ''} ${i === v.length ? 'cur' : ''}">${v[i] ? faD(v[i]) : ''}</span>`).join('')}</div>`;
+const kyNote = t => `<div class="ky-note">${icon('info', 'w-4 h-4')}<span>${t}</span></div>`;
+const _suHTMLKy = suHTML;
+suHTML = () => {
+  const U = S.su; if (!U) return '';
+  const s = U.step;
+  switch (s) {
+    case 'mob': { const v = U.mob || '', op = v.length >= 4 ? opOf(v) : '', ok = /^09\d{9}$/.test(v) && !!op && U.terms !== false, bad = (v.length >= 2 && !v.startsWith('09')) || (v.length >= 4 && !op);
+      return kyWrapPage(`<div><h1 class="h-title">${U.flow === 'new' ? 'به W² خوش آمدید' : 'شماره موبایل'}</h1><p class="h-sub">شمارهٔ موبایلی که به نام خودتان است را وارد کنید؛ کد تأیید برایتان پیامک می‌شود.</p></div>
+        <div class="field focus ${bad ? 'err' : ''}">${icon('phone')}<span class="val ltr num">${v ? faD(v.replace(/^(\d{4})(\d{0,3})(\d{0,4}).*/, (m, a, b, c) => [a, b, c].filter(Boolean).join(' '))) : '<span class="ph">۰۹۱۲ ۱۲۳ ۴۵۶۷</span>'}</span>${op ? `<span class="su-bank">${op}</span>` : ''}<span class="caret"></span></div>
+        ${bad ? `<div class="msg err">${icon('alert-circle')}${!v.startsWith('09') ? 'شماره باید با ۰۹ شروع شود' : 'اپراتور این شماره شناخته نشد'}</div>` : ''}
+        <div class="ky-terms"><button class="bx tap ${U.terms !== false ? 'on' : ''}" data-act="kyTerms" aria-label="پذیرش قوانین">${U.terms !== false ? icon('check') : ''}</button><span><button class="link tap" data-act="suTerms">قوانین و حریم خصوصی W²</button> را خوانده‌ام و می‌پذیرم.</span></div>`,
+        `<button class="btn btn-primary tap" data-act="suMobGo" ${ok ? '' : 'disabled'}>دریافت کد تأیید</button>${keypad('sum', '', true)}`); }
+    case 'motp': return kyWrapPage(`<div><h1 class="h-title" style="font-size:22px">کد تأیید پیامکی</h1><p class="h-sub">کد ۶ رقمی ارسال‌شده به <bdi dir="ltr" class="num">${faD(U.mob)}</bdi> را وارد کنید. <button class="link tap" data-act="suEdit" data-k="mob">ویرایش شماره</button></p></div>${kyBox(6, U.code || '', U.bad ? 'bad shake' : U.ok ? 'ok' : '')}${U.bad ? `<div class="msg err" style="justify-content:center">${icon('x-circle')}کد تأیید درست نیست</div>` : ''}<p class="hint" id="suT"></p>`, keypad('suk'));
+    case 'name': { const v = U.fname || '', ok = faNameOk(v), bad = U.touched && !ok;
+      return kyWrapPage(`<div><h1 class="h-title" style="font-size:22px">نام شما</h1><p class="h-sub">نام و نام خانوادگی را به فارسی و مطابق کارت ملی بنویسید؛ بعداً با ثبت احوال تطبیق داده می‌شود.</p></div>
+        <label class="inp ${bad ? 'err' : ''}"><span>نام و نام خانوادگی</span><input id="kyName" type="text" autocomplete="name" placeholder="نام و نام خانوادگی" value="${v.replace(/"/g, '&quot;')}"></label>
+        ${bad ? `<div class="msg err">${icon('alert-circle')}${/[A-Za-z0-9]/.test(v) ? 'فقط حروف فارسی' : 'نام و نام خانوادگی را کامل بنویسید'}</div>` : ''}`,
+        `<button class="btn btn-primary tap" id="kyNameGo" data-act="kyNameGo" ${ok ? '' : 'disabled'}>ادامه</button>`); }
+    case 'pin1': case 'pin2': return kyWrapPage(`<div class="pin" style="padding-top:8px"><span class="xedu-ic">${icon('key-round')}</span><b style="font-size:18px">${s === 'pin1' ? 'رمز ورود سریع' : 'تکرار رمز ورود سریع'}</b><small style="color:var(--fg-3);text-align:center;line-height:1.8">${s === 'pin1' ? 'هر بار که W² را باز می‌کنید، با این رمز ۴ رقمی وارد می‌شوید. تاریخ تولد یا رقم‌های تکراری انتخاب نکنید.' : 'رمز را یک بار دیگر وارد کنید.'}</small><div id="suDots">${dots(4, (U.pin || '').length, U.bad ? 'bad' : '')}</div><p class="hint" id="suPinMsg">${U.pinMsg || ''}</p></div>`, keypad('sup'));
+    case 'nid': { const v = U.nid || '', ok = nidOk(v), bad = v.length === 10 && !ok, bOk = U.by && U.bm && U.bd, age = bOk ? kyAge(U.by, U.bm, U.bd) : 99, young = bOk && age < 18;
+      const sel = (id, opts, val, ph) => `<select id="${id}" class="su-sel"><option value="">${ph}</option>${opts.map(([k, t]) => `<option value="${k}" ${String(val) === String(k) ? 'selected' : ''}>${t}</option>`).join('')}</select>`, py = persianYear();
+      return kyWrapPage(`<div><h1 class="h-title" style="font-size:22px">کد ملی و تاریخ تولد</h1><p class="h-sub">با ثبت احوال و مالکیت شمارهٔ موبایل تطبیق می‌دهیم؛ حدود ۳۰ ثانیه.</p></div>
+        <div class="field focus ${bad ? 'err' : ''}">${icon('contact')}<span class="val ltr num">${v ? faD(v) : '<span class="ph">کد ملی ۱۰ رقمی</span>'}</span><span class="caret"></span></div>
+        ${bad ? `<div class="msg err">${icon('alert-circle')}کد ملی معتبر نیست؛ رقم‌ها را دوباره بررسی کنید.</div>` : ''}
+        <div><div class="group-t">تاریخ تولد</div><div class="su-date">${sel('suBd', Array.from({ length: 31 }, (_, i) => [i + 1, faD(i + 1)]), U.bd, 'روز')}${sel('suBm', PM_FA.map((m, i) => [i + 1, m]), U.bm, 'ماه')}${sel('suBy', Array.from({ length: 90 }, (_, i) => [py - 12 - i, faD(py - 12 - i)]), U.by, 'سال')}</div></div>
+        ${young ? `<div class="msg err">${icon('alert-circle')}حساب مستقل از ۱۸ سالگی باز می‌شود؛ برای زیر ۱۸ سال، والدین از «حساب خانواده» کارت نوجوان می‌گیرند.</div>` : ''}
+        ${kyNote(`کد ملی باید صاحب شمارهٔ <bdi dir="ltr" class="num">${faD(DB.user.mobile || U.mob || '')}</bdi> باشد.`)}`,
+        `<button class="btn btn-primary tap" data-act="suNidGo" ${ok && bOk && !young && !U.busy ? '' : 'disabled'}>${U.busy ? '<span class="spin"></span> استعلام از ثبت احوال…' : 'استعلام و تأیید'}</button>${keypad('sun', '', true)}`, { tt: 'احراز هویت' }); }
+    case 'idcard': return kyWrapPage(`<div><h1 class="h-title" style="font-size:22px">عکس کارت ملی</h1><p class="h-sub">روی کارت ملی هوشمند (یا صفحهٔ اول شناسنامهٔ جدید) را بگیرید یا از گالری انتخاب کنید.</p></div>
+        <div class="ky-frame ${U.idImg ? 'has' : ''}">${U.idImg ? `<img src="${U.idImg}" alt="عکس کارت ملی">` : `<span>${icon('scan-line')}<small>کارت را افقی و کامل داخل کادر بگیرید</small></span>`}</div>
+        ${U.idErr ? `<div class="msg err">${icon('alert-circle')}${U.idErr}</div>` : ''}
+        <ul class="ky-tips">${['همهٔ لبه‌های کارت داخل کادر باشد', 'نور کافی، بدون انعکاس و تاری', 'فرمت JPG یا PNG و حداکثر ۵ مگابایت'].map(t => `<li>${t}</li>`).join('')}</ul>
+        <input type="file" id="suIdIn" accept="image/jpeg,image/png" capture="environment" hidden><input type="file" id="kyIdGal" accept="image/jpeg,image/png" hidden>`,
+        U.idImg ? `<button class="btn btn-primary tap" data-act="suIdOk">تأیید و ادامه</button><button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="suIdShot">عکس دوباره</button>`
+          : `<button class="btn btn-primary tap" data-act="suIdShot">${icon('camera', 'w-5 h-5')} عکس گرفتن</button><button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="kyIdGal">${icon('image', 'w-4 h-4')} انتخاب از گالری</button>`, { tt: 'مدرک شناسایی' });
+    case 'addr': { const A2 = U.addr || (U.addr = { prov: 'تهران', city: '', line: '', postal: '', tel: '' }), pOk = postalOk(A2.postal), pBad = A2.postal.length === 10 && !pOk, ok = A2.prov && A2.city.trim().length >= 2 && A2.line.trim().length >= 12 && pOk;
+      return kyWrapPage(`<div><h1 class="h-title" style="font-size:22px">نشانی و کد پستی</h1><p class="h-sub">نشانی محل سکونت؛ کد پستی با پست استعلام می‌شود.</p></div>
+        <div class="ky-two"><label class="inp"><span>استان</span><select id="kyProv" class="su-sel">${KY_PROV.map(p => `<option ${A2.prov === p ? 'selected' : ''}>${p}</option>`).join('')}</select></label><label class="inp"><span>شهر</span><input id="kyCity" value="${A2.city.replace(/"/g, '&quot;')}" placeholder="شهر"></label></label></div>
+        <label class="inp"><span>نشانی کامل</span><textarea id="kyLine" rows="3" placeholder="خیابان، کوچه، پلاک، طبقه، واحد">${A2.line}</textarea></label>
+        <label class="inp ${pBad ? 'err' : ''}"><span>کد پستی ۱۰ رقمی</span><input id="kyPostal" inputmode="numeric" maxlength="10" dir="ltr" placeholder="کد پستی" value="${faD(A2.postal)}"></label>
+        ${pBad ? `<div class="msg err">${icon('alert-circle')}کد پستی معتبر نیست؛ ۱۰ رقم بدون خط تیره.</div>` : ''}
+        <label class="inp"><span>تلفن ثابت (اختیاری)</span><input id="kyTel" inputmode="numeric" maxlength="11" dir="ltr" placeholder="با کد شهر" value="${faD(A2.tel)}"></label>`,
+        `<button class="btn btn-primary tap" id="kyAddrGo" data-act="kyAddrGo" ${ok && !U.busy ? '' : 'disabled'}>${U.busy ? '<span class="spin"></span> استعلام کد پستی…' : 'ثبت نشانی'}</button>`, { tt: 'نشانی' }); }
+    case 'hand': return _suHTMLKy().replace(/(data-act="suHandShot">[\s\S]*?<\/button>)/, `$1<button class="btn tap" style="height:44px;color:var(--fg-2)" data-act="kyHandGal">${icon('image', 'w-4 h-4')} انتخاب از گالری</button>`) + '<input type="file" id="kyHandGal" accept="image/jpeg,image/png" hidden>';
+    case 'vrec': { let h = _suHTMLKy(); if (U.camOk === false) h = h.replace('دوربین در دسترس نبود؛ ضبط نمایشی انجام می‌شود.', 'دوربین در دسترس نیست. به‌جای ویدئو، عکس با متن دست‌نویس بفرستید.').replace(/<button class="btn btn-primary tap" data-act="suRec">شروع ضبط<\/button>/, '<button class="btn btn-primary tap" data-act="suHand">عکس با متن دست‌نویس</button>'); return h; }
+  }
+  return _suHTMLKy();
+};
+const _suMountKy = suMount;
+suMount = el => {
+  _suMountKy(el); const U = S.su; if (!U) return; const s = U.step;
+  if (s === 'motp' && U.flow === 'new') S.pads.suk = suCodeKey(6, U.mcode, () => suGo('name'));
+  if (s === 'name') { const tz = $('#toasts'); if (tz) tz.innerHTML = ''; const i = $('#kyName', el), b = $('#kyNameGo', el); i.addEventListener('input', () => { U.fname = i.value; b.disabled = !faNameOk(U.fname); }); i.addEventListener('blur', () => { if (U.fname) { U.touched = true; if (!faNameOk(U.fname)) suRe(); } }); S.activePad = null; setTimeout(() => i.focus(), 300); }
+  if (s === 'idcard') { const fix = inp => inp && (inp.onchange = () => { const f = inp.files[0]; if (!f) return; if (!/^image\/(jpeg|png)$/.test(f.type)) { U.idErr = 'فقط JPG یا PNG'; return suRe(); } if (f.size > 5 * 1024 * 1024) { U.idErr = 'حجم عکس بیشتر از ۵ مگابایت است'; return suRe(); } U.idErr = ''; imgToSmall2(f, 1280).then(d => { U.idImg = d; suRe(); }); }); fix($('#suIdIn', el)); fix($('#kyIdGal', el)); }
+  if (s === 'hand') { const g = $('#kyHandGal', el); if (g) g.onchange = () => { const f = g.files[0]; if (!f) return; imgToSmall2(f, 1280).then(d => { U.handImg = d; suRe(); }); }; }
+  if (s === 'addr') { const A2 = U.addr, go = $('#kyAddrGo', el), chk = () => { go.disabled = !(A2.prov && A2.city.trim().length >= 2 && A2.line.trim().length >= 12 && postalOk(A2.postal)); };
+    const bind = (id, k, num) => { const x = $('#' + id, el); x && x.addEventListener('input', () => { A2[k] = num ? enD(x.value).replace(/\D/g, '') : x.value; if (num) x.value = faD(A2[k]); chk(); }); };
+    bind('kyCity', 'city'); bind('kyLine', 'line'); bind('kyPostal', 'postal', true); bind('kyTel', 'tel', true);
+    const pv = $('#kyProv', el); pv && pv.addEventListener('change', () => { A2.prov = pv.value; chk(); });
+    const pc = $('#kyPostal', el); pc && pc.addEventListener('blur', () => { if (A2.postal.length === 10) suRe(); }); S.activePad = null; }
+};
+function imgToSmall2(file, max) { return new Promise((res, rej) => { const r = new FileReader(); r.onerror = rej; r.onload = () => { const im = new Image(); im.onerror = rej; im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', .85)); }; im.src = r.result; }; r.readAsDataURL(file); }); }
+
+const _suGoKy = suGo;
+suGo = (step, extra = {}) => { const U = S.su;
+  if (step === 'levels' && U && U.flow === 'new') return kyFinishSignup();
+  return _suGoKy(step, extra); };
+function kyFinishSignup() {
+  const U = S.su || {}; clearInterval(U.iv); S.flow = null; S.su = null; S.lgSigned = true;
+  S.tab = 'bank'; setRoot('app');
+  setTimeout(() => toast({ ic: 'sparkles', title: 'به W² خوش آمدید، ' + (DB.user.first || ''), body: 'هر وقت سرویسی اطلاعات بیشتری لازم داشت، همان لحظه از شما می‌پرسیم.', ms: 5200 }), 600);
+}
+
+/* ---------- actions ---------- */
+Object.assign(A, {
+  startSignup: () => {
+    Object.assign(DB.user, { name: '', first: '', init: '', latin: 'W2 Member', email: '', nid: '', birth: '', mobile: '', phone: '', addr: null, photo: null });
+    DB.kyc = { level: 'none', doc: false }; DB.cards = []; S.cardsReset = true; S.suPan = null;
+    DB.family = { pool: true, members: [], goals: [], seeded23: true }; famEnsure();
+    S.su = { step: 'mob', flow: 'new', terms: true }; S.flow = 'signup'; setRoot('su');
+  },
+  kyTerms: () => { S.su.terms = S.su.terms === false; suRe(); },
+  kyNameGo: () => { const U = S.su; U.touched = true; if (!faNameOk(U.fname)) return suRe();
+    const parts = U.fname.trim().split(/\s+/); Object.assign(DB.user, { name: parts.join(' '), first: parts[0], init: parts[0][0] + '\u200c' + (parts[parts.length - 1][0] || '') });
+    suGo('pin1', { pin: '' }); },
+  kyIdGal: () => { const i = $('#kyIdGal'); i && i.click(); },
+  kyHandGal: () => { const i = $('#kyHandGal'); i && i.click(); },
+  kyAddrGo: () => { const U = S.su, A2 = U.addr; U.busy = true; suRe();
+    setTimeout(() => { U.busy = false; DB.user.addr = { prov: A2.prov, city: A2.city.trim(), line: A2.line.trim(), postal: A2.postal, tel: A2.tel }; vib(10); toast({ ic: 'map-pin', title: 'نشانی ثبت شد', body: `کد پستی ${faD(A2.postal)} با نشانی مطابقت داشت.`, ms: 2600 }); nextNeed(); }, 1300); },
+  kyBasic: () => kyNeed('basic', () => toast({ ic: 'badge-check', title: 'احراز پایه کامل است', body: 'خرید و فروش دارایی و حساب ریالی برایتان باز است.', ms: 3200 })),
+  kyAdv: () => kyNeed('advanced', () => toast({ ic: 'badge-check', title: 'احراز پیشرفته کامل است', ms: 3000 })),
+  kyResume: () => { const N = S.kyResume; S.kyResume = null; if (N && N.then) N.then(); }
+});
+const _suNidGoKy = A.suNidGo;
+A.suNidGo = (d, el) => { const U = S.su; if (U.mode !== 'page') return _suNidGoKy(d, el);
+  U.busy = true; suRe();
+  setTimeout(() => { U.busy = false; Object.assign(DB.user, { nid: U.nid, birth: [U.by, U.bm, U.bd].join('/') }); if (DB.kyc.level === 'none') DB.kyc.level = 'basic'; vib(10);
+    toast({ ic: 'badge-check', title: 'هویت شما تأیید شد', body: `${DB.user.name} · کد ملی با شمارهٔ موبایل مطابقت دارد.`, ms: 2600 }); nextNeed(); }, 1500); };
+const _suIdOkKy = A.suIdOk;
+A.suIdOk = () => { const U = S.su; if (U.mode !== 'page') return _suIdOkKy(); DB.kyc.doc = true; DB.kyc.docAt = Date.now(); vib(8); toast({ ic: 'scan-line', title: 'عکس کارت ملی ثبت شد', ms: 2000 }); nextNeed(); };
+const _suEnterKy = A.suEnter;
+A.suEnter = () => { const U = S.su || {}; if (U.mode !== 'page') return _suEnterKy();
+  const pend = DB.kyc.level === 'pending'; if (pend && S.need) { S.kyResume = S.need; S.need = null; }
+  if (!pend) S.need = null;
+  kyClose(() => { if (!pend) return;
+    toast({ ic: 'hourglass', title: 'مدارک شما ارسال شد', body: 'احراز تصویری در دست بررسی است؛ نتیجه را خبر می‌دهیم.', ms: 4200 });
+    setTimeout(() => { if (DB.kyc.level !== 'pending') return; DB.kyc.level = 'advanced'; if (S.root === 'app' && S.tab === 'bank') rerenderTab();
+      toast({ ic: 'badge-check', title: 'احراز هویت پیشرفته تأیید شد', body: S.kyResume ? `حالا می‌توانید «${KY_REQ[S.kyResume.feat].t}» را ادامه دهید.` : 'همهٔ خدمات W² برایتان باز است.', action: S.kyResume ? { label: 'ادامه', act: 'kyResume' } : null, ms: 6000 }); }, 25000); }); };
+const _suBackKy = A.suBack;
+A.suBack = () => { const U = S.su || {};
+  if (U.mode === 'page') { if (['hand', 'vrec'].includes(U.step)) { if (U.stream) { U.stream.getTracks().forEach(t => t.stop()); U.stream = null; } clearInterval(U.recIv); return suGo('vintro', { rec: 'idle' }); } S.need = null; return kyClose(); }
+  if (U.flow === 'new') { const prev = { motp: 'mob', name: 'mob', pin1: 'name', pin2: 'pin1' }[U.step]; if (!prev) return A.toOnboarding(); clearInterval(U.iv); U.iv = null; return suGo(prev, { pin: '', code: '', bad: false, ok: false }); }
+  return _suBackKy(); };
+/* demo login keeps the verified sample account; returning from add-card continues the queue */
+const _acFinishKy = A.acFinish;
+A.acFinish = () => { const w = S.need && S.need.waitCard; _acFinishKy(); if (w) { S.need.waitCard = false; setTimeout(nextNeed, 520); } };
+
+/* ---------- gates on every service ---------- */
+A.trade = kyGate(d => d.side === 'sell' ? 'sell' : d.id === 'debt' ? 'tp' : d.id === 'lease' ? 'lease' : 'buy', A.trade);
+A.xNext = kyGate('xfer', A.xNext);
+A.xConfirm = kyGate(() => { const d = S.xd || {}; return d.kind === 'card' ? 'xfer_card' : d.kind === 'wallet' ? 'wallet' : 'xfer'; }, A.xConfirm);
+[['billGo', 'bill'], ['tuGo', 'topup'], ['rbNew', 'recur'], ['rbOpen', 'recur'], ['saveOpen', 'recur'], ['svcStake', 'stake'], ['svcGuard', 'guard'], ['svcInst', 'inst'], ['crOpen', 'credit'], ['tpStart', 'tp'], ['leaseCreate', 'lease'], ['pfTrade', 'pf'], ['gfOpen', 'gift'], ['famOpen', 'family'], ['reqLink', 'req'], ['trCard', 'cardOrder'], ['trCip', 'perks'], ['trHealthGo', 'perks']].forEach(([a, f]) => { if (typeof A[a] === 'function') A[a] = kyGate(f, A[a]); });
+const _openSheetKy = openSheet;
+openSheet = (name, p = {}) => { if (name === 'deposit' && !kyOk('deposit')) return kyNeed('deposit', () => _openSheetKy(name, p)); return _openSheetKy(name, p); };
+
+/* ---------- no sample-fill shortcuts anywhere ---------- */
+A.xImg = () => { const i = $('#xImgIn'); if (!i) return; i.onchange = async () => { const f = i.files[0]; if (!f) return; const m = $('#xCamMsg'); if (m) m.textContent = 'در حال خواندن عکس…';
+  try { if ('BarcodeDetector' in window) { const bm = await createImageBitmap(f), r = await new BarcodeDetector({ formats: ['qr_code'] }).detect(bm); if (r[0]) return A.xScanUse(r[0].rawValue.replace(/^ethereum:|^tron:/i, '').split(/[@?]/)[0]); } } catch (e) {}
+  if (m) m.textContent = 'کدی در عکس پیدا نشد؛ شماره را دستی وارد کنید.'; toast({ title: 'کدی در عکس پیدا نشد', body: 'شماره کارت، شبا یا آدرس را دستی وارد کنید.', ic: 'scan-text', ms: 3200 }); }; i.click(); };
+
+/* ---------- bank tab & verification page reflect the new model ---------- */
+Object.assign(KYC_LV.basic, { need: ['کد ملی و تاریخ تولد', 'عکس کارت ملی'], access: [['wallet', 'حساب ریالی، خرید و فروش دارایی'], ['arrow-left-right', 'انتقال روزانه تا ۵۰ میلیون تومان'], ['receipt', 'قبض، شارژ و اینترنت از حساب ریالی']], time: '۲ دقیقه' });
+Object.assign(KYC_LV.advanced, { need: ['نشانی و کد پستی', 'ویدئوی سلفی'], access: [['arrow-left-right', 'انتقال روزانه تا ۳۰۰ میلیون تومان'], ['sparkles', 'اعتبار، خرید قسطی، توکن تولید و حساب خودرو'], ['wallet', 'برداشت به کیف پول']], time: '۳ دقیقه · بررسی چند ساعت' });
+kycRow = () => { const L = DB.kyc.level; if (L === 'advanced') return '';
+  const t = L === 'none' ? ['تکمیل احراز هویت پایه', 'برای خرید دارایی و حساب ریالی؛ حدود ۲ دقیقه', 'shield-check', 'kyBasic'] : L === 'pending' ? ['احراز تصویری در دست بررسی است', 'نتیجه را با پیامک خبر می‌دهیم', 'hourglass', 'push'] : ['ارتقا به سطح پیشرفته', 'اعتبار، خرید قسطی و سقف‌های بالاتر', 'shield-check', 'kyAdv'];
+  return `<button class="ky-row tap" data-act="${t[3]}" ${t[3] === 'push' ? 'data-to="kycLevels"' : ''}><span class="pic">${icon(t[2])}</span><span class="rt"><b>${t[0]}</b><small>${t[1]}</small></span>${icon('chevron-left', 'w-4 h-4')}</button>`; };
+
+/* =========================================================
+   v23 — invitation tickets by membership level, invitation-only signup,
+   a playful waitlist, and the confidential invite coefficient
+   ========================================================= */
+const TK = {
+  bronze: { fa: 'برنزی', t: 'تیکت برنزی', lvl: 0, g: ['#F6D3AE', '#C98A55', '#7A4520', '#E9B07E'], ink: '#3B1F0B',
+    gets: ['حساب پایهٔ W²', 'کارت مجازی رایگان', 'همهٔ دارایی‌ها از اولین واریز'] },
+  silver: { fa: 'نقره‌ای', t: 'تیکت نقره‌ای', lvl: 1, g: ['#FFFFFF', '#CDD3DB', '#8B94A1', '#EEF1F5'], ink: '#2A3038',
+    gets: ['حساب پایه با مزایای «ممتاز» به مدت ۳ ماه', 'کارت فیزیکی مشکی رایگان', 'ورود بدون صف انتظار'] },
+  gold: { fa: 'طلایی', t: 'تیکت طلایی', lvl: 2, g: ['#FFF1C4', '#E2B04C', '#8C6216', '#F0CF7E'], ink: '#3A2600',
+    gets: ['سطح «ممتاز» از روز اول به مدت ۶ ماه', 'کارت تیتانیوم رایگان', 'ورود بدون صف و مشاور خوش‌آمدگویی'] }
+};
+const TK_KINDS = ['bronze', 'silver', 'gold'];
+const TK_ALLOC = [{ bronze: 3, silver: 0, gold: 0 }, { bronze: 5, silver: 2, gold: 0 }, { bronze: 8, silver: 4, gold: 2 }];
+const TK_COEF = [[5e10, 1.25], [5e9, 1.1]];   /* invitees' combined 12-month average (rial) → multiplier */
+const TK_AL = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const tkSum = s => [...s].reduce((a, c, i) => a + (TK_AL.indexOf(c) + 1) * (i + 3), 0);
+function tkCode(kind) { const r = () => TK_AL[Math.floor(Math.random() * TK_AL.length)]; const body = Array.from({ length: 7 }, r).join(''), k = kind[0].toUpperCase(); const ck = TK_AL[tkSum(k + body) % TK_AL.length]; const s = body + ck; return `W2${k}-${s.slice(0, 4)}-${s.slice(4)}`; }
+function tkParse(code) { const m = /^W2([BSG])-([A-Z2-9]{4})-([A-Z2-9]{4})$/.exec(code || ''); if (!m) return null; const s = m[2] + m[3]; if (TK_AL[tkSum(m[1] + s.slice(0, 7)) % TK_AL.length] !== s[7]) return null; return { kind: { B: 'bronze', S: 'silver', G: 'gold' }[m[1]] }; }
+const tkReg = { get() { try { return JSON.parse(localStorage.getItem('w2.tkreg') || '{}'); } catch (e) { return {}; } }, set(o) { try { localStorage.setItem('w2.tkreg', JSON.stringify(o)); } catch (e) {} } };
+const tkSeason = () => { const p = new Intl.DateTimeFormat('en-u-ca-persian', { year: 'numeric', month: 'numeric' }).formatToParts(new Date()), y = +p.find(x => x.type === 'year').value.replace(/\D/g, ''), m = +p.find(x => x.type === 'month').value, q = Math.floor((m - 1) / 3);
+  return { key: y + '-' + q, fa: ['بهار', 'تابستان', 'پاییز', 'زمستان'][q] + ' ' + faD(y), next: q < 3 ? `اول ${PM_FA[(q + 1) * 3]} ${faD(y)}` : `اول فروردین ${faD(y + 1)}` }; };
+if (!DB.tickets && (!S.restored || (DB.family && DB.family.members.some(m => m.id === 'm1')))) {
+  const k = tkSeason().key;
+  DB.tickets = { sent: [
+    { id: 't1', kind: 'gold', name: 'سینا', code: 'W2G-HQ7M-4KZP', at: Date.now() - 120 * 864e5, q: 'launch', st: 'joined', jat: Date.now() - 118 * 864e5, avg: 3.1e10, note: 'هدیهٔ راه‌اندازی' },
+    { id: 't2', kind: 'bronze', name: 'مریم', code: 'W2B-7RXD-2NEC', at: Date.now() - 21 * 864e5, q: k, st: 'joined', jat: Date.now() - 19 * 864e5, avg: 2.6e9 },
+    { id: 't3', kind: 'bronze', name: 'رضا', code: tkCode('bronze'), at: Date.now() - 2 * 864e5, q: k, st: 'sent' }] };
+}
+if (!DB.tickets) DB.tickets = { sent: [] };
+const tkIdx = () => trCalc().idx;
+const tkUsed = kind => DB.tickets.sent.filter(t => t.kind === kind && t.q === tkSeason().key).length;
+const tkLeft = kind => Math.max(0, TK_ALLOC[tkIdx()][kind] - tkUsed(kind));
+const tkJoinedSum = () => DB.tickets.sent.filter(t => t.st === 'joined').reduce((s, t) => s + (t.avg || 0), 0);   /* never shown */
+const tkCoef = () => { const s = tkJoinedSum(); for (const [min, k] of TK_COEF) if (s >= min) return k; return 1; };
+
+/* ---------- ticket art (SVG, metallic, perforated stub) ---------- */
+function tkArt(kind, o = {}) { const T = TK[kind], id = uid(), [a, b, c, d] = T.g;
+  return `<svg class="tk-art ${o.locked ? 'locked' : ''}" viewBox="0 0 320 190" role="img" aria-label="${T.t}"><defs>
+    <linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset=".38" stop-color="${b}"/><stop offset=".72" stop-color="${c}"/><stop offset="1" stop-color="${d}"/></linearGradient>
+    <linearGradient id="s${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <mask id="m${id}"><rect x="6" y="10" width="308" height="170" rx="20" fill="#fff"/><circle cx="232" cy="10" r="13" fill="#000"/><circle cx="232" cy="180" r="13" fill="#000"/>${Array.from({ length: 9 }, (_, i) => `<circle cx="232" cy="${34 + i * 15.5}" r="2.6" fill="#000"/>`).join('')}</mask></defs>
+    <g mask="url(#m${id})"><rect x="6" y="10" width="308" height="170" fill="url(#g${id})"/>
+      <g opacity=".13" stroke="${T.ink}" fill="none">${Array.from({ length: 7 }, (_, i) => `<circle cx="120" cy="95" r="${18 + i * 14}"/>`).join('')}</g>
+      <rect class="tk-sheen" x="-120" y="10" width="110" height="170" fill="url(#s${id})" transform="skewX(-18)"/>
+      <rect x="6" y="10" width="308" height="170" rx="20" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/></g>
+    <g fill="${T.ink}" font-family="inherit" direction="rtl">
+      <text x="214" y="48" font-size="13" font-weight="700" text-anchor="start" opacity=".7">تیکت ورود به W²</text>
+      <text x="214" y="86" font-size="30" font-weight="900" text-anchor="start">${T.fa}</text>
+      <text x="214" y="112" font-size="11.5" font-weight="600" text-anchor="start" opacity=".75">${['حساب پایه', 'پایه + ممتاز ۳ ماهه', 'ممتاز از روز اول'][T.lvl]}</text>
+      ${o.code ? `<text x="24" y="160" font-size="13" font-weight="700" direction="ltr" text-anchor="start" letter-spacing="1.5" font-family="ui-monospace,Menlo,monospace">${o.code}</text>` : `<text x="214" y="160" font-size="11" text-anchor="start" opacity=".6">ورود یک نفر</text>`}
+      <text x="276" y="104" font-size="30" font-weight="900" text-anchor="middle" direction="ltr" font-family="ui-sans-serif,system-ui">W²</text>
+      <text x="276" y="128" font-size="9" text-anchor="middle" opacity=".65" letter-spacing="1" direction="ltr" font-family="ui-sans-serif,system-ui">ADMIT ONE</text></g>
+    ${o.locked ? `<g><rect x="6" y="10" width="308" height="170" rx="20" fill="#0B0D12" fill-opacity=".55"/><circle cx="160" cy="88" r="22" fill="#000" fill-opacity=".45"/><path d="M151 86v-6a9 9 0 0 1 18 0v6" stroke="#fff" stroke-width="2.6" fill="none"/><rect x="147" y="86" width="26" height="18" rx="4" fill="#fff"/><text x="160" y="140" fill="#fff" font-size="12.5" font-weight="700" text-anchor="middle" font-family="inherit">${o.locked}</text></g>` : ''}</svg>`; }
+
+/* ---------- tickets page ---------- */
+Pages.tickets = {
+  render: () => { const idx = tkIdx(), sel = S.tkSel || (S.tkSel = TK_KINDS.find(k => TK_ALLOC[idx][k]) || 'bronze'), T = TK[sel], al = TK_ALLOC[idx][sel], left = tkLeft(sel), se = tkSeason(), coef = tkCoef(), joined = DB.tickets.sent.filter(t => t.st === 'joined').length;
+    const lockTx = k => TK_ALLOC[idx][k] ? '' : `از سطح ${TR_T[TK_ALLOC.findIndex(a => a[k])].fa}`;
+    return `<div class="scroll">${pghead('تیکت‌ها', helpBtn(), closeBtn())}
+      <div class="gut tk-page">
+        <div class="tk-intro"><b>W² فقط با دعوت باز می‌شود.</b><small>سطح عضویت شما (${trTier().fa}) تعیین می‌کند هر فصل چند تیکت و از چه نوعی دارید.</small></div>
+        <div class="tk-fan">${TK_KINDS.map(k => `<button class="tk-card tap ${k === sel ? 'on' : ''}" data-act="tkSel" data-k="${k}">${tkArt(k, { locked: lockTx(k) })}</button>`).join('')}</div>
+        <div class="tk-sel"><h2>${T.t}</h2>
+          <ul>${T.gets.map(g => `<li>${icon('check', 'w-4 h-4')}${g}</li>`).join('')}</ul>
+          ${al ? `<div class="tk-quota"><div><span>باقی‌ماندهٔ ${se.fa}</span><b class="num">${faD(left)} از ${faD(al)}</b></div><div class="tk-pips">${Array.from({ length: al }, (_, i) => `<i class="${i < al - left ? '' : 'on'}"></i>`).join('')}</div><small>سهمیهٔ تازه: ${se.next}</small></div>
+            <button class="btn btn-primary tap" data-act="tkNew" ${left ? '' : 'disabled'}>${icon('ticket', 'w-5 h-5')} ${left ? 'ساخت تیکت و دعوت' : 'سهمیهٔ این فصل تمام شد'}</button>`
+          : `<div class="tk-lock">${icon('lock', 'w-4 h-4')}<span>تیکت ${T.fa} ${lockTx(sel)} در دسترس است.</span></div><button class="btn btn-ghost tap" data-act="trOpen">${icon('gem', 'w-5 h-5')} مسیر سطح بعد</button>`}
+        </div>
+        <div class="tk-coef ${coef > 1 ? 'on' : ''}"><span class="ri">${icon('sparkles')}</span><div><b>${coef > 1 ? `ضریب دعوت فعال است · ×${faDec(coef, 2)}` : 'ضریب دعوت'}</b>
+          <small>${coef > 1 ? `میانگین ماندگاری شما برای رسیدن به سطح بعد ${faD(Math.round((coef - 1) * 100))}٪ بیشتر حساب می‌شود.` : `وقتی مجموع دارایی دعوت‌شدگان شما از آستانهٔ «ممتاز» بگذرد، میانگین ماندگاری‌تان ${faD(10)}٪ بیشتر حساب می‌شود؛ از آستانهٔ «میراث»، ${faD(25)}٪.`}</small>
+          <small class="tk-priv">${icon('eye-off', 'w-3 h-3')} محرمانه: دارایی هیچ دعوت‌شده‌ای به شما نشان داده نمی‌شود؛ فقط عبور مجموع از آستانه بررسی می‌شود.</small></div></div>
+        <div><div class="group-t">سهمیهٔ تیکت در هر سطح</div><div class="tk-tbl"><div class="h"><span></span>${TK_KINDS.map(k => `<span><i class="tk-dot ${k}"></i>${TK[k].fa}</span>`).join('')}</div>
+          ${TR_T.map((t, i) => `<div class="${i === idx ? 'me' : ''}"><span>${t.fa}${i === idx ? ' <em>شما</em>' : ''}</span>${TK_KINDS.map(k => `<b class="num">${TK_ALLOC[i][k] ? faD(TK_ALLOC[i][k]) : '—'}</b>`).join('')}</div>`).join('')}</div><small class="tk-foot">در هر فصل؛ تیکت استفاده‌نشده به فصل بعد منتقل نمی‌شود.</small></div>
+        <div><div class="group-t">تیکت‌های فرستاده‌شده ${joined ? `· ${faD(joined)} عضو شده` : ''}</div><div class="group">
+          ${DB.tickets.sent.slice().reverse().map(t => `<button class="row tap" data-act="tkInv" data-id="${t.id}"><span class="ri tk-mini ${t.kind}">${icon('ticket')}</span><span class="rt"><b>${t.name} <small class="fam-role">${TK[t.kind].fa}</small></b><small>${t.st === 'joined' ? `عضو W² شد · ${dtfS.format(new Date(t.jat))}${t.note ? ' · ' + t.note : ''}` : t.st === 'void' ? 'لغو شد' : `منتظر ثبت‌نام · ${tkExp(t)}`}</small></span>${icon('chevron-left', 'chev')}</button>`).join('') || '<p class="hint" style="padding:14px">هنوز تیکتی نفرستاده‌اید.</p>'}
+        </div></div>
+      </div><div style="height:calc(var(--sab) + 28px)"></div></div>`; }
+};
+const tkExp = t => { const d = Math.ceil((t.at + 30 * 864e5 - Date.now()) / 864e5); return d > 0 ? `${faD(d)} روز اعتبار` : 'منقضی شد'; };
+Sheets.tkSend = {
+  render: () => { const N = S.tkN, T = TK[N.kind];
+    if (!N.code) return `<div class="sh-head"><div><h3>${T.t}</h3><p>برای چه کسی؟ این نام فقط در فهرست خودتان دیده می‌شود.</p></div>${closeBtn('closeSheet')}</div>
+      <label class="inp"><span>نام</span><input id="tkName" placeholder="نام دوستتان" value="${(N.name || '').replace(/"/g, '&quot;')}"></label>
+      <div class="fm-note">${icon('shield-check', 'w-4 h-4')}<span>هر تیکت فقط یک بار و تا ۳۰ روز کار می‌کند. W² به دعوت‌شده نشان می‌دهد تیکت از طرف شماست.</span></div>
+      <button class="btn btn-primary tap" id="tkMk" data-act="tkMake" ${(N.name || '').trim().length >= 2 ? '' : 'disabled'}>ساخت تیکت</button>`;
+    return `<div class="sh-head"><div><h3>تیکت ${N.name} آماده است</h3><p>کد را بفرستید؛ با همین کد ثبت‌نام می‌کند.</p></div>${closeBtn('closeSheet')}</div>
+      <div class="tk-made">${tkArt(N.kind, { code: N.code })}</div>
+      <div class="fm-qr">${shQrSvg('https://w2.app/t/' + N.code, 150)}<small>یا این QR را حضوری اسکن کند.</small></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ghost tap" data-act="tkCopy">${icon('copy', 'w-4 h-4')} کپی کد</button><button class="btn btn-primary tap" data-act="tkShareTxt">${icon('share-2', 'w-4 h-4')} ارسال دعوت</button></div>`; },
+  mount: w => { const i = $('#tkName', w); if (i) { i.addEventListener('input', () => { S.tkN.name = i.value; $('#tkMk', w).disabled = i.value.trim().length < 2; }); setTimeout(() => i.focus(), 250); } S.activePad = null; }
+};
+Sheets.tkInv = {
+  render: p => { const t = DB.tickets.sent.find(x => x.id === p.id); if (!t) return ''; const T = TK[t.kind];
+    return `<div class="sh-head"><div><h3>${T.t} · ${t.name}</h3><p>${t.st === 'joined' ? 'عضو W² شد' : t.st === 'void' ? 'لغو شد' : 'منتظر ثبت‌نام'}</p></div>${closeBtn('closeSheet')}</div>
+      <div class="tk-made">${tkArt(t.kind, { code: t.st === 'sent' ? t.code : '' })}</div>
+      <div class="group"><div class="kv"><span>ساخته‌شده</span><b>${dtfS.format(new Date(t.at))}</b></div>${t.st === 'joined' ? `<div class="kv"><span>عضویت</span><b>${dtfS.format(new Date(t.jat))}</b></div><div class="kv"><span>دارایی</span><b>${icon('eye-off', 'w-4 h-4')} محرمانه</b></div>` : t.st === 'sent' ? `<div class="kv"><span>اعتبار</span><b>${tkExp(t)}</b></div>` : ''}</div>
+      ${t.st === 'sent' ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ghost tap" data-act="tkCopy" data-id="${t.id}">${icon('copy', 'w-4 h-4')} کپی کد</button><button class="btn btn-primary tap" data-act="tkShareTxt" data-id="${t.id}">${icon('share-2', 'w-4 h-4')} ارسال دوباره</button></div>
+        <button class="btn btn-ghost tap" style="color:var(--loss)" data-act="tkVoid" data-id="${t.id}">${icon('x-circle', 'w-5 h-5')} لغو تیکت و برگشت به سهمیه</button>` : ''}`; }
+};
+const tkShareText = (kind, code) => `${DB.user.first || ''} شما را به W² دعوت کرده؛ با ${TK[kind].t}.\nکد ورود: ${code}\nhttps://w2.app/t/${code}`;
+Object.assign(A, {
+  tkOpen: () => { S.sheets.length && closeAllSheets(); push('tickets'); },
+  tkSel: d => { S.tkSel = d.k; rerenderPage('tickets'); },
+  tkNew: () => { S.tkN = { kind: S.tkSel, name: '' }; openSheet('tkSend'); },
+  tkMake: () => { const N = S.tkN; if (!tkLeft(N.kind)) return; N.code = tkCode(N.kind);
+    DB.tickets.sent.push({ id: 't' + Date.now(), kind: N.kind, name: N.name.trim(), code: N.code, at: Date.now(), q: tkSeason().key, st: 'sent' });
+    const R = tkReg.get(); R[N.code] = { kind: N.kind, from: DB.user.name, st: 'sent' }; tkReg.set(R); vib([10, 30, 10]); refreshSheet(); rerenderPage('tickets'); },
+  tkCopy: d => { const t = d.id ? DB.tickets.sent.find(x => x.id === d.id) : S.tkN; copyText(t.code, 'کد تیکت'); },
+  tkShareTxt: d => { const t = d.id ? DB.tickets.sent.find(x => x.id === d.id) : S.tkN; const txt = tkShareText(t.kind, t.code);
+    if (navigator.share) navigator.share({ text: txt }).catch(() => {}); else copyText(txt, 'متن دعوت'); },
+  tkInv: d => openSheet('tkInv', { id: d.id }),
+  tkVoid: d => { const t = DB.tickets.sent.find(x => x.id === d.id); DB.tickets.sent = DB.tickets.sent.filter(x => x.id !== d.id); const R = tkReg.get(); delete R[t.code]; tkReg.set(R); closeSheet(); rerenderPage('tickets'); toast({ ic: 'ticket', title: 'تیکت لغو شد', body: 'به سهمیهٔ این فصل برگشت.', ms: 2400 }); }
+});
+
+/* ---------- membership: invite coefficient + ticket welcome level ---------- */
+const _trCalcTk = trCalc;
+trCalc = function () { const k = tkCoef(), G = DB.tierGift && DB.tierGift.until > Date.now() ? DB.tierGift : null;
+  const T = trState(), own = trAvg(), avg = own * k, raw = Math.max(trIdx(avg), G ? G.idx : 0), d = new Date();
+  const keep = T.lvl > raw && T.at && new Date(T.at).getMonth() === d.getMonth() && new Date(T.at).getFullYear() === d.getFullYear();
+  return { v: avg, own, coef: k, gift: G, now: trNow(), raw, idx: keep ? T.lvl : raw, grace: keep }; };
+const _trEtaTk = trEta; trEta = target => _trEtaTk(target / tkCoef());
+const _trHowTk = trHow;
+trHow = c => { let h = _trHowTk(c); const extra = (c.coef > 1 ? `<div><span>ضریب دعوت</span><b class="num">×${faDec(c.coef, 2)}</b></div>` : '') + (c.gift ? `<div><span>هدیهٔ ${TK[c.gift.kind].t}</span><b>${TR_T[c.gift.idx].fa} تا ${dtfS.format(new Date(c.gift.until))}</b></div>` : '');
+  return extra ? h.replace('<p class="tr-how-p">', `<div class="tr-how-s">${extra}</div><p class="tr-how-p">`) : h; };
+TR_PERKS.push({ g: 'دعوت', ic: 'ticket', t: 'تیکت دعوت در هر فصل', v: ['۳ تیکت برنزی', '۵ برنزی و ۲ نقره‌ای', '۸ برنزی، ۴ نقره‌ای و ۲ طلایی'], act: 'tkOpen' });
+TR_PERKS.push({ g: 'دعوت', ic: 'sparkles', t: 'ضریب دعوت', v: ['۱۰٪ تا ۲۵٪ امتیاز بیشتر وقتی دعوت‌شدگان از آستانهٔ ممتاز بگذرند', '۱۰٪ تا ۲۵٪ امتیاز بیشتر برای رسیدن به میراث', 'در بالاترین سطح هستید'], act: 'tkOpen' });
+
+/* ---------- invitation-only signup + waitlist ---------- */
+const TK_FUN = ['تیکت‌ها را برق می‌اندازیم…', 'طلاها را دوباره می‌شماریم…', 'صندلی کنار پنجره را برایتان نگه داشته‌ایم', 'صف آرام ولی مطمئن جلو می‌رود', 'یک لحظه؛ دربان W² دارد لیست را چک می‌کند', 'سکه را بزنید تا صف را کمی هل بدهید!'];
+const tkWait = { get() { try { return JSON.parse(localStorage.getItem('w2.wait') || 'null'); } catch (e) { return null; } }, set(o) { try { o ? localStorage.setItem('w2.wait', JSON.stringify(o)) : localStorage.removeItem('w2.wait'); } catch (e) {} } };
+const tkPos = W => Math.max(0, Math.round(W.pos0 - (Date.now() - W.at) / 1000 * W.rate - (W.boost || 0)));
+const _suHTMLTk = suHTML;
+suHTML = () => { const U = S.su; if (!U) return '';
+  if (U.step === 'inv') { const v = U.tcode || '', full = v.length === 13, bad = U.terr;
+    return kyWrapPage(`<div class="tk-gate">${['bronze', 'silver', 'gold'].map(k => `<span class="tk-g ${k}">${tkArt(k)}</span>`).join('')}</div>
+      <div><h1 class="h-title" style="font-size:24px">W² فقط با دعوت</h1><p class="h-sub">کد تیکتی را که از یکی از اعضا گرفته‌اید وارد کنید. نوع تیکت (برنزی، نقره‌ای یا طلایی) سطح شروع شما را تعیین می‌کند.</p></div>
+      <label class="inp ${bad ? 'err' : ''}"><span>کد تیکت</span><input id="tkIn" dir="ltr" class="lat" autocapitalize="characters" autocomplete="off" maxlength="13" placeholder="W2B-XXXX-XXXX" value="${v}"></label>
+      ${bad ? `<div class="msg err">${icon('alert-circle')}${bad}</div>` : ''}`,
+      `<button class="btn btn-primary tap" id="tkGo" data-act="tkCheck" ${full && !U.busy ? '' : 'disabled'}>${U.busy ? '<span class="spin"></span> بررسی تیکت…' : 'بررسی تیکت'}</button><button class="btn tap tk-nocode" data-act="tkJoinWait">${icon('hourglass', 'w-4 h-4')} تیکت ندارم؛ به صف انتظار می‌پیوندم</button>`); }
+  if (U.step === 'invok' || U.step === 'waitok') { const k = U.ticket.kind, T = TK[k];
+    return kyWrapPage(`<div class="tk-reveal ${k}">${U.step === 'waitok' ? '<div class="tk-confetti">' + Array.from({ length: 18 }, (_, i) => `<i style="--i:${i}"></i>`).join('') + '</div>' : ''}<div class="tk-flip">${tkArt(k)}</div></div>
+      <div style="text-align:center"><h1 class="h-title" style="font-size:24px">${U.step === 'waitok' ? 'نوبت شما رسید!' : `${T.t} شما معتبر است`}</h1><p class="h-sub">${U.ticket.from ? `از طرف ${U.ticket.from}` : 'از طرف W²'}</p></div>
+      <ul class="tk-gets">${T.gets.map(g => `<li>${icon('check', 'w-4 h-4')}${g}</li>`).join('')}</ul>`,
+      `<button class="btn btn-primary tap" data-act="tkCont">${U.step === 'waitok' ? 'ادامهٔ ثبت‌نام' : 'ادامه با شمارهٔ موبایل'}</button>`); }
+  if (U.step === 'wait') { const W = U.W, pos = tkPos(W), pct = 1 - pos / W.pos0;
+    return kyWrapPage(`<div class="wl">
+      <div class="wl-gate"><span class="wl-glow"></span><b>W²</b></div>
+      <div class="wl-q"><div class="wl-line">${Array.from({ length: 9 }, (_, i) => `<i style="--i:${i}"></i>`).join('')}<em>شما</em></div></div>
+      <div class="wl-num"><small>نفر جلوتر از شما</small><b class="num" id="wlPos">${faD(pos.toLocaleString('en-US')).replace(/,/g, '٬')}</b></div>
+      <div class="wl-bar"><i id="wlBar" style="width:${(pct * 100).toFixed(1)}%"></i></div>
+      <p class="wl-fun" id="wlFun">${TK_FUN[0]}</p>
+      <button class="wl-coin tap" data-act="tkNudge" aria-label="هل دادن صف"><span>W²</span></button>
+      <small class="wl-hint">سکه را بزنید؛ هر ضربه ۵ نفر جلو می‌روید (تا ${faD(50)} نفر در روز)</small>
+      <div class="wl-stats"><div><b class="num">${faD('1,206').replace(',', '٬')}</b><span>ورود امروز</span></div><div><b class="num" id="wlEta">${tkEtaFa(pos, W)}</b><span>زمان تقریبی</span></div><div><b class="num">${faD(W.boost ? Math.round(W.boost) : 0)}</b><span>جلو افتادید</span></div></div>
+      <div class="ky-note">${icon('flask-conical', 'w-4 h-4')}<span>نسخهٔ آزمایشی: صف خیلی سریع‌تر از نسخهٔ واقعی جلو می‌رود.</span></div></div>`,
+      `<button class="btn btn-primary tap" data-act="tkWaitShare">${icon('share-2', 'w-5 h-5')} دعوت دوستان به صف · هر نفر ۲۵۰ جایگاه</button><button class="btn tap tk-nocode" data-act="tkHaveCode">تیکت گرفتم؛ وارد کردن کد</button>`, { tt: 'صف انتظار' }); }
+  let h = _suHTMLTk();
+  if (U.step === 'mob' && U.flow === 'new') { h = h.replace('data-act="toOnboarding"', 'data-act="suBack"'); if (U.wait) h = h.replace(/<h1 class="h-title">[^<]*<\/h1><p class="h-sub">[^<]*<\/p>/, '<h1 class="h-title">پیوستن به صف انتظار</h1><p class="h-sub">با شمارهٔ موبایل در صف می‌مانید؛ وقتی نوبتتان رسید پیامک می‌دهیم.</p>');
+    else if (U.ticket) h = h.replace('<p class="h-sub">', `<div class="tk-chip ${U.ticket.kind}">${icon('ticket', 'w-4 h-4')} ${TK[U.ticket.kind].t}</div><p class="h-sub">`); }
+  return h; };
+const tkEtaFa = (pos, W) => { const s = pos / W.rate; return s < 60 ? 'کمتر از ۱ دقیقه' : `${faD(Math.ceil(s / 60))} دقیقه`; };
+const _suMountTk = suMount;
+suMount = el => { _suMountTk(el); const U = S.su; if (!U) return;
+  if (U.step === 'inv') { const i = $('#tkIn', el), b = $('#tkGo', el); i.addEventListener('input', () => { let t = i.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 11); const f = t.length > 3 ? t.slice(0, 3) + '-' + t.slice(3, 7) + (t.length > 7 ? '-' + t.slice(7) : '') : t; U.tcode = f; i.value = f; if (U.terr) { U.terr = ''; const m = el.querySelector('.msg.err'); m && m.remove(); i.closest('.inp').classList.remove('err'); } b.disabled = f.length !== 13; }); S.activePad = null; setTimeout(() => i.focus(), 300); }
+  if (U.step === 'motp' && U.wait) S.pads.suk = suCodeKey(6, U.mcode, () => { const W = { pos0: 2400 + Math.floor(Math.random() * 1400), at: Date.now(), rate: 22, boost: 0, mob: U.mob, taps: 0, day: new Date().toDateString() }; tkWait.set(W); suGo('wait', { W }); });
+  if (U.step === 'wait') { clearInterval(U.wlIv); let f = 0;
+    U.wlIv = setInterval(() => { if (!S.su || S.su.step !== 'wait') return clearInterval(U.wlIv); const W = U.W, pos = tkPos(W), p = $('#wlPos'), bar = $('#wlBar'), eta = $('#wlEta');
+      if (p) p.textContent = faD(pos.toLocaleString('en-US')).replace(/,/g, '٬'); if (bar) bar.style.width = ((1 - pos / W.pos0) * 100).toFixed(1) + '%'; if (eta) eta.textContent = tkEtaFa(pos, W);
+      if (++f % 7 === 0) { const fn = $('#wlFun'); if (fn) { fn.classList.remove('in'); void fn.offsetWidth; fn.textContent = TK_FUN[(f / 7) % TK_FUN.length]; fn.classList.add('in'); } }
+      if (pos <= 0) { clearInterval(U.wlIv); tkWait.set(null); vib([20, 40, 20, 40, 60]); suGo('waitok', { ticket: { kind: 'bronze', from: 'W²' } }); } }, 500); }
+};
+const _suBackTk = A.suBack;
+A.suBack = () => { const U = S.su || {};
+  if (U.flow === 'new' && U.step === 'mob') return suGo(U.wait ? 'inv' : 'invok');
+  if (U.flow === 'new' && ['invok', 'wait'].includes(U.step)) { clearInterval(U.wlIv); return suGo('inv', { busy: false }); }
+  if (U.flow === 'new' && U.step === 'name' && U.ticket && U.ticket.from === 'W²') return A.toOnboarding();
+  return _suBackTk(); };
+const _startSuTk = A.startSignup;
+Object.assign(A, {
+  startSignup: () => { _startSuTk(); DB.tickets = { sent: [] }; DB.tierGift = null; const W = tkWait.get(); if (W) Object.assign(DB.user, { mobile: W.mob, phone: faD(W.mob.slice(0, 4) + ' ••• ' + W.mob.slice(-4)) }); Object.assign(S.su, W ? { step: 'wait', wait: true, W, mob: W.mob } : { step: 'inv', tcode: '' }); suRe(); },
+  tkCheck: () => { const U = S.su; U.busy = true; U.terr = ''; suRe();
+    setTimeout(() => { U.busy = false; const t = tkParse(U.tcode), R = tkReg.get()[U.tcode];
+      if (!t) { U.terr = 'این کد معتبر نیست؛ حروف و رقم‌ها را دوباره بررسی کنید.'; vib([30, 40, 30]); return suRe(); }
+      if (R && R.st === 'used') { U.terr = 'این تیکت قبلاً استفاده شده است.'; return suRe(); }
+      U.ticket = { kind: t.kind, from: R ? R.from : 'یکی از اعضای W²', code: U.tcode }; vib(12); suGo('invok'); }, 1100); },
+  tkCont: () => { const U = S.su; if (U.step === 'waitok') return suGo('name'); U.wait = false; suGo('mob'); },
+  tkJoinWait: () => { const U = S.su; U.wait = true; U.ticket = null; suGo('mob'); },
+  tkHaveCode: () => { const U = S.su; clearInterval(U.wlIv); U.wait = false; suGo('inv', { tcode: '' }); },
+  tkNudge: (d, el) => { const U = S.su, W = U.W, today = new Date().toDateString(); if (W.day !== today) { W.day = today; W.taps = 0; }
+    el.classList.remove('spin'); void el.offsetWidth; el.classList.add('spin'); vib(8);
+    if (W.taps >= 10) return toast({ ic: 'coffee', title: 'امروز صف را حسابی هل دادید!', body: 'فردا دوباره سکه بزنید.', ms: 2000 });
+    W.taps++; W.boost = (W.boost || 0) + 5; tkWait.set(W); const p = $('#wlPos'); if (p) { p.classList.remove('pop'); void p.offsetWidth; p.classList.add('pop'); } },
+  tkWaitShare: () => { const W = S.su.W, txt = `من در صف انتظار W² هستم؛ با این لینک بپیوند تا هر دو جلو بیفتیم:\nhttps://w2.app/w/${(W.mob || '').slice(-4)}${W.pos0}`;
+    if (navigator.share) navigator.share({ text: txt }).catch(() => {}); else copyText(txt, 'لینک صف'); }
+});
+const _kyFinTk = kyFinishSignup;
+kyFinishSignup = () => { const T = S.su && S.su.ticket; tkWait.set(null);
+  if (T) { DB.user.ticket = T.kind; if (T.code) { const R = tkReg.get(); if (R[T.code]) { R[T.code].st = 'used'; tkReg.set(R); } }
+    if (T.kind === 'gold') DB.tierGift = { kind: 'gold', idx: 1, until: Date.now() + 180 * 864e5 }; else if (T.kind === 'silver') DB.tierGift = { kind: 'silver', idx: 1, until: Date.now() + 90 * 864e5 }; }
+  _kyFinTk(); };
+/* onboarding: a waiting visitor sees their place in line */
+const _obTk = Screens.onboarding.render;
+Screens.onboarding.render = () => { const h = _obTk(), W = tkWait.get(); return W ? h.replace(/(data-act="startSignup">)[\s\S]*?<\/button>/, `$1${icon('hourglass', 'w-5 h-5')} جایگاه شما در صف انتظار</button>`) : h; };
 
 /* ---------- global listeners ---------- */
 document.addEventListener('click', e => {
