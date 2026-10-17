@@ -1461,6 +1461,22 @@ button.tr-perk{width:100%;text-align:right;color:var(--fg)}
 .tr-cip-inc span{display:flex;gap:8px;align-items:center;padding:10px 12px;border-radius:14px;background:var(--ink-1);border:1px solid var(--line);font-size:12px;color:var(--fg-2)}
 .tr-cip-inc svg{color:var(--bullion);flex:none}
 .chips.wrap{flex-wrap:wrap}
+
+/* v22.1 · level section above the services layer */
+.tr-lvsec{display:flex;flex-direction:column;gap:10px;width:100%;padding:14px;border-radius:22px;background:var(--ink-1);border:1px solid var(--line);text-align:right;color:var(--fg)}
+.tr-lvsec.lv3{border-color:color-mix(in srgb,var(--bullion) 50%,transparent)}
+.tr-lvsec-arts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tr-lvsec-a{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.tr-lvsec-a img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:var(--ink-0)}
+.tr-lvsec-a small{font-size:11px;color:var(--fg-3);font-weight:600}
+.tr-lvsec-a.on img{border:2px solid var(--bullion);box-shadow:0 0 0 3px color-mix(in srgb,var(--bullion) 20%,transparent)}
+.tr-lvsec-a.on small{color:var(--bullion)}
+.tr-lvsec-a.lock img{filter:saturate(.3) brightness(.65)}
+:root[data-w2theme="light"] .tr-lvsec-a.lock img{filter:saturate(.3) brightness(.92) opacity(.7)}
+.tr-lvsec-b{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.tr-lvsec-b b{font-size:16px;font-weight:800}.tr-lvsec-b small{font-size:12px;color:var(--fg-3)}
+.tr-lvsec-n{font-size:12px;color:var(--fg-2)}
+.sec-h .pill.sm .tr-pips{margin-inline-end:2px}
 /* ===== v22 ===== */
 .fam-chip{display:flex;align-items:center;gap:8px;margin-top:-10px;padding:10px 14px;border-radius:16px;background:var(--ink-1);border:1px solid var(--line);color:var(--fg);text-align:right}
 .fam-chip span{font-weight:700;font-size:13.5px}
@@ -7113,10 +7129,24 @@ Object.assign(A, {
 });
 
 /* ---------- wire into existing screens ---------- */
-const _asRenderV21 = Tabs.assets.render;
-Tabs.assets.render = () => _asRenderV21().replace('<div class="dots-row" id="asDots">', m => `<div class="tr-float-wrap" id="trFloat">${trFloat(DB.assets[S.assetIdx])}</div>` + m);
-const _paintAssetV21 = paintAsset;
-paintAsset = tv => { _paintAssetV21(tv); const f = $('#trFloat', tv); if (f) { f.innerHTML = trFloat(DB.assets[S.assetIdx]); hydrate(f); } };
+/* level section sits right above the services layer («لایهٔ دوم») of each asset */
+function trLevelSec(a) {
+  if (!a || !trQ(a.id)) return '';
+  const L = trClsLvl(a), nx = trClsNext(a);
+  return `<div class="sec-h" style="margin-top:24px"><h2>سطح ${a.short}</h2><span class="pill sm">${trPips(L)} سطح ${faD(L)} از ۳</span></div>
+    <button class="tr-lvsec tap lv${L}" data-act="trCls" data-id="${a.id}">
+      <span class="tr-lvsec-arts">${[1, 2, 3].map(k => `<span class="tr-lvsec-a ${k === L ? 'on' : k < L ? 'done' : 'lock'}"><img alt="" src="${thSrc(IMAGES[k === 2 ? 'asset_' + a.id : `asset_${a.id}_${k}`])}"><small>${TR_NAMES[a.id][k - 1]}</small></span>`).join('')}</span>
+      <span class="tr-lvsec-b"><b>${TR_NAMES[a.id][L - 1]}</b><small>موجودی ${trU(trAmt(a), a.id)}</small></span>
+      ${nx ? `<span class="tr-bar"><i style="width:${(nx.pct * 100).toFixed(1)}%"></i></span><small class="tr-lvsec-n">${trU(nx.need, a.id)} تا «${TR_NAMES[a.id][nx.lvl - 1]}»؛ ${faD(TR_DISC[nx.lvl - 1] * 100)}٪ تخفیف کارمزد فروش</small>` : `<small class="tr-lvsec-n">بالاترین سطح ${a.short}؛ ${TR_L3[a.id]}</small>`}
+    </button>`;
+}
+const _asInfoV22 = assetInfo;
+assetInfo = a => {
+  const h = _asInfoV22(a), sec = trLevelSec(a); if (!sec) return h;
+  let i = h.indexOf(`<div class="sec-h" style="margin-top:24px"><h2>خدمات `);
+  if (i < 0) i = h.indexOf('<h2>تراکنش'), i = i < 0 ? -1 : h.lastIndexOf('<div class="sec-h"', i);
+  return i < 0 ? h + sec : h.slice(0, i) + sec + h.slice(i);
+};
 const _profV21 = Pages.profile.render;
 Pages.profile.render = p => _profV21(p).replace('<div><div class="group-t">تنظیمات</div>', `<div class="group"><button class="row tap" data-act="trOpen"><span class="ri gold">${icon(trTier().ic)}</span><span class="rt"><b>سطح عضویت</b><small>${trTier().fa} · ${trTier().cardFa}</small></span>${icon('chevron-left', 'chev')}</button></div><div><div class="group-t">تنظیمات</div>`);
 const _cardV21 = Pages.card.render;
