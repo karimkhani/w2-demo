@@ -1568,6 +1568,8 @@ button.tr-perk{width:100%;text-align:right;color:var(--fg)}
 .rb-mk.now small{color:var(--fg-2)}
 .rb-goal-p{font-size:12.5px;color:var(--fg-2);line-height:1.8;margin:0}
 .sh-prev.big{max-height:70vh}.sh-prev.big img{width:100%}
+.sh-prev.busy{min-height:260px;background:linear-gradient(90deg,var(--ink-2),var(--ink-3),var(--ink-2));background-size:200% 100%;animation:shimmer 1.2s linear infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
 </style>
 </head>
 <body>
@@ -7310,27 +7312,59 @@ function shQrCanvas(ctx, text, x, y, size) {
   ctx.fillStyle = '#fff'; ctx.fillRect(x, y, size, size); ctx.fillStyle = '#0B0D12';
   for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) ctx.fillRect(Math.floor(x + (c + 2) * cell), Math.floor(y + (r + 2) * cell), Math.ceil(cell), Math.ceil(cell));
 }
-function shCanvas(p) { // receipt-style image, RTL, theme-aware
-  const W = 1080, pad = 72, light = isLight(), rows = (p.rows || []).map(([k, v]) => [shStrip(k), shStrip(v)]).filter(r => r[1]);
-  const lines = p.lines || [], H = 520 + rows.length * 86 + lines.length * 64 + (p.qr ? 640 : 0);
+function shHeroSrc(html) { const m = /(?:data-src|src)="([^"]+\.(?:jpg|jpeg|png|webp))"/.exec(html || ''); return m ? thSrc(m[1]) : null; }
+const shLoadImg = src => new Promise(res => { if (!src) return res(null); const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
+async function shCanvas(p) { // fully graphic receipt: asset hero art, level chip, ticket body — RTL, theme-aware
+  try { document.fonts && await document.fonts.ready; } catch (e) {}
+  const W = 1080, M = 36, pad = 84, light = isLight(), rows = (p.rows || []).map(([k, v]) => [shStrip(k), shStrip(v)]).filter(r => r[1]);
+  const heroSrc = p.qr ? null : shHeroSrc(p.hero), hero = await shLoadImg(heroSrc), lines = p.lines || [];
+  const am = /asset_(\w+?)(?:_[13])?\.jpg/.exec(heroSrc || ''), lvA = am && typeof trQ === 'function' && trQ(am[1]) ? asset(am[1]) : null;
+  const HH = p.qr ? 720 : hero ? 880 : 380, H = M + HH + 300 + rows.length * 86 + lines.length * 64 + 230;
   const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
   const FF = getComputedStyle(document.body).fontFamily || 'Tahoma, sans-serif';
-  const bg = light ? '#F4F0E8' : '#040811', card = light ? '#FFFDF9' : '#0D1424', fg = light ? '#1B1813' : '#EEF2FA', fg3 = light ? '#8C857A' : '#7D89A3', gold = light ? '#A87A2C' : '#D9B26A', gain = light ? '#0E8F73' : '#3ED6AE', line = light ? 'rgba(74,58,30,.14)' : 'rgba(160,190,255,.14)';
-  x.fillStyle = bg; x.fillRect(0, 0, W, H);
+  const T = light ? { bg: '#EFE9DE', card: '#FFFDF9', fg: '#1B1813', fg2: '#5D574D', fg3: '#8C857A', gold: '#A87A2C', gold2: '#D9B26A', gain: '#0E8F73', line: 'rgba(74,58,30,.14)', glass: 'rgba(255,253,249,.72)' }
+    : { bg: '#02050B', card: '#0B1220', fg: '#EEF2FA', fg2: '#A6B0C6', fg3: '#6E7A94', gold: '#D9B26A', gold2: '#F0D59A', gain: '#3ED6AE', line: 'rgba(160,190,255,.14)', glass: 'rgba(6,10,20,.55)' };
   const rr = (X, Y, w, h, r) => { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); };
-  x.fillStyle = card; rr(36, 36, W - 72, H - 72, 48); x.fill(); x.strokeStyle = line; x.lineWidth = 2; x.stroke();
+  const pill = (txt, X, Y, align, fill, color, font) => { x.font = font; const w = x.measureText(txt).width + 48, h = 64, L = align === 'left' ? X : X - w; rr(L, Y - h / 2, w, h, 32); x.fillStyle = fill; x.fill(); x.fillStyle = color; x.textAlign = 'center'; x.fillText(txt, L + w / 2, Y + 2); return w; };
+  /* background + card */
+  x.fillStyle = T.bg; x.fillRect(0, 0, W, H);
+  const g0 = x.createRadialGradient(W / 2, 0, 50, W / 2, 0, W); g0.addColorStop(0, light ? 'rgba(217,178,106,.22)' : 'rgba(217,178,106,.16)'); g0.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g0; x.fillRect(0, 0, W, H);
+  x.save(); rr(M, M, W - 2 * M, H - 2 * M, 48); x.fillStyle = T.card; x.fill(); x.clip();
+  /* hero */
+  if (hero) { const s = Math.max((W - 2 * M) / hero.width, HH / hero.height), w = hero.width * s, h = hero.height * s; x.save(); x.beginPath(); x.rect(M, M, W - 2 * M, HH); x.clip(); x.drawImage(hero, M + (W - 2 * M - w) / 2, M + (HH - h) / 2 + 20, w, h); x.restore(); }
+  else if (p.qr) { const qs = 470, qx = (W - qs) / 2, qy = M + 120; rr(qx - 24, qy - 24, qs + 48, qs + 48, 36); x.fillStyle = '#fff'; x.fill(); shQrCanvas(x, p.qr, qx, qy, qs); }
+  else { const g = x.createRadialGradient(W / 2, M + HH / 2, 20, W / 2, M + HH / 2, 260); g.addColorStop(0, light ? '#F3E4C2' : '#2A2412'); g.addColorStop(1, T.card); x.fillStyle = g; x.fillRect(M, M, W - 2 * M, HH);
+    x.beginPath(); x.arc(W / 2, M + HH / 2 + 10, 92, 0, Math.PI * 2); x.fillStyle = T.gold; x.fill(); x.strokeStyle = light ? '#FFFDF9' : '#0B1220'; x.lineWidth = 14; x.lineCap = 'round'; x.lineJoin = 'round'; x.beginPath(); x.moveTo(W / 2 - 40, M + HH / 2 + 12); x.lineTo(W / 2 - 8, M + HH / 2 + 44); x.lineTo(W / 2 + 46, M + HH / 2 - 22); x.stroke(); }
+  const fade = x.createLinearGradient(0, M + HH - 260, 0, M + HH); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(1, T.card); x.fillStyle = fade; x.fillRect(M, M + HH - 260, W - 2 * M, 262);
+  x.direction = 'ltr'; x.textBaseline = 'middle';
+  pill('W²', M + 40, M + 70, 'left', T.glass, T.gold, `800 40px ${FF}`);
+  x.direction = 'rtl'; pill(new Intl.DateTimeFormat('fa-IR-u-ca-persian', { dateStyle: 'medium' }).format(new Date()), W - M - 40, M + 70, 'right', T.glass, T.fg2, `600 28px ${FF}`);
+  if (lvA) { const L = trClsLvl(lvA), txt = `${TR_NAMES[lvA.id][L - 1]} · سطح ${faD(L)}`; x.font = `700 30px ${FF}`; const w = x.measureText(txt).width + 120, X = W - M - 40 - w, Y = M + HH - 120;
+    rr(X, Y - 34, w, 68, 34); x.fillStyle = T.glass; x.fill(); x.strokeStyle = T.gold; x.lineWidth = 2; x.stroke(); x.fillStyle = T.fg; x.textAlign = 'right'; x.fillText(txt, X + w - 28, Y + 2);
+    for (let k = 0; k < 3; k++) { const cx = X + 30 + k * 22, cy = Y; x.save(); x.translate(cx, cy); x.rotate(Math.PI / 4); x.fillStyle = k < L ? T.gold : T.line; x.fillRect(-7, -7, 14, 14); x.restore(); } }
+  /* title block */
+  let y = M + HH + 30; x.textAlign = 'right';
+  if (p.status) { x.beginPath(); x.arc(W - pad - 22, y, 22, 0, Math.PI * 2); x.fillStyle = T.gain; x.fill(); x.strokeStyle = T.card; x.lineWidth = 5; x.beginPath(); x.moveTo(W - pad - 32, y + 1); x.lineTo(W - pad - 24, y + 9); x.lineTo(W - pad - 11, y - 8); x.stroke();
+    x.fillStyle = T.gain; x.font = `700 30px ${FF}`; x.fillText(shStrip(p.status), W - pad - 60, y + 2); y += 76; }
+  x.fillStyle = T.fg2; x.font = `700 36px ${FF}`; x.fillText(shStrip(p.title), W - pad, y); y += 92;
+  const amt = p.amountText ? shStrip(p.amountText) : p.amount != null ? fa(p.amount) : ''; 
+  if (amt) { x.font = `800 92px ${FF}`; const g = x.createLinearGradient(pad, 0, W - pad, 0); g.addColorStop(0, T.gold2); g.addColorStop(1, T.gold); x.fillStyle = light ? T.fg : g; x.fillText(amt, W - pad, y);
+    if (!p.amountText) { const aw = x.measureText(amt).width; x.font = `600 36px ${FF}`; x.fillStyle = T.fg3; x.fillText('ریال', W - pad - aw - 18, y + 14); }
+    y += 74; const sub = p.amountText ? shStrip(p.sub || '') : p.amount ? tomanWords(p.amount) : ''; if (sub) { x.font = `500 30px ${FF}`; x.fillStyle = T.fg3; x.fillText(sub, W - pad, y); } y += 56; }
+  /* ticket perforation */
+  x.restore(); x.save(); [M, W - M].forEach(cx => { x.beginPath(); x.arc(cx, y, 30, 0, Math.PI * 2); x.fillStyle = T.bg; x.fill(); }); x.restore();
+  x.setLineDash([14, 14]); x.strokeStyle = T.line; x.lineWidth = 3; x.beginPath(); x.moveTo(M + 50, y); x.lineTo(W - M - 50, y); x.stroke(); x.setLineDash([]); y += 70;
+  /* rows */
   x.direction = 'rtl'; x.textBaseline = 'middle';
-  x.fillStyle = gold; x.font = `800 54px ${FF}`; x.textAlign = 'left'; x.direction = 'ltr'; x.fillText('W²', pad, 120); x.direction = 'rtl';
-  x.textAlign = 'right'; x.fillStyle = fg3; x.font = `500 30px ${FF}`; x.fillText(new Intl.DateTimeFormat('fa-IR-u-ca-persian', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date()), W - pad, 120);
-  let y = 230; x.fillStyle = fg; x.font = `800 46px ${FF}`; x.fillText(shStrip(p.title), W - pad, y); y += 70;
-  if (p.status) { x.fillStyle = gain; x.font = `700 32px ${FF}`; x.fillText('✓ ' + shStrip(p.status), W - pad, y); y += 70; }
-  if (p.amount != null || p.amountText) { x.fillStyle = fg; x.font = `800 72px ${FF}`; x.fillText(p.amountText ? shStrip(p.amountText) : fa(p.amount) + ' ریال', W - pad, y + 10); y += 70;
-    if (!p.amountText && p.amount) { x.fillStyle = fg3; x.font = `500 30px ${FF}`; x.fillText(tomanWords(p.amount), W - pad, y + 10); } y += 60; }
-  x.setLineDash([12, 12]); x.strokeStyle = line; x.beginPath(); x.moveTo(pad, y); x.lineTo(W - pad, y); x.stroke(); x.setLineDash([]); y += 56;
-  rows.forEach(([k, v]) => { x.textAlign = 'right'; x.fillStyle = fg3; x.font = `500 32px ${FF}`; x.fillText(k, W - pad, y); x.textAlign = 'left'; x.fillStyle = fg; x.font = `700 32px ${FF}`; const vv = v.length > 34 ? v.slice(0, 33) + '…' : v; x.fillText(vv, pad, y); y += 86; });
-  x.textAlign = 'right'; lines.forEach(l => { x.fillStyle = fg; x.font = `500 34px ${FF}`; x.fillText(l.length > 46 ? l.slice(0, 45) + '…' : l, W - pad, y); y += 64; });
-  if (p.qr) { const s = 520; shQrCanvas(x, p.qr, (W - s) / 2, y + 10, s); y += 580; x.fillStyle = fg3; x.font = `500 28px ${FF}`; x.textAlign = 'center'; x.direction = 'ltr'; x.fillText(p.qrLabel || p.qr, W / 2, y); x.direction = 'rtl'; }
-  x.textAlign = 'center'; x.fillStyle = fg3; x.font = `500 26px ${FF}`; x.fillText('W² · بانکداری ثروت', W / 2, H - 80);
+  rows.forEach(([k, v], i) => { x.textAlign = 'right'; x.fillStyle = T.fg3; x.font = `500 31px ${FF}`; x.fillText(k, W - pad, y); x.textAlign = 'left'; x.fillStyle = T.fg; x.font = `700 32px ${FF}`; x.fillText(v.length > 30 ? v.slice(0, 29) + '…' : v, pad, y);
+    if (i < rows.length - 1) { x.fillStyle = T.line; x.fillRect(pad, y + 43, W - 2 * pad, 2); } y += 86; });
+  x.textAlign = 'right'; lines.forEach(l => { x.fillStyle = T.fg; x.font = `500 33px ${FF}`; x.fillText(l.length > 44 ? l.slice(0, 43) + '…' : l, W - pad, y); y += 64; });
+  if (p.qr && p.qrLabel) { x.textAlign = 'center'; x.direction = 'ltr'; x.fillStyle = T.fg3; x.font = `500 26px ${FF}`; x.fillText(p.qrLabel.length > 52 ? p.qrLabel.slice(0, 50) + '…' : p.qrLabel, W / 2, y); x.direction = 'rtl'; y += 50; }
+  /* footer */
+  const fy = H - M - 86; x.fillStyle = T.line; x.fillRect(pad, fy - 52, W - 2 * pad, 2);
+  x.textAlign = 'right'; x.fillStyle = T.gold; x.font = `800 34px ${FF}`; x.fillText('W² · بانکداری ثروت', W - pad, fy);
+  x.textAlign = 'left'; x.direction = 'ltr'; x.fillStyle = T.fg3; x.font = `600 28px ${FF}`; x.fillText('w2.app', pad, fy); x.direction = 'rtl';
+  x.strokeStyle = T.line; x.lineWidth = 2; rr(M, M, W - 2 * M, H - 2 * M, 48); x.stroke();
   return c;
 }
 function shText(p) { return p.text || [shStrip(p.title), p.status ? shStrip(p.status) : '', p.amountText ? shStrip(p.amountText) : p.amount != null ? 'مبلغ: ' + fa(p.amount) + ' ریال' : '', ...(p.rows || []).map(([k, v]) => `${shStrip(k)}: ${shStrip(v)}`), ...(p.lines || []), p.qr && !p.text ? p.qr : '', 'W²'].filter(Boolean).join('\n'); }
@@ -7343,7 +7377,7 @@ Sheets.share = {
       <button class="tap" data-act="shTxtCopy">${icon('copy')}<span>کپی متن</span></button>
       <button class="tap" data-act="shImgSave">${icon('download')}<span>ذخیرهٔ تصویر</span></button>
     </div>`,
-  mount: (w, p) => { try { const c = shCanvas(p); S.shCanvas = c; $('#shImg', w).src = c.toDataURL('image/png'); } catch (e) { S.shCanvas = null; } S.shP = p; }
+  mount: (w, p) => { S.shP = p; S.shCanvas = null; const im = $('#shImg', w); im.closest('.sh-prev').classList.add('busy'); shCanvas(p).then(c => { S.shCanvas = c; im.src = c.toDataURL('image/png'); im.closest('.sh-prev').classList.remove('busy'); }).catch(() => { S.shCanvas = null; }); }
 };
 const W2_SANDBOX = (() => { try { return window.self !== window.top || /claude|anthropic/.test(location.hostname); } catch (e) { return true; } })();
 const shHint = () => { const w = document.querySelector('.sheet-wrap:last-child .sh-prev'); w && w.classList.add('big'); toast({ title: 'روی تصویر انگشت نگه دارید', body: 'از منوی گوشی «ذخیره» یا «اشتراک» را بزنید.', ic: 'image', ms: 3600 }); };
@@ -7355,7 +7389,7 @@ Object.assign(A, {
   shImgSave: () => { if (!S.shCanvas) return; if (W2_SANDBOX) return shHint(); const a = document.createElement('a'); a.href = S.shCanvas.toDataURL('image/png'); a.download = 'W2-receipt.png'; document.body.appendChild(a); a.click(); a.remove(); toast({ title: 'تصویر ذخیره شد', body: 'در پوشهٔ دانلودها یا گالری', ic: 'download', ms: 2200 }); },
   shTxtShare: async () => { const t = shText(S.shP); try { if (navigator.share) { await navigator.share({ text: t }); return; } } catch (e) { if (e && e.name === 'AbortError') return; } copyText(t, 'متن'); },
   shTxtCopy: () => copyText(shText(S.shP), 'متن'),
-  shareReceipt: () => { const p = S.lastReceipt; if (!p) return; openSheet('share', { title: p.title, status: p.status, amount: p.amount, amountText: p.amountText, rows: p.rows }); },
+  shareReceipt: () => { const p = S.lastReceipt; if (!p) return; openSheet('share', { title: p.title, status: p.status, amount: p.amount, amountText: p.amountText, sub: p.sub, rows: p.rows, hero: p.hero }); },
   share: d => openSheet('share', { title: d.title || 'W²', text: d.text, lines: String(d.text || '').split('\n').filter(Boolean).slice(0, 8) }),
   reqShare: () => { const R = reqPayload(); openSheet('share', { title: 'درخواست پول از ' + DB.user.name, lines: [R.label, ...(S.xfer && S.xfer.amount ? ['مبلغ: ' + fa(S.xfer.amount) + ' ریال'] : [])], qr: R.qr, qrLabel: R.show, text: R.text }); }
 });
