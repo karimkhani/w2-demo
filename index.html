@@ -1724,6 +1724,63 @@ button.tr-perk{width:100%;text-align:right;color:var(--fg)}
 .wl-stats div{display:flex;flex-direction:column;gap:2px;padding:10px 6px;border-radius:14px;background:var(--ink-1);border:1px solid var(--line)}
 .wl-stats b{font-size:15px}.wl-stats span{font-size:11px;color:var(--fg-3)}
 .wl .ky-note{text-align:right;width:100%}
+
+/* v23.1 · realistic tickets + waitlist stage */
+.tk-photo{position:relative;display:block;line-height:0;isolation:isolate}
+.tk-photo img{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 18px rgba(0,0,0,.45)) drop-shadow(0 3px 4px rgba(0,0,0,.3));user-select:none;-webkit-user-drag:none}
+html[data-w2theme="light"] .tk-photo img{filter:drop-shadow(0 16px 18px rgba(120,90,40,.28)) drop-shadow(0 3px 4px rgba(90,60,20,.18))}
+.tk-shine{position:absolute;inset:0;pointer-events:none;-webkit-mask:var(--tkm) center/100% 100% no-repeat;mask:var(--tkm) center/100% 100% no-repeat;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 48%,rgba(255,255,255,.08) 56%,transparent 64%) -200% 0/250% 100% no-repeat;animation:tkShine 5.5s ease-in-out infinite;mix-blend-mode:soft-light}
+@keyframes tkShine{0%,60%{background-position:-200% 0}100%{background-position:220% 0}}
+.tk-photo.locked img{filter:grayscale(.55) brightness(.55) drop-shadow(0 10px 14px rgba(0,0,0,.4))}
+.tk-lockb{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.tk-lockb small{font-size:10px;font-weight:700}
+.tk-card .tk-photo{transition:transform .3s}
+.tk-made{display:flex;flex-direction:column;align-items:center;gap:10px;padding:6px 18px 0}
+.tk-made .tk-photo{width:100%}
+.tk-plate{display:inline-block;padding:7px 14px;border-radius:10px;font-size:15px;letter-spacing:.14em;color:#2a2116;background:linear-gradient(180deg,#f7f1e4,#d9ceb8);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 3px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.35);text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.tk-gate{position:relative;height:178px;margin:2px -6px -4px}
+.tk-gate .tk-g{position:absolute;width:64%;left:18%;top:18px;transition:transform .4s}
+.tk-gate .tk-g.bronze{transform:rotate(-14deg) translate(-30%,22px)}
+.tk-gate .tk-g.silver{transform:rotate(11deg) translate(29%,18px)}
+.tk-gate .tk-g.gold{z-index:2;animation:tkFloat2 4.2s ease-in-out infinite}
+@keyframes tkFloat2{0%,100%{transform:translateY(-4px) rotate(-1deg)}50%{transform:translateY(-16px) rotate(1.5deg)}}
+.tk-gate-floor{position:absolute;left:12%;right:12%;bottom:-6px;height:26px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent);filter:blur(4px)}
+html[data-w2theme="light"] .tk-gate-floor{background:radial-gradient(closest-side,rgba(110,80,30,.25),transparent)}
+.tk-reveal{display:flex;flex-direction:column;align-items:center;gap:14px}
+.tk-reveal .tk-flip{width:100%;animation:tkFlip2 1.2s cubic-bezier(.2,.8,.2,1) both,tkFloat2 4.2s ease-in-out 1.2s infinite}
+@keyframes tkFlip2{0%{transform:perspective(900px) rotateY(-110deg) rotateX(18deg) scale(.6);opacity:0}55%{transform:perspective(900px) rotateY(14deg) rotateX(-4deg) scale(1.04);opacity:1}100%{transform:perspective(900px) rotateY(0) scale(1)}}
+.wl{gap:14px;align-self:stretch;width:100%}
+.wl-stage{position:relative;display:block;align-self:stretch!important;flex:none;width:calc(100% + 40px);height:300px;margin:-4px -20px 0;padding:0;border:0;background:radial-gradient(70% 80% at 50% 0%,rgba(120,150,210,.2),transparent 70%);overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
+html[data-w2theme="light"] .wl-stage{background:radial-gradient(70% 80% at 50% 0%,rgba(255,255,255,.85),transparent 70%)}
+.wl-stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}
+.wl-still{position:absolute;inset:0;background:url(img/wl_stage.jpg) center/cover no-repeat;opacity:1;transition:opacity .5s}
+html[data-w2theme="light"] .wl-still{background-image:url(img/l/wl_stage.jpg)}
+.wl-stage.wl-live .wl-still{opacity:0}
+.wl-stage.loading .wl-still{animation:wlPulse 1.4s ease-in-out infinite}
+@keyframes wlPulse{50%{opacity:.75}}
+.wl-tapme{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;color:#fff;background:rgba(10,14,24,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);transition:opacity .4s;pointer-events:none}
+html[data-w2theme="light"] .wl-tapme{color:#2a2116;background:rgba(255,255,255,.7);border-color:rgba(0,0,0,.08)}
+.wl-stage.used .wl-tapme{opacity:0}
+.wl-board{display:flex;flex-direction:column;align-items:center;gap:8px}
+.wl-board small{font-size:12px;color:var(--fg-3)}
+.flaps{display:inline-flex;align-items:center;gap:4px;padding:9px 10px;border-radius:14px;background:linear-gradient(180deg,#3a3f48,#1d2027 40%,#2b2f37);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(0,0,0,.6),0 10px 22px rgba(0,0,0,.35),0 2px 4px rgba(0,0,0,.4)}
+.flap{position:relative;width:36px;height:54px;border-radius:7px;perspective:220px;box-shadow:0 2px 3px rgba(0,0,0,.55)}
+.flap>span{position:absolute;left:0;right:0;height:50%;overflow:hidden;backface-visibility:hidden}
+.flap>span>em{display:block;height:54px;line-height:56px;text-align:center;font-style:normal;font-weight:800;font-size:36px;color:#f4f1ea;text-shadow:0 1px 0 rgba(0,0,0,.6)}
+.flap .t,.flap .ft{top:0;border-radius:7px 7px 0 0;background:linear-gradient(180deg,#2c3038,#1f2229)}
+.flap .b,.flap .fb{bottom:0;border-radius:0 0 7px 7px;background:linear-gradient(180deg,#191b21,#24272e)}
+.flap .b>em,.flap .fb>em{transform:translateY(-50%)}
+.flap::after{content:"";position:absolute;left:0;right:0;top:calc(50% - 1px);height:2px;background:linear-gradient(90deg,#07080a,#2a2d33 15%,#07080a 30%,#07080a 70%,#2a2d33 85%,#07080a);z-index:3}
+.flap::before{content:"";position:absolute;top:calc(50% - 4px);width:3px;height:8px;left:-1px;border-radius:2px;background:#6b6f78;z-index:4;box-shadow:35px 0 0 #6b6f78}
+.flap .ft{z-index:2;transform-origin:50% 100%;animation:flapT .26s ease-in forwards}
+.flap .fb{z-index:2;transform-origin:50% 0;transform:rotateX(90deg);animation:flapB .26s ease-out .26s forwards}
+@keyframes flapT{to{transform:rotateX(-90deg);filter:brightness(.6)}}
+@keyframes flapB{from{transform:rotateX(90deg);filter:brightness(1.4)}to{transform:rotateX(0)}}
+.flap-sep{font-style:normal;font-weight:800;font-size:26px;color:#9aa0aa;margin:0 -1px}
+.wl-rail{width:100%;height:12px;border-radius:6px;background:linear-gradient(180deg,#0c1018,#1a2030);box-shadow:inset 0 2px 4px rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.08);overflow:hidden;padding:2px}
+html[data-w2theme="light"] .wl-rail{background:linear-gradient(180deg,#d9cfbe,#ece4d6);box-shadow:inset 0 2px 4px rgba(90,60,20,.25),0 1px 0 #fff}
+.wl-rail i{display:block;height:100%;border-radius:4px;background:linear-gradient(180deg,#FFF0C2,#E2B04C 45%,#9C6E1E 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.7);transition:width .5s linear}
+.wl-stage canvas,.wl-stage .wl-still{-webkit-mask-image:radial-gradient(120% 95% at 50% 38%,#000 55%,transparent 82%);mask-image:radial-gradient(120% 95% at 50% 38%,#000 55%,transparent 82%)}
 </style>
 </head>
 <body>
@@ -8257,6 +8314,185 @@ kycRow = () => { const L = DB.kyc.level; if (L === 'advanced') return '';
   return `<button class="ky-row tap" data-act="${t[3]}" ${t[3] === 'push' ? 'data-to="kycLevels"' : ''}><span class="pic">${icon(t[2])}</span><span class="rt"><b>${t[0]}</b><small>${t[1]}</small></span>${icon('chevron-left', 'w-4 h-4')}</button>`; };
 
 /* =========================================================
+   v23 · realistic waitlist stage (three.js, PBR)
+   A proof-finish W² gold coin floating over a velvet-rope queue that leads to a lit
+   doorway. Tap → the coin is tossed, flips, drops on the floor, bounces, wobbles
+   like a spinning disk and settles — with a synthesized coin-on-floor sound locked
+   to every impact. Falls back to a still render if WebGL/three.js is unavailable.
+   ========================================================= */
+const WL3 = { st: null };
+const WL_THREE = ['js/three.min.js', 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js'];
+function wlLoadThree() {
+  if (window.THREE) return Promise.resolve(window.THREE);
+  if (WL3.loading) return WL3.loading;
+  const tryOne = i => new Promise((res, rej) => { if (i >= WL_THREE.length) return rej(new Error('three')); const s = document.createElement('script'); s.src = WL_THREE[i]; s.async = true; s.onload = () => window.THREE ? res(window.THREE) : tryOne(i + 1).then(res, rej); s.onerror = () => { s.remove(); tryOne(i + 1).then(res, rej); }; document.head.appendChild(s); });
+  return (WL3.loading = tryOne(0).catch(e => { WL3.loading = null; throw e; }));
+}
+const WL_W = [[-0.383, 0.053], [-0.262, 0.172], [-0.142, 0.064], [-0.019, 0.172], [0.243, -0.090], [0.123, -0.204], [0.004, -0.091], [-0.130, -0.204]];
+const WL_2 = [[0.207, 0.0107], [0.1895, 0.0107], [0.1875, 0.0205], [0.1699, 0.0186], [0.1631, 0.0234], [0.1611, 0.0742], [0.167, 0.0957], [0.1934, 0.1201], [0.291, 0.1514], [0.2979, 0.1582], [0.2979, 0.1797], [0.293, 0.1943], [0.2871, 0.1943], [0.2852, 0.1865], [0.2383, 0.1865], [0.2207, 0.1553], [0.1875, 0.1533], [0.1855, 0.1631], [0.1621, 0.1572], [0.1611, 0.1816], [0.1689, 0.209], [0.1895, 0.2295], [0.2227, 0.2393], [0.3047, 0.2393], [0.3379, 0.2256], [0.3604, 0.1934], [0.3643, 0.1406], [0.3564, 0.127], [0.3359, 0.1104], [0.2383, 0.0791], [0.2314, 0.0664], [0.2402, 0.0615], [0.3457, 0.0654], [0.3623, 0.0508], [0.3662, 0.0215], [0.3574, 0.0127], [0.2617, 0.0127], [0.2598, 0.0205], [0.2207, 0.0205], [0.2188, 0.0127]];
+
+/* ---------- procedural textures ---------- */
+function wlCanvas(w, h, fn) { const c = document.createElement('canvas'); c.width = w; c.height = h; fn(c.getContext('2d'), w, h); return c; }
+function wlStudioEnv(T, renderer, light) {
+  /* product-photography studio: big softboxes for the gold to reflect, black flags for contrast */
+  const sc = new T.Scene(), box = new T.BoxGeometry(1, 1, 1);
+  const room = new T.Mesh(box, new T.MeshBasicMaterial({ color: light ? 0x8a8378 : 0x2a3550, side: T.BackSide })); room.scale.set(30, 18, 30); room.position.y = 7; sc.add(room);
+  const panel = (x, y, z, sx, sy, sz, k, col = 0xffffff) => { const m = new T.Mesh(box, new T.MeshBasicMaterial({ color: new T.Color(col).multiplyScalar(k) })); m.position.set(x, y, z); m.scale.set(sx, sy, sz); sc.add(m); };
+  panel(0, 15.5, 0, 14, 0.2, 9, light ? 5 : 6, 0xFFF4E2);       /* overhead softbox */
+  panel(-14.5, 7, 4, 0.2, 9, 12, light ? 3.2 : 3.6, 0xFFFFFF);  /* big left strip */
+  panel(14.5, 6, -2, 0.2, 7, 8, light ? 2.6 : 2.8, 0xFFE2B8);   /* warm right kicker */
+  panel(0, 4, -14.5, 9, 5, 0.2, light ? 2 : 2.4, 0xFFD9A0);     /* the lit doorway behind */
+  panel(0, 2.5, 14.5, 12, 7, 0.2, light ? 2.2 : 2.8, 0xFFF1DC);   /* front fill (camera side, low) */
+  panel(10, 6, 14.3, 4, 12, 0.2, 0, 0); panel(-10, 6, 14.3, 4, 12, 0.2, 0, 0); panel(0, 13, 14.3, 10, 2, 0.2, 0, 0);   /* black flags */
+  panel(0, -1.5, 0, 30, 0.2, 30, light ? 0.5 : 0.12, light ? 0xE6DCCB : 0x0E1626); /* floor bounce */
+  const pm = new T.PMREMGenerator(renderer), rt = pm.fromScene(sc, 0.03); pm.dispose(); return rt.texture;
+}
+function wlFaceTex(T) {
+  /* bump map for the coin field: beaded border ring + engraved legend + fine proof lines */
+  const c = wlCanvas(1024, 1024, (g, w) => {
+    g.fillStyle = '#808080'; g.fillRect(0, 0, w, w); const cx = w / 2;
+    for (let r = 300; r < 440; r += 3) { g.strokeStyle = `rgba(${r % 6 ? 136 : 124},${r % 6 ? 136 : 124},${r % 6 ? 136 : 124},.35)`; g.lineWidth = 1; g.beginPath(); g.arc(cx, cx, r, 0, Math.PI * 2); g.stroke(); }
+    g.strokeStyle = '#5a5a5a'; g.lineWidth = 6; g.beginPath(); g.arc(cx, cx, 448, 0, Math.PI * 2); g.stroke();
+    for (let i = 0; i < 96; i++) { const a = i / 96 * Math.PI * 2; g.fillStyle = '#c8c8c8'; g.beginPath(); g.arc(cx + Math.cos(a) * 474, cx + Math.sin(a) * 474, 7, 0, Math.PI * 2); g.fill(); }
+    g.save(); g.translate(cx, cx); g.fillStyle = '#4a4a4a'; g.font = '700 46px ui-sans-serif,system-ui,Arial'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    const txt = 'WEALTH  SQUARED  ·  ADMIT ONE  ·  W²  ·  ', n = txt.length;
+    for (let i = 0; i < n; i++) { g.save(); g.rotate(-Math.PI / 2 + i / n * Math.PI * 2); g.translate(0, -400); g.fillText(txt[i], 0, 0); g.restore(); }
+    g.restore();
+  });
+  const t = new T.CanvasTexture(c); t.anisotropy = 8; return t;
+}
+function wlEdgeTex(T) { const c = wlCanvas(1024, 32, (g, w, h) => { for (let x = 0; x < w; x++) { const v = 128 + 110 * Math.sin(x / w * Math.PI * 2 * 140); g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(x, 0, 1, h); } }); const t = new T.CanvasTexture(c); t.wrapS = T.RepeatWrapping; return t; }
+function wlShadowTex(T) { const c = wlCanvas(256, 256, (g, w) => { const gr = g.createRadialGradient(w / 2, w / 2, 0, w / 2, w / 2, w / 2); gr.addColorStop(0, 'rgba(0,0,0,.75)'); gr.addColorStop(.45, 'rgba(0,0,0,.35)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, w); }); return new T.CanvasTexture(c); }
+function wlFloorTex(T, light) { const c = wlCanvas(512, 512, (g, w) => { const gr = g.createRadialGradient(w / 2, w * .62, 0, w / 2, w * .62, w * .55); gr.addColorStop(0, '#fff'); gr.addColorStop(.35, '#fff'); gr.addColorStop(.75, '#555'); gr.addColorStop(1, '#000'); g.fillStyle = gr; g.fillRect(0, 0, w, w); }); return new T.CanvasTexture(c); }
+function wlDoorTex(T, light) { const c = wlCanvas(256, 512, (g, w, h) => { const gr = g.createLinearGradient(0, h, 0, 0); gr.addColorStop(0, light ? '#fff6e6' : '#fff1d6'); gr.addColorStop(.7, light ? '#ffe9c4' : '#f7cf86'); gr.addColorStop(1, light ? '#f3d6a0' : '#b7863a'); g.fillStyle = gr; g.fillRect(0, 0, w, h); }); const t = new T.CanvasTexture(c); t.encoding = T.sRGBEncoding; return t; }
+
+/* ---------- the scene ---------- */
+function wlBuild(T, host, light) {
+  const W = host.clientWidth || 360, H = host.clientHeight || 300;
+  if (T.ColorManagement) T.ColorManagement.enabled = true;
+  const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1)); renderer.setSize(W, H);
+  renderer.outputEncoding = T.sRGBEncoding; renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = light ? 1.0 : 1.12;
+  renderer.useLegacyLights = false; renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap;
+  host.appendChild(renderer.domElement);
+  const scene = new T.Scene(); scene.environment = wlStudioEnv(T, renderer, light);
+  const cam = new T.PerspectiveCamera(32, W / H, 0.1, 60); cam.position.set(0, 1.55, 5.3); cam.lookAt(0, 0.62, 0);
+  /* lights */
+  const key = new T.SpotLight(0xfff3e0, light ? 45 : 60, 18, 0.38, 0.85, 1.6); key.position.set(1.3, 5.2, 3.0); key.target.position.set(0, 0.2, 0); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); key.shadow.radius = 6; key.shadow.bias = -0.0004; scene.add(key, key.target);
+  const rim = new T.PointLight(light ? 0xffe2b0 : 0xffc978, light ? 10 : 22, 10, 1.6); rim.position.set(0, 1.4, -3.4); scene.add(rim);
+  scene.add(new T.HemisphereLight(light ? 0xfff6ea : 0x8aa3d8, light ? 0xd8cbb6 : 0x0a0f1c, light ? 0.6 : 0.35));
+  /* floor: soft-edged so it melts into the page background */
+  const floorMat = new T.MeshStandardMaterial({ color: light ? 0xE4D9C7 : 0x0A1120, roughness: 0.92, metalness: 0, envMapIntensity: light ? 0.35 : 0.08, alphaMap: wlFloorTex(T, light), transparent: true });
+  const floor = new T.Mesh(new T.PlaneGeometry(14, 14), floorMat); floor.rotation.x = -Math.PI / 2; floor.position.z = -1.5; floor.receiveShadow = true; scene.add(floor);
+  /* doorway */
+  const door = new T.Mesh(new T.PlaneGeometry(1.15, 2.1), new T.MeshBasicMaterial({ map: wlDoorTex(T, light), toneMapped: false })); door.position.set(0, 1.05, -4.2); scene.add(door);
+  const frameMat = new T.MeshStandardMaterial({ color: light ? 0xcfc2ad : 0x141c2c, roughness: 0.5, metalness: 0.2 });
+  [[-0.66, 1.1, 0.16, 2.3], [0.66, 1.1, 0.16, 2.3], [0, 2.22, 1.48, 0.16]].forEach(([x, y, w, h]) => { const f = new T.Mesh(new T.BoxGeometry(w, h, 0.18), frameMat); f.position.set(x, y, -4.15); f.castShadow = true; scene.add(f); });
+  const glow = new T.Mesh(new T.PlaneGeometry(3.2, 3.2), new T.MeshBasicMaterial({ map: wlShadowTex(T), color: light ? 0xffd38a : 0xffc46a, transparent: true, opacity: light ? .35 : .55, blending: T.AdditiveBlending, depthWrite: false })); glow.rotation.x = -Math.PI / 2; glow.position.set(0, 0.003, -3.4); glow.material.map.flipY = false; scene.add(glow);
+  /* stanchions + velvet ropes forming the queue aisle */
+  const gold = new T.MeshPhysicalMaterial({ color: 0xF2C46D, metalness: 1, roughness: 0.2, clearcoat: 0.3, clearcoatRoughness: 0.2 });
+  const velvet = new T.MeshPhysicalMaterial({ color: light ? 0x1c2a58 : 0x141f45, roughness: 0.9, sheen: 1, sheenRoughness: 0.5, sheenColor: new T.Color(light ? 0x6f84c4 : 0x5468a8) });
+  const post = new T.Group(); { const base = new T.Mesh(new T.CylinderGeometry(0.16, 0.19, 0.05, 40), gold), pole = new T.Mesh(new T.CylinderGeometry(0.028, 0.028, 0.86, 24), gold), cap = new T.Mesh(new T.SphereGeometry(0.06, 24, 16), gold), neck = new T.Mesh(new T.CylinderGeometry(0.04, 0.05, 0.06, 24), gold);
+    base.position.y = 0.025; pole.position.y = 0.47; neck.position.y = 0.9; cap.position.y = 0.96; [base, pole, cap, neck].forEach(m => { m.castShadow = true; m.receiveShadow = true; post.add(m); }); }
+  const rows = [-0.95, 0.95], zs = [0.5, -0.9, -2.3, -3.5];
+  rows.forEach(x => { zs.forEach(z => { const p = post.clone(); p.position.set(x * (1 - (0.5 - z) * 0.06), 0, z); scene.add(p); });
+    for (let i = 0; i < zs.length - 1; i++) { const a = new T.Vector3(x * (1 - (0.5 - zs[i]) * 0.06), 0.9, zs[i]), b = new T.Vector3(x * (1 - (0.5 - zs[i + 1]) * 0.06), 0.9, zs[i + 1]);
+      const mid = a.clone().lerp(b, 0.5); mid.y -= 0.26; const curve = new T.CatmullRomCurve3([a, a.clone().lerp(mid, 0.5).setY(a.y - 0.16), mid, b.clone().lerp(mid, 0.5).setY(b.y - 0.16), b]);
+      const rope = new T.Mesh(new T.TubeGeometry(curve, 48, 0.034, 14, false), velvet); rope.castShadow = true; scene.add(rope); } });
+  /* the coin: proof finish — mirror field, frosted relief, reeded edge */
+  const R = 0.42, TH = 0.06, coin = new T.Group(), inner = new T.Group(); coin.add(inner);
+  const field = new T.MeshPhysicalMaterial({ color: 0xF5C86E, metalness: 1, roughness: 0.16, bumpMap: wlFaceTex(T), bumpScale: 0.04, clearcoat: 0.5, clearcoatRoughness: 0.05 });
+  const relief = new T.MeshPhysicalMaterial({ color: 0xF2C46D, metalness: 1, roughness: 0.34 });
+  const edgeT = wlEdgeTex(T); edgeT.repeat.set(1, 1);
+  const edge = new T.MeshPhysicalMaterial({ color: 0xE9B85A, metalness: 1, roughness: 0.26, bumpMap: edgeT, bumpScale: 0.08 });
+  const body = new T.Mesh(new T.CylinderGeometry(R, R, TH, 128, 1, true), edge); body.rotation.x = Math.PI / 2; inner.add(body);
+  const disc = new T.Mesh(new T.CircleGeometry(R, 128), field); disc.position.z = TH / 2; inner.add(disc);
+  const disc2 = disc.clone(); disc2.rotation.y = Math.PI; disc2.position.z = -TH / 2; inner.add(disc2);
+  const ring = new T.Shape(); ring.absarc(0, 0, R - 0.004, 0, Math.PI * 2, false); const hole = new T.Path(); hole.absarc(0, 0, R * 0.9, 0, Math.PI * 2, true); ring.holes.push(hole);
+  const rimG = new T.ExtrudeGeometry(ring, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.004, bevelSegments: 3, curveSegments: 96 });
+  const rimM = new T.MeshPhysicalMaterial({ color: 0xF5C86E, metalness: 1, roughness: 0.14 });
+  const rim1 = new T.Mesh(rimG, rimM); rim1.position.z = TH / 2; inner.add(rim1); const rim2 = rim1.clone(); rim2.rotation.y = Math.PI; rim2.position.z = -TH / 2; inner.add(rim2);
+  const sh = pts => { const s = new T.Shape(); pts.forEach(([x, y], i) => i ? s.lineTo(x, y) : s.moveTo(x, y)); s.closePath(); return s; };
+  const logoG = new T.ExtrudeGeometry([sh(WL_W), sh(WL_2)], { depth: 0.012, bevelEnabled: true, bevelThickness: 0.01, bevelSize: 0.008, bevelSegments: 4, curveSegments: 6 });
+  logoG.translate(0.009, -0.0175, 0); logoG.scale(0.9, 0.9, 1);
+  const lg1 = new T.Mesh(logoG, relief); lg1.position.z = TH / 2; lg1.castShadow = true; inner.add(lg1);
+  const lg2 = lg1.clone(); lg2.rotation.y = Math.PI; lg2.position.z = -TH / 2; inner.add(lg2);
+  inner.traverse(m => { if (m.isMesh) m.castShadow = true; });
+  scene.add(coin);
+  const blob = new T.Mesh(new T.PlaneGeometry(1.3, 1.3), new T.MeshBasicMaterial({ map: wlShadowTex(T), transparent: true, depthWrite: false, opacity: light ? .55 : .8 })); blob.rotation.x = -Math.PI / 2; blob.position.y = 0.004; scene.add(blob);
+  return { T, renderer, scene, cam, coin, inner, blob, R, TH, light, host, W, H };
+}
+
+/* ---------- motion: idle float, toss → drop → bounce → wobble → settle → rise ---------- */
+const WL_FLOAT_Y = 0.78, WL_REST = 0.058;
+function wlPlan() {
+  /* deterministic flight so sound and picture share one timeline */
+  const g = 9.8, e = 0.38, imp = [], v0 = 3.4, y0 = WL_FLOAT_Y, rest = WL_REST;
+  const tUp = v0 / g, hTop = y0 + v0 * v0 / (2 * g), tDown = Math.sqrt(2 * (hTop - rest) / g); let t = tUp + tDown, v = g * tDown;
+  const arcs = [{ t0: 0, t1: t, y0, v0, kind: 'toss' }]; imp.push({ t, s: 1 });
+  for (let k = 0; k < 4 && v > 0.35; k++) { v *= e; const d = 2 * v / g; arcs.push({ t0: t, t1: t + d, y0: rest, v0: v, kind: 'bounce' }); t += d; imp.push({ t, s: v / (g * tDown) }); }
+  const wob = { t0: t, dur: 1.25 }, settle = t + wob.dur, rise = settle + 0.55;
+  return { arcs, imp, wob, settle, rise, end: rise + 1.0, flips: 3 + Math.floor(Math.random() * 2), spinDir: Math.random() < .5 ? -1 : 1, yaw: (Math.random() - .5) * 1.2 };
+}
+function wlPose(S3, P, t) {
+  const { coin, inner, blob, T } = S3, q = new T.Quaternion(), up = new T.Vector3(0, 1, 0), X = new T.Vector3(1, 0, 0);
+  const FLAT = -Math.PI / 2;   /* lying face-up */
+  if (!P || t >= P.end) { const k = performance.now() / 1000; coin.position.set(0, WL_FLOAT_Y + Math.sin(k * 1.6) * 0.03, 0.9); coin.rotation.set(-0.14 + Math.sin(k * .9) * .04, Math.sin(k * 0.55) * 0.55, 0); inner.rotation.set(0, 0, 0); blob.position.set(0, 0.004, 0.9); blob.scale.setScalar(0.85); blob.material.opacity = (S3.light ? .32 : .5); return; }
+  coin.rotation.set(0, 0, 0); inner.rotation.set(0, 0, 0);
+  const arc = P.arcs.find(a => t >= a.t0 && t < a.t1);
+  let y = WL_REST, tiltX = FLAT;
+  if (arc) { const dt = t - arc.t0; y = arc.y0 + arc.v0 * dt - 4.9 * dt * dt;
+    if (arc.kind === 'toss') { const u = dt / (arc.t1 - arc.t0); tiltX = -0.14 + (P.spinDir * P.flips * Math.PI * 2 + (FLAT + 0.14)) * Math.min(1, u * 1.04); }
+    else { const u = (t - arc.t0) / (arc.t1 - arc.t0); tiltX = FLAT + Math.sin(u * Math.PI) * 0.25 * arc.v0; } }
+  else if (t < P.settle) { /* Euler-disk wobble: tilt decays, precession speeds up */
+    const u = (t - P.wob.t0) / P.wob.dur, a = 0.16 * Math.pow(1 - u, 1.35), phi = 2 * Math.PI * (2.2 * u + 7.5 * u * u);
+    const axis = new T.Vector3(Math.cos(phi), 0, Math.sin(phi)); q.setFromAxisAngle(axis, a);
+    coin.position.set(0, WL_REST + Math.sin(a) * S3.R, 0.9); coin.quaternion.copy(q); inner.rotation.set(FLAT, 0, P.yaw); return wlBlob(S3, coin.position.y, 1); }
+  else if (t < P.rise) { y = WL_REST; tiltX = FLAT; }
+  else { const u = Math.min(1, (t - P.rise) / (P.end - P.rise)), ez = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; y = WL_REST + (WL_FLOAT_Y - WL_REST) * ez; tiltX = FLAT + (-0.14 - FLAT) * ez; inner.rotation.set(tiltX, 0, P.yaw * (1 - ez)); coin.position.set(0, y, 0.9); return wlBlob(S3, y, 1); }
+  coin.position.set(0, Math.max(WL_REST, y), 0.9); inner.rotation.set(tiltX, 0, P.yaw); wlBlob(S3, y, 1);
+}
+function wlBlob(S3, y, k) { const h = Math.max(0, y - WL_REST); S3.blob.position.set(0, 0.004, 0.9); S3.blob.scale.setScalar(0.62 + h * 0.5); S3.blob.material.opacity = (S3.light ? .55 : .85) * Math.max(0.25, 1 - h * 0.9) * k; }
+
+/* ---------- sound: a coin dropped on a hard floor, synthesized to the same timeline ---------- */
+function wlAudio() { if (WL3.ac) return WL3.ac; const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; const ac = new C();
+  const comp = ac.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4; const out = ac.createGain(); out.gain.value = 0.9; comp.connect(out); out.connect(ac.destination);
+  const rv = ac.createConvolver(), len = ac.sampleRate * 0.5, ir = ac.createBuffer(2, len, ac.sampleRate); for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3.2) * 0.6; } rv.buffer = ir;
+  const wet = ac.createGain(); wet.gain.value = 0.16; rv.connect(wet); wet.connect(comp);
+  const noise = ac.createBuffer(1, ac.sampleRate * 0.25, ac.sampleRate), nd = noise.getChannelData(0); for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+  WL3.ac = ac; WL3.bus = comp; WL3.rv = rv; WL3.noise = noise; return ac; }
+function wlHit(ac, t, s, kind) {
+  const bus = WL3.bus, rv = WL3.rv, j = 1 + (Math.random() - .5) * 0.03;
+  const modes = kind === 'rattle' ? [[3150, .5, .05], [7420, .35, .035], [11800, .2, .02]] : [[2093, .9, 1.1], [3150, .7, .85], [5437, .55, .6], [7420, .4, .42], [8730, .3, .3], [11980, .2, .18]];
+  modes.forEach(([f, a, d]) => { const o = ac.createOscillator(), g = ac.createGain(); o.type = 'sine'; o.frequency.value = f * j * (1 + (Math.random() - .5) * 0.004); const amp = a * s * (kind === 'rattle' ? 0.35 : 0.28), dec = d * (0.45 + 0.55 * s);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(amp, t + 0.0015); g.gain.exponentialRampToValueAtTime(0.0001, t + dec); o.connect(g); g.connect(bus); g.connect(rv); o.start(t); o.stop(t + dec + 0.05); });
+  /* contact transient + floor body */
+  const n = ac.createBufferSource(); n.buffer = WL3.noise; const hp = ac.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = kind === 'rattle' ? 4500 : 2500; const ng = ac.createGain();
+  ng.gain.setValueAtTime(s * (kind === 'rattle' ? .22 : .5), t); ng.gain.exponentialRampToValueAtTime(0.0001, t + (kind === 'rattle' ? 0.008 : 0.018)); n.connect(hp); hp.connect(ng); ng.connect(bus); n.start(t); n.stop(t + 0.05);
+  if (kind !== 'rattle') { const b = ac.createBufferSource(); b.buffer = WL3.noise; const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 260; const bg = ac.createGain(); bg.gain.setValueAtTime(s * 0.9, t); bg.gain.exponentialRampToValueAtTime(0.0001, t + 0.07); b.connect(lp); lp.connect(bg); bg.connect(bus); b.start(t); b.stop(t + 0.1); }
+}
+function wlSound(P) { const ac = wlAudio(); if (!ac) return; if (ac.state === 'suspended') ac.resume(); const t0 = ac.currentTime + 0.02;
+  P.imp.forEach(i => wlHit(ac, t0 + i.t, Math.min(1, i.s), 'hit'));
+  /* the spinning-disk rattle: contact clicks speeding up as the tilt dies away */
+  let t = 0; while (t < P.wob.dur) { const u = t / P.wob.dur, rate = 2 * (2.2 + 15 * u), s = 0.5 * Math.pow(1 - u, 1.1) + 0.06; wlHit(ac, t0 + P.wob.t0 + t, s, 'rattle'); t += 1 / rate; }
+  wlHit(ac, t0 + P.settle - 0.02, 0.18, 'hit');
+  try { navigator.vibrate && navigator.vibrate([0, Math.round(P.imp[0].t * 1000), 22, 120, 10]); } catch (e) {}
+}
+
+/* ---------- mount / toss / dispose ---------- */
+function wlMount(host) {
+  wlDispose(); const light = isLight(); host.classList.add('loading');
+  wlLoadThree().then(T => { if (!host.isConnected) return; let S3; try { S3 = wlBuild(T, host, light); } catch (e) { host.classList.add('nogl'); host.classList.remove('loading'); return; }
+    WL3.st = S3; S3.plan = null; S3.t0 = 0; host.classList.remove('loading'); host.classList.add('wl-live');
+    const loop = () => { if (!host.isConnected || WL3.st !== S3) return; if (S3.freeze != null) { wlPose(S3, S3.plan, S3.freeze); S3.renderer.render(S3.scene, S3.cam); S3.raf = requestAnimationFrame(loop); return; } const t = S3.plan ? (performance.now() - S3.t0) / 1000 : 0; if (S3.plan && t > S3.plan.end) S3.plan = null; wlPose(S3, S3.plan, t); S3.renderer.render(S3.scene, S3.cam); S3.raf = requestAnimationFrame(loop); };
+    loop();
+    const ro = new ResizeObserver(() => { const w = host.clientWidth, h = host.clientHeight; if (!w || !h) return; S3.renderer.setSize(w, h); S3.cam.aspect = w / h; S3.cam.updateProjectionMatrix(); }); ro.observe(host); S3.ro = ro;
+  }).catch(() => { host.classList.remove('loading'); host.classList.add('nogl'); });
+}
+function wlToss() { const S3 = WL3.st; if (S3 && S3.plan) return false; const P = wlPlan(); wlSound(P); if (S3) { S3.plan = P; S3.t0 = performance.now(); } else { const c = document.querySelector('.wl-stage .wl-fallcoin'); if (c) { c.classList.remove('drop'); void c.offsetWidth; c.classList.add('drop'); } } return true; }
+function wlDispose() { const S3 = WL3.st; if (!S3) return; cancelAnimationFrame(S3.raf); S3.ro && S3.ro.disconnect(); S3.renderer.dispose(); S3.renderer.domElement.remove(); WL3.st = null; }
+
+/* =========================================================
    v23 — invitation tickets by membership level, invitation-only signup,
    a playful waitlist, and the confidential invite coefficient
    ========================================================= */
@@ -8311,6 +8547,18 @@ function tkArt(kind, o = {}) { const T = TK[kind], id = uid(), [a, b, c, d] = T.
       <text x="276" y="128" font-size="9" text-anchor="middle" opacity=".65" letter-spacing="1" direction="ltr" font-family="ui-sans-serif,system-ui">ADMIT ONE</text></g>
     ${o.locked ? `<g><rect x="6" y="10" width="308" height="170" rx="20" fill="#0B0D12" fill-opacity=".55"/><circle cx="160" cy="88" r="22" fill="#000" fill-opacity=".45"/><path d="M151 86v-6a9 9 0 0 1 18 0v6" stroke="#fff" stroke-width="2.6" fill="none"/><rect x="147" y="86" width="26" height="18" rx="4" fill="#fff"/><text x="160" y="140" fill="#fff" font-size="12.5" font-weight="700" text-anchor="middle" font-family="inherit">${o.locked}</text></g>` : ''}</svg>`; }
 
+/* realistic renders (same studio as the in-app ticket art); cut-outs for stacking */
+const tkImg = (k, cut) => `img/${isLight() ? 'l/' : ''}${cut ? 'tkc_' : 'ticket_'}${k}.${cut ? 'webp' : 'jpg'}`;
+const tkPhoto = (k, o = {}) => `<span class="tk-photo ${o.cls || ''} ${o.locked ? 'locked' : ''}"><img src="${tkImg(k, true)}" alt="${TK[k].t}" draggable="false"><i class="tk-shine" style="--tkm:url(${tkImg(k, true)})"></i>${o.locked ? `<span class="tk-lockb">${icon('lock', 'w-4 h-4')}<small>${o.locked}</small></span>` : ''}</span>`;
+/* split-flap counter (airport-board style) */
+const flapChars = n => faD(Math.max(0, n).toLocaleString('en-US')).replace(/,/g, '٬').split('');
+const flapHTML = n => `<span class="flaps" dir="ltr">${flapChars(n).map(c => c === '٬' ? '<i class="flap-sep">٬</i>' : `<span class="flap"><span class="t"><em>${c}</em></span><span class="b"><em>${c}</em></span></span>`).join('')}</span>`;
+function flapSet(el, n) { if (!el) return; const nw = flapChars(n), cur = [...el.querySelectorAll('.flap, .flap-sep')];
+  if (cur.length !== nw.length) { el.outerHTML = flapHTML(n); return; }
+  nw.forEach((c, i) => { const f = cur[i]; if (!f.classList.contains('flap')) return; const old = f.dataset.v || f.querySelector('.t em').textContent; if (old === c) return; f.dataset.v = c;
+    f.innerHTML = `<span class="t"><em>${c}</em></span><span class="b"><em>${old}</em></span><span class="ft"><em>${old}</em></span><span class="fb"><em>${c}</em></span>`;
+    clearTimeout(f._tm); f._tm = setTimeout(() => { f.innerHTML = `<span class="t"><em>${c}</em></span><span class="b"><em>${c}</em></span>`; }, 560); }); }
+
 /* ---------- tickets page ---------- */
 Pages.tickets = {
   render: () => { const idx = tkIdx(), sel = S.tkSel || (S.tkSel = TK_KINDS.find(k => TK_ALLOC[idx][k]) || 'bronze'), T = TK[sel], al = TK_ALLOC[idx][sel], left = tkLeft(sel), se = tkSeason(), coef = tkCoef(), joined = DB.tickets.sent.filter(t => t.st === 'joined').length;
@@ -8318,7 +8566,7 @@ Pages.tickets = {
     return `<div class="scroll">${pghead('تیکت‌ها', helpBtn(), closeBtn())}
       <div class="gut tk-page">
         <div class="tk-intro"><b>W² فقط با دعوت باز می‌شود.</b><small>سطح عضویت شما (${trTier().fa}) تعیین می‌کند هر فصل چند تیکت و از چه نوعی دارید.</small></div>
-        <div class="tk-fan">${TK_KINDS.map(k => `<button class="tk-card tap ${k === sel ? 'on' : ''}" data-act="tkSel" data-k="${k}">${tkArt(k, { locked: lockTx(k) })}</button>`).join('')}</div>
+        <div class="tk-fan">${TK_KINDS.map(k => `<button class="tk-card tap ${k === sel ? 'on' : ''}" data-act="tkSel" data-k="${k}">${tkPhoto(k, { locked: lockTx(k) })}</button>`).join('')}</div>
         <div class="tk-sel"><h2>${T.t}</h2>
           <ul>${T.gets.map(g => `<li>${icon('check', 'w-4 h-4')}${g}</li>`).join('')}</ul>
           ${al ? `<div class="tk-quota"><div><span>باقی‌ماندهٔ ${se.fa}</span><b class="num">${faD(left)} از ${faD(al)}</b></div><div class="tk-pips">${Array.from({ length: al }, (_, i) => `<i class="${i < al - left ? '' : 'on'}"></i>`).join('')}</div><small>سهمیهٔ تازه: ${se.next}</small></div>
@@ -8343,7 +8591,7 @@ Sheets.tkSend = {
       <div class="fm-note">${icon('shield-check', 'w-4 h-4')}<span>هر تیکت فقط یک بار و تا ۳۰ روز کار می‌کند. W² به دعوت‌شده نشان می‌دهد تیکت از طرف شماست.</span></div>
       <button class="btn btn-primary tap" id="tkMk" data-act="tkMake" ${(N.name || '').trim().length >= 2 ? '' : 'disabled'}>ساخت تیکت</button>`;
     return `<div class="sh-head"><div><h3>تیکت ${N.name} آماده است</h3><p>کد را بفرستید؛ با همین کد ثبت‌نام می‌کند.</p></div>${closeBtn('closeSheet')}</div>
-      <div class="tk-made">${tkArt(N.kind, { code: N.code })}</div>
+      <div class="tk-made">${tkPhoto(N.kind, { cls: 'big' })}<b class="tk-plate lat" dir="ltr">${N.code}</b></div>
       <div class="fm-qr">${shQrSvg('https://w2.app/t/' + N.code, 150)}<small>یا این QR را حضوری اسکن کند.</small></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ghost tap" data-act="tkCopy">${icon('copy', 'w-4 h-4')} کپی کد</button><button class="btn btn-primary tap" data-act="tkShareTxt">${icon('share-2', 'w-4 h-4')} ارسال دعوت</button></div>`; },
   mount: w => { const i = $('#tkName', w); if (i) { i.addEventListener('input', () => { S.tkN.name = i.value; $('#tkMk', w).disabled = i.value.trim().length < 2; }); setTimeout(() => i.focus(), 250); } S.activePad = null; }
@@ -8351,7 +8599,7 @@ Sheets.tkSend = {
 Sheets.tkInv = {
   render: p => { const t = DB.tickets.sent.find(x => x.id === p.id); if (!t) return ''; const T = TK[t.kind];
     return `<div class="sh-head"><div><h3>${T.t} · ${t.name}</h3><p>${t.st === 'joined' ? 'عضو W² شد' : t.st === 'void' ? 'لغو شد' : 'منتظر ثبت‌نام'}</p></div>${closeBtn('closeSheet')}</div>
-      <div class="tk-made">${tkArt(t.kind, { code: t.st === 'sent' ? t.code : '' })}</div>
+      <div class="tk-made">${tkPhoto(t.kind, { cls: 'big' })}${t.st === 'sent' ? `<b class="tk-plate lat" dir="ltr">${t.code}</b>` : ''}</div>
       <div class="group"><div class="kv"><span>ساخته‌شده</span><b>${dtfS.format(new Date(t.at))}</b></div>${t.st === 'joined' ? `<div class="kv"><span>عضویت</span><b>${dtfS.format(new Date(t.jat))}</b></div><div class="kv"><span>دارایی</span><b>${icon('eye-off', 'w-4 h-4')} محرمانه</b></div>` : t.st === 'sent' ? `<div class="kv"><span>اعتبار</span><b>${tkExp(t)}</b></div>` : ''}</div>
       ${t.st === 'sent' ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ghost tap" data-act="tkCopy" data-id="${t.id}">${icon('copy', 'w-4 h-4')} کپی کد</button><button class="btn btn-primary tap" data-act="tkShareTxt" data-id="${t.id}">${icon('share-2', 'w-4 h-4')} ارسال دوباره</button></div>
         <button class="btn btn-ghost tap" style="color:var(--loss)" data-act="tkVoid" data-id="${t.id}">${icon('x-circle', 'w-5 h-5')} لغو تیکت و برگشت به سهمیه</button>` : ''}`; }
@@ -8391,27 +8639,24 @@ const tkPos = W => Math.max(0, Math.round(W.pos0 - (Date.now() - W.at) / 1000 * 
 const _suHTMLTk = suHTML;
 suHTML = () => { const U = S.su; if (!U) return '';
   if (U.step === 'inv') { const v = U.tcode || '', full = v.length === 13, bad = U.terr;
-    return kyWrapPage(`<div class="tk-gate">${['bronze', 'silver', 'gold'].map(k => `<span class="tk-g ${k}">${tkArt(k)}</span>`).join('')}</div>
+    return kyWrapPage(`<div class="tk-gate">${['bronze', 'silver', 'gold'].map(k => `<span class="tk-g ${k}">${tkPhoto(k)}</span>`).join('')}<span class="tk-gate-floor"></span></div>
       <div><h1 class="h-title" style="font-size:24px">W² فقط با دعوت</h1><p class="h-sub">کد تیکتی را که از یکی از اعضا گرفته‌اید وارد کنید. نوع تیکت (برنزی، نقره‌ای یا طلایی) سطح شروع شما را تعیین می‌کند.</p></div>
       <label class="inp ${bad ? 'err' : ''}"><span>کد تیکت</span><input id="tkIn" dir="ltr" class="lat" autocapitalize="characters" autocomplete="off" maxlength="13" placeholder="W2B-XXXX-XXXX" value="${v}"></label>
       ${bad ? `<div class="msg err">${icon('alert-circle')}${bad}</div>` : ''}`,
       `<button class="btn btn-primary tap" id="tkGo" data-act="tkCheck" ${full && !U.busy ? '' : 'disabled'}>${U.busy ? '<span class="spin"></span> بررسی تیکت…' : 'بررسی تیکت'}</button><button class="btn tap tk-nocode" data-act="tkJoinWait">${icon('hourglass', 'w-4 h-4')} تیکت ندارم؛ به صف انتظار می‌پیوندم</button>`); }
-  if (U.step === 'invok' || U.step === 'waitok') { const k = U.ticket.kind, T = TK[k];
-    return kyWrapPage(`<div class="tk-reveal ${k}">${U.step === 'waitok' ? '<div class="tk-confetti">' + Array.from({ length: 18 }, (_, i) => `<i style="--i:${i}"></i>`).join('') + '</div>' : ''}<div class="tk-flip">${tkArt(k)}</div></div>
+  if (U.step === 'invok' || U.step === 'waitok') { const k = U.ticket.kind, T = TK[k]; wlDispose();
+    return kyWrapPage(`<div class="tk-reveal ${k}">${U.step === 'waitok' ? '<div class="tk-confetti">' + Array.from({ length: 18 }, (_, i) => `<i style="--i:${i}"></i>`).join('') + '</div>' : ''}<div class="tk-flip">${tkPhoto(k, { cls: 'big' })}</div>${U.ticket.code ? `<b class="tk-plate lat" dir="ltr">${U.ticket.code}</b>` : ''}</div>
       <div style="text-align:center"><h1 class="h-title" style="font-size:24px">${U.step === 'waitok' ? 'نوبت شما رسید!' : `${T.t} شما معتبر است`}</h1><p class="h-sub">${U.ticket.from ? `از طرف ${U.ticket.from}` : 'از طرف W²'}</p></div>
       <ul class="tk-gets">${T.gets.map(g => `<li>${icon('check', 'w-4 h-4')}${g}</li>`).join('')}</ul>`,
       `<button class="btn btn-primary tap" data-act="tkCont">${U.step === 'waitok' ? 'ادامهٔ ثبت‌نام' : 'ادامه با شمارهٔ موبایل'}</button>`); }
   if (U.step === 'wait') { const W = U.W, pos = tkPos(W), pct = 1 - pos / W.pos0;
     return kyWrapPage(`<div class="wl">
-      <div class="wl-gate"><span class="wl-glow"></span><b>W²</b></div>
-      <div class="wl-q"><div class="wl-line">${Array.from({ length: 9 }, (_, i) => `<i style="--i:${i}"></i>`).join('')}<em>شما</em></div></div>
-      <div class="wl-num"><small>نفر جلوتر از شما</small><b class="num" id="wlPos">${faD(pos.toLocaleString('en-US')).replace(/,/g, '٬')}</b></div>
-      <div class="wl-bar"><i id="wlBar" style="width:${(pct * 100).toFixed(1)}%"></i></div>
+      <div class="wl-stage tap" id="wlStage" data-act="tkNudge" aria-label="سکه را بزنید"><span class="wl-still"></span><span class="wl-tapme">${icon('hand', 'w-4 h-4')} روی سکه بزنید</span></div>
+      <div class="wl-board"><small>نفر جلوتر از شما</small><span id="wlPos">${flapHTML(pos)}</span></div>
+      <div class="wl-rail"><i id="wlBar" style="width:${(pct * 100).toFixed(1)}%"></i></div>
       <p class="wl-fun" id="wlFun">${TK_FUN[0]}</p>
-      <button class="wl-coin tap" data-act="tkNudge" aria-label="هل دادن صف"><span>W²</span></button>
-      <small class="wl-hint">سکه را بزنید؛ هر ضربه ۵ نفر جلو می‌روید (تا ${faD(50)} نفر در روز)</small>
-      <div class="wl-stats"><div><b class="num">${faD('1,206').replace(',', '٬')}</b><span>ورود امروز</span></div><div><b class="num" id="wlEta">${tkEtaFa(pos, W)}</b><span>زمان تقریبی</span></div><div><b class="num">${faD(W.boost ? Math.round(W.boost) : 0)}</b><span>جلو افتادید</span></div></div>
-      <div class="ky-note">${icon('flask-conical', 'w-4 h-4')}<span>نسخهٔ آزمایشی: صف خیلی سریع‌تر از نسخهٔ واقعی جلو می‌رود.</span></div></div>`,
+      <div class="wl-stats"><div><b class="num">${faD('1,206').replace(',', '٬')}</b><span>ورود امروز</span></div><div><b class="num" id="wlEta">${tkEtaFa(pos, W)}</b><span>زمان تقریبی</span></div><div><b class="num" id="wlBoost">${faD(W.boost ? Math.round(W.boost) : 0)}</b><span>جلو افتادید</span></div></div>
+      <div class="ky-note">${icon('flask-conical', 'w-4 h-4')}<span>هر بار سکه بیفتد ۵ نفر جلو می‌روید (تا ۵۰ نفر در روز). نسخهٔ آزمایشی: صف خیلی سریع‌تر از نسخهٔ واقعی جلو می‌رود.</span></div></div>`,
       `<button class="btn btn-primary tap" data-act="tkWaitShare">${icon('share-2', 'w-5 h-5')} دعوت دوستان به صف · هر نفر ۲۵۰ جایگاه</button><button class="btn tap tk-nocode" data-act="tkHaveCode">تیکت گرفتم؛ وارد کردن کد</button>`, { tt: 'صف انتظار' }); }
   let h = _suHTMLTk();
   if (U.step === 'mob' && U.flow === 'new') { h = h.replace('data-act="toOnboarding"', 'data-act="suBack"'); if (U.wait) h = h.replace(/<h1 class="h-title">[^<]*<\/h1><p class="h-sub">[^<]*<\/p>/, '<h1 class="h-title">پیوستن به صف انتظار</h1><p class="h-sub">با شمارهٔ موبایل در صف می‌مانید؛ وقتی نوبتتان رسید پیامک می‌دهیم.</p>');
@@ -8422,11 +8667,11 @@ const _suMountTk = suMount;
 suMount = el => { _suMountTk(el); const U = S.su; if (!U) return;
   if (U.step === 'inv') { const i = $('#tkIn', el), b = $('#tkGo', el); i.addEventListener('input', () => { let t = i.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 11); const f = t.length > 3 ? t.slice(0, 3) + '-' + t.slice(3, 7) + (t.length > 7 ? '-' + t.slice(7) : '') : t; U.tcode = f; i.value = f; if (U.terr) { U.terr = ''; const m = el.querySelector('.msg.err'); m && m.remove(); i.closest('.inp').classList.remove('err'); } b.disabled = f.length !== 13; }); S.activePad = null; setTimeout(() => i.focus(), 300); }
   if (U.step === 'motp' && U.wait) S.pads.suk = suCodeKey(6, U.mcode, () => { const W = { pos0: 2400 + Math.floor(Math.random() * 1400), at: Date.now(), rate: 22, boost: 0, mob: U.mob, taps: 0, day: new Date().toDateString() }; tkWait.set(W); suGo('wait', { W }); });
-  if (U.step === 'wait') { clearInterval(U.wlIv); let f = 0;
+  if (U.step === 'wait') { clearInterval(U.wlIv); let f = 0; const st = $('#wlStage', el); st && wlMount(st);
     U.wlIv = setInterval(() => { if (!S.su || S.su.step !== 'wait') return clearInterval(U.wlIv); const W = U.W, pos = tkPos(W), p = $('#wlPos'), bar = $('#wlBar'), eta = $('#wlEta');
-      if (p) p.textContent = faD(pos.toLocaleString('en-US')).replace(/,/g, '٬'); if (bar) bar.style.width = ((1 - pos / W.pos0) * 100).toFixed(1) + '%'; if (eta) eta.textContent = tkEtaFa(pos, W);
+      if (p) flapSet(p.querySelector('.flaps'), pos); if (bar) bar.style.width = ((1 - pos / W.pos0) * 100).toFixed(1) + '%'; if (eta) eta.textContent = tkEtaFa(pos, W);
       if (++f % 7 === 0) { const fn = $('#wlFun'); if (fn) { fn.classList.remove('in'); void fn.offsetWidth; fn.textContent = TK_FUN[(f / 7) % TK_FUN.length]; fn.classList.add('in'); } }
-      if (pos <= 0) { clearInterval(U.wlIv); tkWait.set(null); vib([20, 40, 20, 40, 60]); suGo('waitok', { ticket: { kind: 'bronze', from: 'W²' } }); } }, 500); }
+      if (pos <= 0) { clearInterval(U.wlIv); wlDispose(); tkWait.set(null); vib([20, 40, 20, 40, 60]); suGo('waitok', { ticket: { kind: 'bronze', from: 'W²' } }); } }, 500); }
 };
 const _suBackTk = A.suBack;
 A.suBack = () => { const U = S.su || {};
@@ -8445,10 +8690,12 @@ Object.assign(A, {
   tkCont: () => { const U = S.su; if (U.step === 'waitok') return suGo('name'); U.wait = false; suGo('mob'); },
   tkJoinWait: () => { const U = S.su; U.wait = true; U.ticket = null; suGo('mob'); },
   tkHaveCode: () => { const U = S.su; clearInterval(U.wlIv); U.wait = false; suGo('inv', { tcode: '' }); },
-  tkNudge: (d, el) => { const U = S.su, W = U.W, today = new Date().toDateString(); if (W.day !== today) { W.day = today; W.taps = 0; }
-    el.classList.remove('spin'); void el.offsetWidth; el.classList.add('spin'); vib(8);
-    if (W.taps >= 10) return toast({ ic: 'coffee', title: 'امروز صف را حسابی هل دادید!', body: 'فردا دوباره سکه بزنید.', ms: 2000 });
-    W.taps++; W.boost = (W.boost || 0) + 5; tkWait.set(W); const p = $('#wlPos'); if (p) { p.classList.remove('pop'); void p.offsetWidth; p.classList.add('pop'); } },
+  tkNudge: () => { const U = S.su, W = U.W, today = new Date().toDateString(); if (W.day !== today) { W.day = today; W.taps = 0; }
+    if (!wlToss()) return;
+    const st = $('#wlStage'); st && st.classList.add('used');
+    setTimeout(() => { if (!S.su || S.su.step !== 'wait') return;
+      if (W.taps >= 10) return toast({ ic: 'coffee', title: 'امروز صف را حسابی هل دادید!', body: 'فردا دوباره سکه بیندازید.', ms: 2000 });
+      W.taps++; W.boost = (W.boost || 0) + 5; tkWait.set(W); const b = $('#wlBoost'); if (b) b.textContent = faD(Math.round(W.boost)); flapSet($('#wlPos .flaps'), tkPos(W)); }, 900); },
   tkWaitShare: () => { const W = S.su.W, txt = `من در صف انتظار W² هستم؛ با این لینک بپیوند تا هر دو جلو بیفتیم:\nhttps://w2.app/w/${(W.mob || '').slice(-4)}${W.pos0}`;
     if (navigator.share) navigator.share({ text: txt }).catch(() => {}); else copyText(txt, 'لینک صف'); }
 });
