@@ -7123,8 +7123,15 @@ function trSync(quiet) {
     if (!trQ(a.id)) return;
     const L = trClsLvl(a), was = T.cls[a.id];
     if (was && L > was && !quiet) setTimeout(() => { vib([10, 30, 10]); toast({ title: `${a.short}: سطح ${faD(L)}`, body: `دارایی ${a.short} شما به «${TR_NAMES[a.id][L - 1]}» رسید.`, ic: 'trending-up', ms: 3800 }); }, 900);
+    if (was && L !== was) setTimeout(() => trArtRefresh(a), 0);
     T.cls[a.id] = L;
   });
+}
+/* carousel art follows a level change at once (buying/selling elsewhere in the app) */
+function trArtRefresh(a) {
+  const car = document.getElementById('asCar'); if (!car) return; const k = DB.assets.indexOf(a), sl = car.children[k]; if (!sl) return;
+  sl.innerHTML = media('asset_' + a.id, a.id, 'vid'); hydrate(sl);
+  if (S.tab === 'assets' && sl.classList.contains('on')) { const tv = document.getElementById('tabview'); try { tv && paintAsset(tv); } catch (e) {} }
 }
 
 /* ---------- media: carousel art follows each asset level ---------- */
