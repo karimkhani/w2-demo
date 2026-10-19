@@ -1953,6 +1953,50 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 .bk-v25 .ky-row{margin-top:-8px}
 .bk-r .rt small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .bk-r .rt{display:flex;flex-direction:column;min-width:0;flex:1}
+/* v26 · bank hero: balance + credit side by side, one summing line */
+.bk-v25 .bk-hero{gap:20px}
+.bk-v25 .bal{gap:2px;width:100%}
+.bk-pair{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;width:100%;flex-wrap:nowrap;min-width:0}
+.bk-pair .bal-amt{line-height:1.25;white-space:nowrap}
+.bk-cr{display:flex;flex-direction:column;align-items:flex-end;gap:1px;padding:0 0 8px;border:0;background:none;font:inherit;color:var(--fg-3);text-align:left;margin-inline-start:auto}
+.bk-cr small{font-size:11.5px;font-weight:500;color:var(--fg-3);opacity:.85}
+.bk-cr>span{font-size:13px;font-weight:500;white-space:nowrap;color:var(--fg-3)}
+.bk-cr b{font-size:19px;font-weight:600;color:var(--fg-2);opacity:.62;letter-spacing:-.01em}
+.bk-cr:active b{opacity:1}
+
+/* the one line that adds everything up */
+.bk-sum{display:flex;flex-direction:column;gap:10px;width:100%;padding:14px 16px 13px;border:0;border-radius:var(--r-lg);background:var(--ink-1);font:inherit;color:var(--fg);text-align:right}
+:root[data-w2theme="light"] .bk-sum{background:#FFFDF9;box-shadow:0 1px 0 rgba(60,45,20,.04),0 10px 30px -22px rgba(60,45,20,.25)}
+.bk-sum-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.bk-sum-h>span{font-size:12.5px;color:var(--fg-3);font-weight:500}
+.bk-sum-h>b{display:flex;align-items:center;gap:4px;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.bk-sum-h>b small{font-size:12px;font-weight:500;color:var(--fg-3)}
+.bk-sum-h .chev{width:15px;height:15px;color:var(--fg-3);opacity:.6;margin-inline-start:2px}
+.bk-bar{display:flex;flex-wrap:nowrap!important;gap:2px;height:6px;direction:rtl;border-radius:3px;overflow:hidden}
+.bk-bar.lg{height:8px;border-radius:4px;margin-top:10px}
+.bk-bar i{display:block;height:100%;border-radius:2px;flex:0 1 auto;min-width:3px}
+.bk-bar .c,.bk-leg .c,.bk-dot.c{background:var(--fg)}
+.bk-bar .a,.bk-leg .a,.bk-dot.a{background:var(--bullion)}
+.bk-bar .k{background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--fg-3) 55%,transparent) 0 2px,transparent 2px 5px);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--fg-3) 45%,transparent)}
+.bk-leg .k,.bk-dot.k{background:transparent;box-shadow:inset 0 0 0 1.5px var(--fg-3)}
+.bk-leg{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.bk-leg>span{display:flex;align-items:center;gap:5px}
+.bk-leg i{width:7px;height:7px;border-radius:50%;flex:none}
+.bk-leg b{font-weight:600;color:var(--fg-2)}
+.bk-leg>span:last-child b{font-weight:500;color:var(--fg-3)}
+
+/* summary sheet */
+.bk-sh-top{display:flex;flex-direction:column;gap:2px;padding:4px 2px 2px}
+.bk-sh-top>small{font-size:12.5px;color:var(--fg-3)}
+.bk-sh-top>b{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.bk-sh-top>b small{font-size:13px;font-weight:500;color:var(--fg-3)}
+.bk-dot{display:block;width:10px;height:10px;border-radius:50%;margin:auto}
+.bk-sv{font-weight:600;font-size:15px;white-space:nowrap}
+[data-sheet="bkSum"] .sheet-body{display:flex;flex-direction:column;gap:14px}
+.bk-note{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.9;color:var(--fg-3);margin:0}
+.bk-note svg{flex:none;width:16px;height:16px;margin-top:4px}
+.bk-sv{display:flex;flex-direction:column;align-items:flex-end;line-height:1.3}.bk-sv small{font-size:11px;font-weight:500;color:var(--fg-3)}
+.bk-bar i{border:0!important;margin:0!important}
 </style>
 </head>
 <body>
@@ -1989,7 +2033,7 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 
 <!-- Service Worker source. Browsers only register a worker from a same-origin file, so this exact text also ships as sw.js next to index.html. -->
 <script type="text/plain" id="sw-source">
-const CACHE = 'w2-shell-v25';
+const CACHE = 'w2-shell-v26';
 const SHELL = ['./', './index.html', './img/onb_wealth.jpg', './img/onb_wonder.jpg', './img/onb_wisdom.jpg', './img/onb_worth.jpg', './img/asset_gold.jpg', './img/asset_silver.jpg', './img/asset_property.jpg', './img/asset_copper.jpg', './img/asset_fund.jpg', './img/bill_mobile.jpg', './img/bill_elec.jpg', './img/bill_water.jpg', './img/bill_gas.jpg', './img/bill_phone.jpg', './img/bill_id.jpg', './img/asset_oil.jpg', './img/onb_well.jpg', './img/onb_world.jpg', './img/onb_wheels.jpg', './img/card_front.jpg', './img/ticket_gold.jpg', './img/ticket_holo.jpg', './img/asset_debt.jpg', './img/asset_lease.jpg', './img/car_tara.jpg', './img/car_shahin.jpg', './img/car_tiggo7.jpg', './img/car_arrizo8.jpg', './img/pf_hero.jpg', './img/asset_pf.jpg', './img/pf_hi.jpg', './img/pf_dig.jpg', './img/pf_grw.jpg', './img/svc_inst.jpg', './img/svc_stake.jpg', './img/svc_guard.jpg', './img/svc_save.jpg', './img/svc_credit.jpg', './img/gift_classic.jpg', './img/gift_birthday.jpg', './img/gift_nowruz.jpg', './img/gift_love.jpg', './img/w2-icon-192.png', './img/w2-icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -9042,6 +9086,71 @@ Tabs.bank.render = () => {
   gut.innerHTML = out; gut.classList.add('bk-v25');
   return t.innerHTML;
 };
+
+/* =========================================================
+   v26 · bank hero: balance with available credit beside it (quieter),
+   and one line that adds up cash + assets + credit at a glance.
+   References: Robinhood Credit (balance, available underneath in a lighter tone,
+   one thin bar), E*TRADE (total and secondary figure side by side),
+   Copilot / Robinhood (one total, then the parts).
+   ========================================================= */
+const bkC = rial => { const v = Math.max(0, rial);   /* compact rial: 960 میلیون */
+  if (v >= 1e9) return { n: trNum(v / 1e9, v >= 1e10 ? 0 : 1), u: 'میلیارد' };
+  if (v >= 1e6) return { n: trNum(v / 1e6, v >= 1e8 ? 0 : 1), u: 'میلیون' };
+  return { n: fa(v), u: '' }; };
+const bkParts = () => { const cash = Math.max(0, DB.rial), assets = Math.max(0, totalWealth() - DB.rial), credit = Math.max(0, creditCap());
+  return { cash, assets, credit, net: cash + assets, all: cash + assets + credit }; };
+
+const bkBar = P => [['c', P.cash], ['a', P.assets], ['k', P.credit]].filter(x => x[1] > 0).map(([k, v]) => `<i class="${k}" style="width:${(v / (P.all || 1) * 100).toFixed(2)}%"></i>`).join('');
+const _bankV26 = Tabs.bank.render;
+Tabs.bank.render = () => {
+  const html = _bankV26(), t = document.createElement('template'); t.innerHTML = html;
+  const hero = t.content.querySelector('.bk-hero'), bal = hero && hero.querySelector('.bal'); if (!bal) return html;
+  const P = bkParts(), m = S.maskBal, sz = 38;
+  const c = bkC(P.credit), pc = v => Math.max(v / (P.all || 1) * 100, v ? 1.2 : 0).toFixed(2);
+  const lab = bal.querySelector('.bal-label'), amt = bal.querySelector('.bal-amt'), words = bal.querySelector('.bal-words');
+  amt.style.fontSize = sz + 'px';
+  bal.innerHTML = `${lab.outerHTML}
+    <div class="bk-pair">
+      ${amt.outerHTML}
+      <button class="bk-cr tap" data-act="crOpen" aria-label="اعتبار در دسترس"><small>اعتبار در دسترس</small><span><b class="num">${m ? '••••' : c.n}</b> ${m ? '' : c.u} ریال</span></button>
+    </div>
+    ${words ? words.outerHTML : ''}`;
+  const sum = `<button class="bk-sum tap" data-act="bkSum">
+      <span class="bk-sum-h"><span>موجودی + دارایی + اعتبار</span><b><span class="num">${m ? '••••••' : trM(P.all)}</span> <small>تومان</small>${icon('chevron-left', 'chev')}</b></span>
+      <span class="bk-bar">${bkBar(P)}</span>
+      <span class="bk-leg"><span><i class="c"></i>موجودی <b class="num">${m ? '••' : trM(P.cash)}</b></span><span><i class="a"></i>دارایی <b class="num">${m ? '••' : trM(P.assets)}</b></span><span><i class="k"></i>اعتبار <b class="num">${m ? '••' : trM(P.credit)}</b></span></span>
+    </button>`;
+  bal.insertAdjacentHTML('afterend', sum);
+  /* the credit row in the list now lives in the hero; same action, one place */
+  t.content.querySelectorAll('.bk-g .bk-r[data-act="crOpen"]').forEach(e => e.remove());
+  return t.innerHTML;
+};
+
+Sheets.bkSum = {
+  render: () => { const P = bkParts(), m = v => S.maskBal ? '••••••' : v, pc = v => faD(Math.round(v / (P.all || 1) * 100));
+    return `<div class="sh-head"><div><h3>همه‌چیز در یک نگاه</h3><p>نقد، دارایی و اعتباری که همین حالا در اختیار دارید.</p></div>${closeBtn('closeSheet')}</div>
+      <div class="bk-sh-top"><small>جمع موجودی، دارایی و اعتبار</small><b><span class="num">${m(trM(P.all))}</span> <small>تومان</small></b>
+        <span class="bk-bar lg">${bkBar(P)}</span></div>
+      <div class="group">
+        <button class="row tap" data-act="bkSumGo" data-to="cash"><span class="ri"><i class="bk-dot c"></i></span><span class="rt"><b>موجودی حساب ریالی</b><small>${pc(P.cash)}٪ · نقد</small></span><b class="bk-sv"><span class="num">${m(trM(P.cash))}</span><small>تومان</small></b>${icon('chevron-left', 'chev')}</button>
+        <button class="row tap" data-act="bkSumGo" data-to="assets"><span class="ri"><i class="bk-dot a"></i></span><span class="rt"><b>دارایی‌ها</b><small>${pc(P.assets)}٪ · به قیمت روز</small></span><b class="bk-sv"><span class="num">${m(trM(P.assets))}</span><small>تومان</small></b>${icon('chevron-left', 'chev')}</button>
+        <button class="row tap" data-act="bkSumGo" data-to="credit"><span class="ri"><i class="bk-dot k"></i></span><span class="rt"><b>اعتبار در دسترس</b><small>${pc(P.credit)}٪ · به پشتوانهٔ دارایی‌ها</small></span><b class="bk-sv"><span class="num">${m(trM(P.credit))}</span><small>تومان</small></b>${icon('chevron-left', 'chev')}</button>
+      </div>
+      <div class="group"><div class="kv"><span>دارایی خالص (موجودی + دارایی)</span><b class="num">${m(trM(P.net))} تومان</b></div></div>
+      <p class="bk-note">${icon('info')}<span>اعتبار، پولِ قرضی است که به پشتوانهٔ دارایی‌هایتان می‌گیرید؛ برای همین با خط‌چین و کم‌رنگ‌تر نشان داده می‌شود و جزو دارایی خالص شما نیست.</span></p>`; }
+};
+A.bkSum = () => { vib(6); openSheet('bkSum'); };
+A.bkSumGo = d => { closeAllSheets(true);
+  if (d.to === 'credit') return A.crOpen();
+  if (d.to === 'assets') return A.tab({ to: 'assets' });
+  openSheet('deposit'); };
+/* keep the credit figure beside the balance: shrink the balance until both fit on one line */
+const bkFit = el => { const pair = el && el.querySelector('.bk-pair'); if (!pair) return; const amt = pair.querySelector('.bal-amt'), cr = pair.querySelector('.bk-cr'); if (!amt || !cr) return;
+  let fs = 38; amt.style.fontSize = fs + 'px';
+  while (fs > 22 && amt.scrollWidth + cr.offsetWidth + 14 > pair.clientWidth) { fs -= 1; amt.style.fontSize = fs + 'px'; } };
+const _bankMountV26 = Tabs.bank.mount;
+Tabs.bank.mount = el => { _bankMountV26 && _bankMountV26(el); bkFit(el); document.fonts && document.fonts.ready.then(() => bkFit(el)); };
 
 /* ---------- global listeners ---------- */
 document.addEventListener('click', e => {
