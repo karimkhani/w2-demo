@@ -2033,7 +2033,7 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 
 <!-- Service Worker source. Browsers only register a worker from a same-origin file, so this exact text also ships as sw.js next to index.html. -->
 <script type="text/plain" id="sw-source">
-const CACHE = 'w2-shell-v26';
+const CACHE = 'w2-shell-v27';
 const SHELL = ['./', './index.html', './img/onb_wealth.jpg', './img/onb_wonder.jpg', './img/onb_wisdom.jpg', './img/onb_worth.jpg', './img/asset_gold.jpg', './img/asset_silver.jpg', './img/asset_property.jpg', './img/asset_copper.jpg', './img/asset_fund.jpg', './img/bill_mobile.jpg', './img/bill_elec.jpg', './img/bill_water.jpg', './img/bill_gas.jpg', './img/bill_phone.jpg', './img/bill_id.jpg', './img/asset_oil.jpg', './img/onb_well.jpg', './img/onb_world.jpg', './img/onb_wheels.jpg', './img/card_front.jpg', './img/ticket_gold.jpg', './img/ticket_holo.jpg', './img/asset_debt.jpg', './img/asset_lease.jpg', './img/car_tara.jpg', './img/car_shahin.jpg', './img/car_tiggo7.jpg', './img/car_arrizo8.jpg', './img/pf_hero.jpg', './img/asset_pf.jpg', './img/pf_hi.jpg', './img/pf_dig.jpg', './img/pf_grw.jpg', './img/svc_inst.jpg', './img/svc_stake.jpg', './img/svc_guard.jpg', './img/svc_save.jpg', './img/svc_credit.jpg', './img/gift_classic.jpg', './img/gift_birthday.jpg', './img/gift_nowruz.jpg', './img/gift_love.jpg', './img/w2-icon-192.png', './img/w2-icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -3154,10 +3154,10 @@ function srcInfo(id) {
   return { id, name: 'دارایی ' + a.short, avail: svcOf(a) ? Math.floor(freeQty(a) * a.price) : valueOf(a), thumb: `<span class="thumb" style="width:44px;height:44px">${media('asset_' + a.id, a.id)}</span>` };
 }
 function xferKey(k) {
-  const x = S.xfer; let s = x.amount ? String(x.amount) : '';
+  const x = S.xfer; let s = x.amount ? String(Math.round(x.amount / 10)) : '';
   if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, '');
   if (s.length > 13) return;
-  x.amount = +s || 0; updateXfer();
+  x.amount = (+s || 0) * 10; updateXfer();
 }
 function xferError() {
   const x = S.xfer, src = srcInfo(x.src);
@@ -3605,7 +3605,7 @@ const Sheets = {
     },
     mount: wrap => {
       const T = S.pfT; _pMsg = '';
-      S.pads.pfAmt = k => { let v = T.amount || ''; if (k === 'del') v = v.slice(0, -1); else if (k === '000') v = v ? v + '000' : ''; else if (/\d/.test(k)) v = (v + k).replace(/^0+/, ''); if (v.length > 13) return; T.amount = v; updatePf(); };
+      S.pads.pfAmt = k => { let v = T.amount ? String(Math.round(+T.amount / 10)) : ''; if (k === 'del') v = v.slice(0, -1); else if (k === '000') v = v ? v + '000' : ''; else if (/\d/.test(k)) v = (v + k).replace(/^0+/, ''); if (v.length > 13) return; T.amount = v ? String(+v * 10) : ''; updatePf(); };
       S.activePad = 'pfAmt'; updatePf();
       const iv = setInterval(() => { if (!wrap.isConnected || !document.getElementById('pQuote')) return clearInterval(iv); T.left--; if (T.left <= 0) { T.left = 20; T.noise = (Math.random() - .5) * .002; } updatePf(); }, 1000);
     }
@@ -3761,7 +3761,7 @@ const Sheets = {
     },
     mount: wrap => {
       const T = S.trade; if (T.step === 'confirm') return;
-      S.pads.trade = k => { let s = T.amount ? String(T.amount) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 13) return; T.amount = +s || 0; updateTrade(); };
+      S.pads.trade = k => { let s = T.amount ? String(Math.round(T.amount / 10)) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 13) return; T.amount = (+s || 0) * 10; updateTrade(); };
       if (T.pad) S.activePad = 'trade';
       const r = $('#ruler', wrap);
       if (r) {
@@ -3782,7 +3782,7 @@ const Sheets = {
       <div class="chips" style="justify-content:center">${[1000000, 10000000, 50000000, 100000000].map(v => `<button class="chip tap" data-act="depPreset" data-v="${v}">${tomanWords(v).replace(' تومان', '')}</button>`).join('')}</div>
       ${keypad('dep', '000', true)}
       <button class="btn btn-primary tap" id="dBtn" data-act="depGo" ${S.dep >= 100000 ? '' : 'disabled'}>پرداخت از درگاه شتاب</button>`,
-    mount: () => { S.dep = S.dep || 0; S.pads.dep = k => { let s = S.dep ? String(S.dep) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; S.dep = +s || 0; updateDep(); }; S.activePad = 'dep'; },
+    mount: () => { S.dep = S.dep || 0; S.pads.dep = k => { let s = S.dep ? String(Math.round(S.dep / 10)) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; S.dep = (+s || 0) * 10; updateDep(); }; S.activePad = 'dep'; },
     unmount: () => { S.dep = 0; }
   },
 
@@ -4619,7 +4619,7 @@ Object.assign(Pages, {
         <div class="pg-foot">${V.pad ? keypad('sv', '000', true) : ''}<button class="btn btn-primary tap" data-act="svNext" data-id="${a.id}" ${V.amt >= 1000000 ? '' : 'disabled'}>تأیید و ادامه</button></div>
       </div></div>`;
     },
-    mount: (el, p) => { S.pads.sv = k => { let s = S.sv.amt ? String(S.sv.amt) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; S.sv.amt = +s || 0; const e = $('#svAmt'); if (e) { e.textContent = fa(S.sv.amt); $('#svWords').textContent = tomanWords(S.sv.amt); const b = $('[data-act="svNext"]'); b.disabled = S.sv.amt < 1000000; } }; if (S.sv.pad) S.activePad = 'sv'; }
+    mount: (el, p) => { S.pads.sv = k => { let s = S.sv.amt ? String(Math.round(S.sv.amt / 10)) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; S.sv.amt = (+s || 0) * 10; const e = $('#svAmt'); if (e) { e.textContent = fa(S.sv.amt); $('#svWords').textContent = tomanWords(S.sv.amt); const b = $('[data-act="svNext"]'); b.disabled = S.sv.amt < 1000000; } }; if (S.sv.pad) S.activePad = 'sv'; }
   }
 });
 const pDay = new Intl.DateTimeFormat('en-u-ca-persian', { day: 'numeric' });
@@ -6089,7 +6089,7 @@ Sheets.autoEdit = {
       ${E.pad ? keypad('ae', '000', true) : '<div style="flex:1"></div>'}
       <button class="btn btn-primary tap" data-act="aeSave" ${!money || E.amount >= CONFIG.minTransfer ? '' : 'disabled'}>ذخیرهٔ تغییرات</button>`;
   },
-  mount: () => { S.pads.ae = k => { const E = S.ae; let s = E.amount ? String(E.amount) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; E.amount = +s || 0; refreshSheet(); }; if (S.ae.pad) S.activePad = 'ae'; }
+  mount: () => { S.pads.ae = k => { const E = S.ae; let s = E.amount ? String(Math.round(E.amount / 10)) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; E.amount = (+s || 0) * 10; refreshSheet(); }; if (S.ae.pad) S.activePad = 'ae'; }
 };
 Object.assign(A, {
   aePad: () => { S.ae.pad = !S.ae.pad; refreshSheet(); },
@@ -6603,7 +6603,7 @@ Object.assign(Pages, {
         ${keypad('tpa', '000', true)}
         <button class="btn btn-primary tap" id="tpaGo" data-act="${short && !tpAmtErr(v, true) ? 'tpaTopUp' : 'tpaNext'}" ${v && (!e || (short && !tpAmtErr(v, true))) ? '' : 'disabled'}>${short && !tpAmtErr(v, true) ? 'واریز به کیف پول' : 'ادامه'}</button>
       </div></div>`; },
-    mount: () => { S.pads.tpa = k => { let s = S.tpa ? String(S.tpa) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; S.tpa = +s || 0; tpaUpd(); }; S.activePad = 'tpa'; }
+    mount: () => { S.pads.tpa = k => { let s = S.tpa ? String(Math.round(S.tpa / 10)) : ''; if (k === 'del') s = s.slice(0, -1); else if (k === '000') s = s ? s + '000' : ''; else if (/\d/.test(k)) s = (s + k).replace(/^0+/, ''); if (s.length > 12) return; S.tpa = (+s || 0) * 10; tpaUpd(); }; S.activePad = 'tpa'; }
   },
   tpReview: {
     render: () => { const v = S.tpa, R = S.tpr, fee = tpFee(v), net = tpNet(v), md = tpMatDate();
@@ -9113,9 +9113,9 @@ Tabs.bank.render = () => {
   bal.innerHTML = `${lab.outerHTML}
     <div class="bk-pair">
       ${amt.outerHTML}
-      <button class="bk-cr tap" data-act="crOpen" aria-label="اعتبار در دسترس"><small>اعتبار در دسترس</small><span><b class="num">${m ? '••••' : c.n}</b> ${m ? '' : c.u} ریال</span></button>
+      <button class="bk-cr tap" data-act="crOpen" aria-label="اعتبار در دسترس"><small>اعتبار در دسترس</small><span><b class="num">${m ? '••••' : trM(P.credit)}</b> تومان</span></button>
     </div>
-    ${words ? words.outerHTML : ''}`;
+`;   /* words line dropped: the figure is already in toman */
   const sum = `<button class="bk-sum tap" data-act="bkSum">
       <span class="bk-sum-h"><span>موجودی + دارایی + اعتبار</span><b><span class="num">${m ? '••••••' : trM(P.all)}</span> <small>تومان</small>${icon('chevron-left', 'chev')}</b></span>
       <span class="bk-bar">${bkBar(P)}</span>
@@ -9151,6 +9151,75 @@ const bkFit = el => { const pair = el && el.querySelector('.bk-pair'); if (!pair
   while (fs > 22 && amt.scrollWidth + cr.offsetWidth + 14 > pair.clientWidth) { fs -= 1; amt.style.fontSize = fs + 'px'; } };
 const _bankMountV26 = Tabs.bank.mount;
 Tabs.bank.mount = el => { _bankMountV26 && _bankMountV26(el); bkFit(el); document.fonts && document.fonts.ready.then(() => bkFit(el)); };
+
+/* =========================================================
+   v27 · toman everywhere
+   The ledger stays in rial (every calculation, limit and fee is untouched);
+   everything a person reads or types is toman. One display layer converts any
+   amount written next to «ریال» (same text, or the unit in the next element),
+   keeps converting numbers that update live beside a converted unit, and renames
+   «ریال/ریالی» to «تومان/تومانی». Money keypads take toman and store rial.
+   ========================================================= */
+const TM_D = '۰۱۲۳۴۵۶۷۸۹';
+const tmParse = s => { const t = s.replace(/[۰-۹]/g, d => TM_D.indexOf(d)).replace(/[٬,]/g, '').replace('٫', '.'); const n = parseFloat(t); return isNaN(n) ? null : n; };
+const TM_MULT = { 'هزار': 1e3, 'میلیون': 1e6, 'میلیارد': 1e9 };
+const tmCompact = v => v >= 1e9 ? trNum(v / 1e9, v >= 1e10 ? 0 : 1) + ' میلیارد' : v >= 1e6 ? trNum(v / 1e6, v >= 1e8 ? 0 : 1) + ' میلیون' : fa(v);
+const tmNum = (num, mult) => { const n = tmParse(num); if (n === null) return num;
+  if (mult) return tmCompact(n * TM_MULT[mult] / 10);
+  const v = n / 10; return Number.isInteger(v) || Math.abs(v) >= 100 ? fa(v) : faDec(v, 1); };
+const TM_NUM = '[۰-۹0-9][۰-۹0-9٬,٫.]*';
+const TM_RE = new RegExp(`(${TM_NUM})(\\s*)(?:(هزار|میلیون|میلیارد)(\\s*))?(?=ریال)`, 'g');
+const tmWords = s => s
+  .replace(/حساب ریال(?:‌)?تان/g, 'حساب تومانی‌تان').replace(/حساب ریالی/g, 'حساب تومانی').replace(/حساب ریال/g, 'حساب تومانی')
+  .replace(/ریالی/g, 'تومانی').replace(/ریاله/g, 'تومنه').replace(/ریال(?:‌)?تان/g, 'تومان‌تان').replace(/ریال/g, 'تومان');
+/* plain strings (clipboard receipts, share text): same rules, one string */
+const tmStr = s => typeof s === 'string' && s.includes('ریال') ? tmWords(s.replace(TM_RE, (m, num, sp, mult, sp2) => mult ? tmNum(num, mult) + ' ' : tmNum(num) + sp)) : s;
+
+const TM_PURE = /^\s*([+\-−≈]?\s*)([۰-۹0-9][۰-۹0-9٬,٫.]*)\s*$/;
+const tmSkip = n => { const p = n.parentElement; return !p || /^(SCRIPT|STYLE|TEXTAREA|TITLE)$/.test(p.tagName) || p.closest('[contenteditable]'); };
+const tmPrevText = node => { const root = node.parentElement && node.parentElement.closest('svg, .group, .kv, .row, .tile, .sheet, .page, .tab-v, body') || document.body;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); w.currentNode = node;
+  let p; while ((p = w.previousNode())) { if (p.nodeValue.trim()) return p; } return null; };
+const tmNear = (a, b) => { let e = b.parentElement; for (let i = 0; i < 3 && e; i++, e = e.parentElement) if (e.contains(a)) return true; return false; };
+/* a number that sits in its own element beside a converted unit */
+const tmDone = new WeakSet();
+function tmMark(textNode) { const el = textNode.parentElement; if (!el) return; el.dataset.tmq = '1'; el._tmOut = textNode.nodeValue; }
+function tmSet(textNode) { const m = textNode.nodeValue.match(TM_PURE); if (!m) return false;
+  textNode.nodeValue = textNode.nodeValue.replace(m[2], tmNum(m[2])); tmDone.add(textNode); tmMark(textNode); return true; }
+function tmFixNum(textNode) { return tmDone.has(textNode) ? false : tmSet(textNode); }
+function tmText(node) {
+  const v = node.nodeValue; if (!v || !v.includes('ریال') || tmSkip(node)) return;
+  let s = v.replace(TM_RE, (m, num, sp, mult, sp2) => mult ? tmNum(num, mult) + ' ' : tmNum(num) + sp);
+  if (s === v && /^\s*ریال/.test(v)) { const p = tmPrevText(node); if (p && tmNear(p, node)) tmFixNum(p); }
+  node.nodeValue = tmWords(s);
+}
+function tmAttrs(root) { (root.querySelectorAll ? root.querySelectorAll('[aria-label*="ریال"],[placeholder*="ریال"],[title*="ریال"]') : []).forEach(e => ['aria-label', 'placeholder', 'title'].forEach(a => { const x = e.getAttribute(a); if (x && x.includes('ریال')) e.setAttribute(a, tmStr(x)); })); }
+function tmConv(root) {
+  if (!root) return;
+  if (root.nodeType === 3) return tmText(root);
+  if (root.nodeType !== 1 && root.nodeType !== 11) return;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.nodeValue.includes('ریال') ? 1 : 3 }), list = [];
+  while (w.nextNode()) list.push(w.currentNode);
+  list.forEach(tmText); tmAttrs(root);
+}
+/* live numbers: an element that was converted once gets re-converted whenever its text changes */
+function tmLive(el) { if (!el || !el.dataset || el.dataset.tmq !== '1') return;
+  const tn = [...el.childNodes].find(n => n.nodeType === 3 && TM_PURE.test(n.nodeValue)); if (!tn || tn.nodeValue === el._tmOut) return;
+  if (!tmDone.has(tn) || tn.nodeValue !== el._tmOut) tmSet(tn); }
+const tmObs = new MutationObserver(ms => { tmObs.disconnect();
+  for (const m of ms) {
+    if (m.type === 'characterData') { const el = m.target.parentElement; if (el && el.dataset.tmq === '1') tmLive(el); else tmText(m.target); continue; }
+    if (m.target.dataset && m.target.dataset.tmq === '1') tmLive(m.target);
+    m.addedNodes.forEach(n => tmConv(n));
+  }
+  tmObs.observe(document.documentElement, { childList: true, subtree: true, characterData: true }); });
+tmObs.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+/* convert synchronously right after a render so measurements (fit, carousels) see toman */
+const _hydrateTm = hydrate;
+hydrate = el => { tmConv(el); return _hydrateTm(el); };
+const _copyTm = copyText;
+copyText = (text, label) => _copyTm(tmStr(text), label);
+tmConv(document.body);
 
 /* ---------- global listeners ---------- */
 document.addEventListener('click', e => {
