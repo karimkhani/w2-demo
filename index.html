@@ -1925,6 +1925,34 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 .wl-stage::before{background:linear-gradient(to bottom,var(--ink-0) 0,transparent 18%,transparent 76%,var(--ink-0) 100%)}
 .wl-stage::after{background:linear-gradient(to right,var(--ink-0) 0,transparent 14%,transparent 86%,var(--ink-0) 100%)}
 .wl-tapme{z-index:3}
+/* v25 · bank home */
+.bk-v25{gap:30px!important;padding-top:10px!important}
+.bk-hero{display:flex;flex-direction:column;gap:22px;padding-top:6px}
+.bk-v25 .bal{align-items:flex-start;text-align:right;gap:4px}
+.bk-v25 .bal-label{font-size:13.5px}
+.bk-v25 .bal-amt{font-size:42px;font-weight:700}
+.bk-v25 .bal-words{font-size:13px}
+.bk-v25 .actions{justify-content:space-between;gap:0;padding:0 6px}
+.bk-v25 .act{flex:1}
+.bk-card{display:flex;justify-content:center}
+.bk-card .mcard{width:100%;max-width:340px}
+.bk-h{font-size:13.5px;font-weight:600;color:var(--fg-3);margin:0 4px 10px}
+.bk-g .row{min-height:66px}
+.bk-r .rt{gap:3px}
+.bk-v{display:flex;flex-direction:column;align-items:flex-end;flex:none;font-weight:600;font-size:15px;line-height:1.3;font-variant-numeric:tabular-nums}
+.bk-v small{font-size:11px;font-weight:500;color:var(--fg-3)}
+.bk-alloc{display:flex;height:4px;border-radius:2px;overflow:hidden;gap:2px;margin-top:6px;width:100%;max-width:170px;align-self:flex-start}
+.bk-alloc i{display:block;height:100%;border-radius:2px}
+.bk-prog{display:block;height:3px;border-radius:2px;background:var(--ink-3);overflow:hidden;margin-top:7px;width:100%;max-width:170px;align-self:flex-start}
+.bk-prog i{display:block;height:100%;background:var(--bullion);border-radius:2px}
+.bk-badge{display:grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:var(--ink-3);font-size:12px;font-weight:700;color:var(--fg)}
+.bk-bills .bills{display:flex;flex-direction:column;gap:14px}
+.bk-bills .sec-h{justify-content:flex-start}
+.bk-tx{display:flex;flex-direction:column;gap:14px}
+.bk-tx .sec-h h2{font-size:18px}
+.bk-v25 .ky-row{margin-top:-8px}
+.bk-r .rt small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bk-r .rt{display:flex;flex-direction:column;min-width:0;flex:1}
 </style>
 </head>
 <body>
@@ -1961,7 +1989,7 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 
 <!-- Service Worker source. Browsers only register a worker from a same-origin file, so this exact text also ships as sw.js next to index.html. -->
 <script type="text/plain" id="sw-source">
-const CACHE = 'w2-shell-v24';
+const CACHE = 'w2-shell-v25';
 const SHELL = ['./', './index.html', './img/onb_wealth.jpg', './img/onb_wonder.jpg', './img/onb_wisdom.jpg', './img/onb_worth.jpg', './img/asset_gold.jpg', './img/asset_silver.jpg', './img/asset_property.jpg', './img/asset_copper.jpg', './img/asset_fund.jpg', './img/bill_mobile.jpg', './img/bill_elec.jpg', './img/bill_water.jpg', './img/bill_gas.jpg', './img/bill_phone.jpg', './img/bill_id.jpg', './img/asset_oil.jpg', './img/onb_well.jpg', './img/onb_world.jpg', './img/onb_wheels.jpg', './img/card_front.jpg', './img/ticket_gold.jpg', './img/ticket_holo.jpg', './img/asset_debt.jpg', './img/asset_lease.jpg', './img/car_tara.jpg', './img/car_shahin.jpg', './img/car_tiggo7.jpg', './img/car_arrizo8.jpg', './img/pf_hero.jpg', './img/asset_pf.jpg', './img/pf_hi.jpg', './img/pf_dig.jpg', './img/pf_grw.jpg', './img/svc_inst.jpg', './img/svc_stake.jpg', './img/svc_guard.jpg', './img/svc_save.jpg', './img/svc_credit.jpg', './img/gift_classic.jpg', './img/gift_birthday.jpg', './img/gift_nowruz.jpg', './img/gift_love.jpg', './img/w2-icon-192.png', './img/w2-icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -8967,6 +8995,53 @@ Pages.profile.mount = (el, p) => { _profMountV24 && _profMountV24(el, p); v24Mer
 
 /* ---------- 4) small truths ---------- */
 famSummary = () => { const F = DB.family, n = famActive().length, p = F.invites.length + F.requests.length; return n ? `${faD(n + 1)} عضو${F.pool ? ' · تجمیع سطح روشن' : ''}${p ? ` · ${faD(p)} در انتظار` : ''}` : p ? `${faD(p)} دعوت در انتظار` : 'دعوت با موبایل'; };
+
+/* =========================================================
+   v25 · bank home, re-composed
+   Balance first, then what you do with it; the real card as the one object;
+   everything else becomes two quiet lists (wealth & credit · everyday), payments,
+   then activity. Nothing removed: every row keeps its original action.
+   ========================================================= */
+const _bankV25 = Tabs.bank.render;
+Tabs.bank.render = () => {
+  const html = _bankV25(), t = document.createElement('template'); t.innerHTML = html;
+  const root = t.content.querySelector('.scroll'); if (!root) return html;
+  const gut = [...root.querySelectorAll(':scope > .gut')].pop(); if (!gut) return html;
+  const q = s => gut.querySelector(':scope > ' + s), take = s => { const e = q(s); if (e) e.remove(); return e; };
+  const card = take('.mcard'), fam = take('.fam-chip'), bal = take('.bal'), acts = take('.actions'), ky = take('.ky-row') || take('.bk-add'),
+    cr = take('.credit-tile'), tr = take('.tr-tile'), bills = take('.bills'), pend = take('.pendtile'), cards = take('.bk-cards'),
+    bento = take('.bento'), tp = take('.tp-home'), secH = take('.sec-h'), chips = take('.chips'), list = take('.list');
+  const rest = [...gut.children]; rest.forEach(e => e.remove());   /* anything a later version adds stays, at the end */
+  const txt = (el, s) => { const x = el && el.querySelector(s); return x ? x.textContent.trim() : ''; };
+  const attrs = el => el ? [...el.attributes].filter(a => a.name.startsWith('data-')).map(a => `${a.name}="${a.value}"`).join(' ') : '';
+  const row = (el, ic, title, sub, val, extra = '') => el ? `<button class="row tap bk-r" ${attrs(el)}><span class="ri">${icon(ic)}</span><span class="rt"><b>${title}</b>${sub ? `<small>${sub}</small>` : ''}${extra}</span>${val ? `<span class="bk-v">${val}</span>` : ''}${icon('chevron-left', 'chev')}</button>` : '';
+  const total = totalWealth(), parts = [{ c: '#6B655C', v: DB.rial }, ...DB.assets.map(a => ({ c: a.color, v: valueOf(a), n: a.short }))].filter(p => p.v > 0);
+  const top = parts.filter(p => p.n).sort((a, b) => b.v - a.v).slice(0, 2).map(p => `${p.n} ${faD(Math.round(p.v / total * 100))}٪`).join(' · ');
+  const mini = `<span class="bk-alloc">${parts.map(p => `<i style="width:${(p.v / total * 100).toFixed(2)}%;background:${p.c}"></i>`).join('')}</span>`;
+  const mask = v => S.maskBal ? '••••••' : v;
+  const wealth = [
+    `<button class="row tap bk-r" data-act="tab" data-to="assets"><span class="ri">${icon('gem')}</span><span class="rt"><b>همهٔ دارایی‌ها</b><small>${top}</small>${mini}</span><span class="bk-v num">${mask(trM(total))}<small>تومان</small></span>${icon('chevron-left', 'chev')}</button>`,
+    tp ? row(tp, 'factory', txt(tp, '.rt b') || 'توکن تولید', txt(tp, '.rt small'), `<span class="num">${mask(txt(tp, 'b.num').replace('ریال', '').trim())}</span><small>ریال</small>`) : '',
+    cr ? row(cr, 'sparkles', 'اعتبار در دسترس', 'به پشتوانهٔ دارایی‌ها', `<span class="num">${mask(txt(cr, '.tile-v').replace('ریال', '').trim())}</span><small>ریال</small>`) : '',
+    tr ? row(tr, 'award', `سطح عضویت · ${txt(tr, '.tr-tile-name')}`, txt(tr, '.tr-tile-row small'), '', `<span class="bk-prog"><i style="${(tr.querySelector('.tr-bar i') || {}).getAttribute ? tr.querySelector('.tr-bar i').getAttribute('style') : 'width:0'}"></i></span>`) : ''
+  ].join('');
+  const daily = [
+    fam ? row(fam, 'users', 'حساب خانواده', txt(fam, 'small')) : '',
+    cards ? row(cards, 'credit-card', 'کارت‌های بانکی من', txt(cards, '.rt small')) : '',
+    pend ? row(pend, 'calendar-clock', 'پرداخت‌های خودکار', txt(pend, '.rt small'), `<span class="bk-badge num">${txt(pend, '.bcount')}</span>`) : ''
+  ].join('');
+  const out = `
+    <section class="bk-hero">${bal ? bal.outerHTML : ''}${acts ? acts.outerHTML : ''}</section>
+    ${ky ? ky.outerHTML : ''}
+    ${card ? `<div class="bk-card">${card.outerHTML}</div>` : ''}
+    <section><h2 class="bk-h">دارایی و اعتبار</h2><div class="group bk-g">${wealth}</div></section>
+    <section><h2 class="bk-h">روزمره</h2><div class="group bk-g">${daily}</div></section>
+    ${bills ? `<section class="bk-bills"><h2 class="bk-h">شارژ، اینترنت و قبض</h2>${bills.outerHTML}</section>` : ''}
+    <section class="bk-tx">${secH ? secH.outerHTML : ''}${chips ? chips.outerHTML : ''}${list ? list.outerHTML : ''}</section>
+    ${rest.map(e => e.outerHTML).join('')}`;
+  gut.innerHTML = out; gut.classList.add('bk-v25');
+  return t.innerHTML;
+};
 
 /* ---------- global listeners ---------- */
 document.addEventListener('click', e => {
