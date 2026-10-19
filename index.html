@@ -1997,6 +1997,47 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 .bk-note svg{flex:none;width:16px;height:16px;margin-top:4px}
 .bk-sv{display:flex;flex-direction:column;align-items:flex-end;line-height:1.3}.bk-sv small{font-size:11px;font-weight:500;color:var(--fg-3)}
 .bk-bar i{border:0!important;margin:0!important}
+/* v28 · waitlist: the card being engraved */
+.wc{gap:14px}
+.wc-stage{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;padding:18px 0 6px;perspective:900px;touch-action:pan-y}
+.wc-tilt{width:min(320px,86%);transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.8,.2,1);animation:wcFloat 6s ease-in-out infinite}
+.wc-stage.held .wc-tilt{transition:transform .08s linear;animation-play-state:paused}
+@keyframes wcFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+.wc-card{position:relative;display:block;width:100%;aspect-ratio:1.586;border:0;padding:0;border-radius:18px;overflow:hidden;background:#0d0d0e;color:#ECEAE5;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07),inset 0 1px 0 rgba(255,255,255,.12),0 2px 3px rgba(0,0,0,.35),0 26px 40px -22px rgba(0,0,0,.7)}
+.wc-card.push{animation:wcPush .38s cubic-bezier(.2,.8,.2,1)}
+.wc-card.nope{animation:wcNope .4s ease}
+@keyframes wcPush{0%{transform:scale(1)}30%{transform:scale(.965)}100%{transform:scale(1)}}
+@keyframes wcNope{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.wc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+.wc-sheen{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(120% 70% at var(--sx,50%) var(--sy,40%),rgba(255,255,255,.16),rgba(255,255,255,.04) 35%,transparent 60%)}
+.wc-name{position:absolute;right:7%;bottom:9%;font-size:clamp(11px,3.6vw,14px);font-weight:600;color:rgba(236,234,229,.78);text-shadow:0 1px 1px rgba(0,0,0,.6)}
+/* engraved number: lit digits are cut into the metal, the rest wait as faint marks */
+.wc-pan{position:absolute;left:7%;right:7%;top:58%;display:flex;justify-content:space-between;direction:ltr;font-weight:600;font-size:clamp(15px,5.1vw,20px);letter-spacing:.04em;line-height:1}
+.wc-pan .g{display:flex;gap:.12em}
+.wc-pan .d{font-style:normal;color:rgba(255,255,255,.028);text-shadow:none;transition:color .5s}
+.wc-pan .d.on{color:#D9D6CF;text-shadow:0 -1px 0 rgba(0,0,0,.85),0 1px 0 rgba(255,255,255,.22)}
+.wc-pan .d.just{animation:wcHot 1.6s ease-out}
+@keyframes wcHot{0%{color:#fff;text-shadow:0 0 8px rgba(160,215,255,.95),0 0 18px rgba(255,190,110,.7)}100%{color:#D9D6CF}}
+.wc-pan .d.cur{color:rgba(255,255,255,.09)}
+/* laser head: a hot point with sparks */
+.wc-laser{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .3s;z-index:2}
+.wc-laser::before{content:"";position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff 0 22%,rgba(170,220,255,.95) 38%,rgba(120,190,255,.0) 70%);box-shadow:0 0 10px 3px rgba(140,200,255,.55),0 0 26px 8px rgba(255,170,90,.18);animation:wcFlick .09s steps(2) infinite alternate}
+.wc-laser::after{content:"";position:absolute;left:-.5px;top:-60px;width:1px;height:60px;background:linear-gradient(to top,rgba(170,220,255,.55),rgba(170,220,255,0));filter:blur(.3px)}
+@keyframes wcFlick{from{opacity:.75;transform:scale(.85)}to{opacity:1;transform:scale(1.1)}}
+.wc-laser i{position:absolute;left:0;top:0;width:1.5px;height:5px;border-radius:1px;background:linear-gradient(#fff,rgba(255,180,90,.0));opacity:0;transform-origin:50% 0;animation:wcSpark .9s linear infinite}
+.wc-laser i:nth-child(1){--a:-40deg;animation-delay:0s}.wc-laser i:nth-child(2){--a:25deg;animation-delay:.15s}.wc-laser i:nth-child(3){--a:-80deg;animation-delay:.3s}
+.wc-laser i:nth-child(4){--a:60deg;animation-delay:.45s}.wc-laser i:nth-child(5){--a:-10deg;animation-delay:.6s}.wc-laser i:nth-child(6){--a:95deg;animation-delay:.75s}
+@keyframes wcSpark{0%{opacity:0;transform:rotate(var(--a)) translateY(2px)}10%{opacity:1}60%{opacity:0;transform:rotate(var(--a)) translateY(14px)}100%{opacity:0}}
+.wc-laser.burst::before{animation:wcBurst .45s ease-out}
+.wc-laser.burst i{animation-duration:.45s}
+@keyframes wcBurst{0%{transform:scale(2.6);box-shadow:0 0 22px 10px rgba(160,215,255,.8),0 0 40px 16px rgba(255,170,90,.35)}100%{transform:scale(1)}}
+.wc-floor{width:min(280px,76%);height:20px;margin-top:10px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);filter:blur(4px);opacity:.9}
+:root[data-w2theme="light"] .wc-floor{background:radial-gradient(closest-side,rgba(60,45,20,.35),transparent)}
+.wc-cap{margin:-4px 0 4px;font-size:12.5px;color:var(--fg-3);line-height:1.8}
+.wc-cap b{color:var(--fg);font-weight:700}
+.wc .wl-meta{margin-top:-2px}
+@media (prefers-reduced-motion:reduce){.wc-tilt,.wc-laser::before,.wc-laser i{animation:none}}
 </style>
 </head>
 <body>
@@ -2033,7 +2074,7 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 
 <!-- Service Worker source. Browsers only register a worker from a same-origin file, so this exact text also ships as sw.js next to index.html. -->
 <script type="text/plain" id="sw-source">
-const CACHE = 'w2-shell-v27';
+const CACHE = 'w2-shell-v28';
 const SHELL = ['./', './index.html', './img/onb_wealth.jpg', './img/onb_wonder.jpg', './img/onb_wisdom.jpg', './img/onb_worth.jpg', './img/asset_gold.jpg', './img/asset_silver.jpg', './img/asset_property.jpg', './img/asset_copper.jpg', './img/asset_fund.jpg', './img/bill_mobile.jpg', './img/bill_elec.jpg', './img/bill_water.jpg', './img/bill_gas.jpg', './img/bill_phone.jpg', './img/bill_id.jpg', './img/asset_oil.jpg', './img/onb_well.jpg', './img/onb_world.jpg', './img/onb_wheels.jpg', './img/card_front.jpg', './img/ticket_gold.jpg', './img/ticket_holo.jpg', './img/asset_debt.jpg', './img/asset_lease.jpg', './img/car_tara.jpg', './img/car_shahin.jpg', './img/car_tiggo7.jpg', './img/car_arrizo8.jpg', './img/pf_hero.jpg', './img/asset_pf.jpg', './img/pf_hi.jpg', './img/pf_dig.jpg', './img/pf_grw.jpg', './img/svc_inst.jpg', './img/svc_stake.jpg', './img/svc_guard.jpg', './img/svc_save.jpg', './img/svc_credit.jpg', './img/gift_classic.jpg', './img/gift_birthday.jpg', './img/gift_nowruz.jpg', './img/gift_love.jpg', './img/w2-icon-192.png', './img/w2-icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -9151,6 +9192,79 @@ const bkFit = el => { const pair = el && el.querySelector('.bk-pair'); if (!pair
   while (fs > 22 && amt.scrollWidth + cr.offsetWidth + 14 > pair.clientWidth) { fs -= 1; amt.style.fontSize = fs + 'px'; } };
 const _bankMountV26 = Tabs.bank.mount;
 Tabs.bank.mount = el => { _bankMountV26 && _bankMountV26(el); bkFit(el); document.fonts && document.fonts.ready.then(() => bkFit(el)); };
+
+/* =========================================================
+   v28 · waitlist: your card is being made
+   The coin is gone. What you wait for is the thing you get: your own W² card,
+   and its number is laser-engraved digit by digit as the line moves. Tap the card
+   and the laser works harder (a small push forward, ≤10 a day). Monzo-style
+   «ahead / behind» and Robinhood-style «invite to move up» stay.
+   ========================================================= */
+TK_FUN.splice(0, TK_FUN.length, 'شمارهٔ کارتتان را رقم‌به‌رقم حک می‌کنیم…', 'تراشه را سر جایش می‌نشانیم…', 'لبه‌های کارت را صیقل می‌دهیم…', 'صف آرام ولی مطمئن جلو می‌رود', 'روی کارت بزنید تا لیزر تندتر کار کند', 'کارت شما آخرین بازبینی را می‌گذراند…');
+const wcPan = W => { if (!W.pan) { let s = (W.pos0 * 7919 + +(String(W.mob || '0').slice(-6) || 0)) % 2147483647, d = '639607';
+    while (d.length < 16) { s = s * 16807 % 2147483647; d += s % 10; } W.pan = d; tkWait.set(W); } return W.pan; };
+const wcPct = W => clamp(1 - tkPos(W) / W.pos0, 0, 1);
+const wcN = W => Math.min(16, Math.floor(wcPct(W) * 16.0001));
+const wcBehind = W => Math.round((W.behind0 || (W.behind0 = 90 + W.pos0 % 140)) + (Date.now() - W.at) / 1000 * 3.2);
+const wcPanHTML = W => { const p = wcPan(W), n = wcN(W);
+  return [0, 1, 2, 3].map(g => `<span class="g">${[0, 1, 2, 3].map(j => { const i = g * 4 + j; return `<i class="d ${i < n ? 'on' : i === n ? 'cur' : ''}">${faD(p[i])}</i>`; }).join('')}</span>`).join(''); };
+
+const _suHTMLWc = suHTML;
+suHTML = () => { const U = S.su; if (!U || U.step !== 'wait') return _suHTMLWc();
+  const W = U.W, pos = tkPos(W), pct = wcPct(W);
+  return kyWrapPage(`<div class="wl wc">
+      <div class="wc-stage" id="wcStage">
+        <div class="wc-tilt" id="wcTilt">
+          <button class="wc-card tap" data-act="tkNudge" aria-label="روی کارت بزنید تا لیزر تندتر کار کند">
+            <img class="wc-photo" src="${IMAGES.card_core}" alt="" onerror="this.src='${IMAGES.card_front}'">
+            <span class="wc-pan" id="wcPan" dir="ltr">${wcPanHTML(W)}</span>
+            <span class="wc-name">عضو آیندهٔ W²</span>
+            <span class="wc-sheen"></span>
+            <span class="wc-laser" id="wcLaser"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </button>
+        </div>
+        <span class="wc-floor"></span>
+      </div>
+      <p class="wc-cap"><b class="num" id="wcPct">${faD(Math.floor(pct * 100))}٪</b> کارت شما ساخته شده · <span>روی کارت بزنید تا لیزر تندتر کار کند</span></p>
+      <div class="wl-board"><small>نفر جلوتر از شما</small><span id="wlPos">${flapHTML(pos)}</span></div>
+      <p class="wl-meta">پشت سر شما <b class="num" id="wcBehind">${fa(wcBehind(W))}</b> نفر · <b class="num" id="wlEta">${tkEtaFa(pos, W)}</b> تا نوبت شما<span id="wcBoostW" ${W.boost ? '' : 'hidden'}> · <b class="num" id="wlBoost">${fa(Math.round(W.boost || 0))}</b> جایگاه جلوتر</span></p>
+      <p class="wl-fun" id="wlFun">${TK_FUN[0]}</p>
+      <p class="wl-test">${icon('flask-conical', 'w-3 h-3')} نسخهٔ آزمایشی: صف سریع‌تر از واقعیت جلو می‌رود.</p></div>`,
+    `<button class="btn btn-primary tap" data-act="tkWaitShare">${icon('share-2', 'w-5 h-5')} دعوت دوستان · هر نفر ۲۵۰ جایگاه جلوتر</button><button class="btn tap tk-nocode" data-act="tkHaveCode">تیکت گرفتم؛ وارد کردن کد</button>`, { tt: 'صف انتظار' }); };
+
+/* laser sits on the digit being engraved */
+function wcLaser() { const card = $('.wc-card'), cur = card && card.querySelector('.d.cur'), L = $('#wcLaser'); if (!L) return;
+  if (!cur) { L.style.opacity = 0; return; } const a = card.getBoundingClientRect(), b = cur.getBoundingClientRect(), k = a.width / card.offsetWidth || 1;
+  L.style.opacity = 1; L.style.transform = `translate(${((b.left + b.width / 2 - a.left) / k).toFixed(1)}px, ${((b.top + b.height * .55 - a.top) / k).toFixed(1)}px)`; }
+function wcTick() { const U = S.su; if (!U || U.step !== 'wait') return false; const W = U.W, n = wcN(W), pan = $('#wcPan');
+  if (pan && +pan.dataset.n !== n) { const was = +pan.dataset.n; pan.innerHTML = wcPanHTML(W); pan.dataset.n = n; if (was >= 0 && n > was) { const d = pan.querySelectorAll('.d.on')[n - 1]; d && d.classList.add('just'); } wcLaser(); }
+  const p = $('#wcPct'); if (p) p.textContent = faD(Math.floor(wcPct(W) * 100)) + '٪';
+  const bh = $('#wcBehind'); if (bh) bh.textContent = fa(wcBehind(W)); return true; }
+/* a soft, short engraving sound: filtered noise with a high whine, no thud */
+let wcAC = null;
+function wcZap() { try { wcAC = wcAC || new (window.AudioContext || window.webkitAudioContext)(); const ac = wcAC, t = ac.currentTime, out = ac.createGain(); out.gain.value = .16; out.connect(ac.destination);
+    const len = Math.floor(ac.sampleRate * .16), buf = ac.createBuffer(1, len, ac.sampleRate), ch = buf.getChannelData(0); for (let i = 0; i < len; i++) ch[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    const nz = ac.createBufferSource(); nz.buffer = buf; const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 5200; bp.Q.value = 3.5; const ng = ac.createGain(); ng.gain.setValueAtTime(.0, t); ng.gain.linearRampToValueAtTime(.9, t + .01); ng.gain.exponentialRampToValueAtTime(.001, t + .15); nz.connect(bp); bp.connect(ng); ng.connect(out); nz.start(t);
+    const o = ac.createOscillator(), og = ac.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(7400, t); o.frequency.exponentialRampToValueAtTime(5600, t + .12); og.gain.setValueAtTime(.0, t); og.gain.linearRampToValueAtTime(.12, t + .008); og.gain.exponentialRampToValueAtTime(.001, t + .13); o.connect(og); og.connect(out); o.start(t); o.stop(t + .14);
+  } catch (e) {} }
+function wcMount(el) { const st = $('#wcStage', el), tilt = $('#wcTilt', el); if (!st || !tilt) return; const pan = $('#wcPan', el); pan.dataset.n = wcN(S.su.W);
+  requestAnimationFrame(wcLaser); setTimeout(wcLaser, 400); document.fonts && document.fonts.ready.then(wcLaser);
+  let raf = 0, tx = 0, ty = 0;
+  const set = (x, y) => { tx = x; ty = y; if (raf) return; raf = requestAnimationFrame(() => { raf = 0; tilt.style.setProperty('--rx', (ty * -9).toFixed(2) + 'deg'); tilt.style.setProperty('--ry', (tx * 12).toFixed(2) + 'deg'); tilt.style.setProperty('--sx', (50 + tx * 40).toFixed(1) + '%'); tilt.style.setProperty('--sy', (40 + ty * 30).toFixed(1) + '%'); }); };
+  st.addEventListener('pointermove', e => { const b = st.getBoundingClientRect(); st.classList.add('held'); set(clamp((e.clientX - b.left) / b.width * 2 - 1, -1, 1), clamp((e.clientY - b.top) / b.height * 2 - 1, -1, 1)); });
+  st.addEventListener('pointerleave', () => { st.classList.remove('held'); set(0, 0); });
+  if (window.DeviceOrientationEvent && !DeviceOrientationEvent.requestPermission) window.addEventListener('deviceorientation', function h(e) { if (!document.body.contains(st)) return window.removeEventListener('deviceorientation', h); if (e.gamma == null) return; set(clamp(e.gamma / 25, -1, 1), clamp((e.beta - 45) / 25, -1, 1)); });
+  clearInterval(S.su.wcIv); S.su.wcIv = setInterval(() => { if (!wcTick()) clearInterval(S.su && S.su.wcIv); }, 400); }
+const _suMountWc = suMount;
+suMount = el => { _suMountWc(el); if (S.su && S.su.step === 'wait') wcMount(el); };
+
+A.tkNudge = () => { const U = S.su, W = U && U.W; if (!W) return; const today = new Date().toDateString(); if (W.day !== today) { W.day = today; W.taps = 0; }
+  const card = $('.wc-card'), L = $('#wcLaser');
+  if (W.taps >= 10) { card && (card.classList.remove('nope'), void card.offsetWidth, card.classList.add('nope')); return toast({ ic: 'coffee', title: 'لیزر امروز حسابی کار کرد!', body: 'فردا دوباره روی کارت بزنید.', ms: 2000 }); }
+  W.taps++; W.boost = (W.boost || 0) + 5; tkWait.set(W); vib(8); wcZap();
+  card && (card.classList.remove('push'), void card.offsetWidth, card.classList.add('push'));
+  L && (L.classList.remove('burst'), void L.offsetWidth, L.classList.add('burst'));
+  const b = $('#wlBoost'); if (b) { b.textContent = fa(Math.round(W.boost)); b.parentElement.hidden = false; } flapSet($('#wlPos .flaps'), tkPos(W)); wcTick(); };
 
 /* =========================================================
    v27 · toman everywhere
