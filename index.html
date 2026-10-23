@@ -2136,6 +2136,8 @@ body{font-feature-settings:"ss01" 1;letter-spacing:0}
 .bk-leg{flex-wrap:wrap;row-gap:4px;column-gap:12px;justify-content:flex-start}
 [data-act="billTab"],[data-act="tOt"],.pendchip{min-height:40px}
 [data-act="tUnit"]{min-height:36px}
+/* initials always sit in the middle of the avatar (the lock screen one was start-aligned) */
+.avatar{display:grid!important;place-items:center;text-align:center}
 </style>
 </head>
 <body>
@@ -9654,7 +9656,7 @@ const srScore = (n, t, sub) => { if (!n) return 1; const T = srN(t), U = srN(sub
   return T.startsWith(n) ? 4 : w(T) ? 3 : w(U) ? 1 : 0; };
 function srItems(q) { const n = srN(q), hit = s => !n || (' ' + srN(s)).includes(' ' + n), out = { svc: [], as: [], tx: [] };
   SR_SVC.map(([t, sub, ic, d], i) => ({ t, sub, ic, d, sc: srScore(n, t, sub), i })).filter(x => x.sc > 0).sort((a, b) => b.sc - a.sc || a.i - b.i).forEach(x => out.svc.push(x));
-  if (n) DB.assets.forEach(a => { if (hit(a.name + ' ' + (a.short || ''))) { out.as.push({ t: a.name, sub: 'دارایی · ' + trM(valueOf(a)) + ' تومان', ic: 'gem', d: { act: 'srAsset', id: a.id } }); out.as.push({ t: 'خرید ' + (a.short || a.name), sub: 'سفارش خرید', ic: 'plus', d: { act: 'trade', id: a.id, side: 'buy' } }); } });
+  if (n) DB.assets.forEach(a => { if (hit(a.name + ' ' + (a.short || ''))) { out.as.push({ t: a.name, sub: 'دارایی، ' + trM(valueOf(a)) + ' تومان', ic: 'gem', d: { act: 'srAsset', id: a.id } }); out.as.push({ t: 'خرید ' + (a.short || a.name), sub: 'سفارش خرید', ic: 'plus', d: { act: 'trade', id: a.id, side: 'buy' } }); } });
   if (n) DB.bankTx.slice().sort((a, b) => b.date - a.date).forEach(x => { if (out.tx.length < 6 && hit(x.title + ' ' + x.sub)) out.tx.push({ t: x.title, sub: `${x.amount < 0 ? '−' : '+'}${trM(Math.abs(x.amount))} تومان · ${tm(x.date)}`, ic: 'receipt', d: { act: 'tx', id: x.id } }); });
   if (!n) out.svc = out.svc.slice(0, 6); else out.svc = out.svc.slice(0, 8);
   return out; }
@@ -9683,7 +9685,8 @@ Tabs.bank.render = () => { const h = _bankV29(), t = document.createElement('tem
 
 /* ---------- test hook: open a state directly (used to check the build in real Safari/WebKit) ----------
    #w2t=bank|profile|swipe|sheets|search|tx|text140   optional &th=light|dark                           */
-(function w2TestHook() { const m = (location.hash || '').match(/w2t=([a-z0-9]+)/); if (!m) return; const th = (location.hash.match(/th=(light|dark|auto)/) || [])[1];
+(function w2TestHook() { if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;   /* local test builds only: never a way past the PIN on the public demo */
+  const m = (location.hash || '').match(/w2t=([a-z0-9]+)/); if (!m) return; const th = (location.hash.match(/th=(light|dark|auto)/) || [])[1];
   const go = () => { try { if (th) { S.themePref = th; applyTheme && applyTheme(true); } } catch (e) {}
     setRoot('app'); const k = m[1];
     setTimeout(() => {
