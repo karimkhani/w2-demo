@@ -9446,7 +9446,7 @@ tmConv(document.body);
 /* ---------- 1a) text follows the person's text-size setting ---------- */
 function w2TextSize() { const root = document.documentElement; let r = 1;
   try { const p = document.createElement('span'); p.style.cssText = 'position:absolute;visibility:hidden;font:-apple-system-body';
-    document.body.appendChild(p); const ios = CSS.supports && CSS.supports('font', '-apple-system-body');
+    document.body.appendChild(p); const ios = CSS.supports && CSS.supports('font', '-apple-system-body') && (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));   /* macOS Safari also knows the keyword but maps it to 13 px */
     if (ios) r = parseFloat(getComputedStyle(p).fontSize) / 17;
     else { p.style.font = ''; p.style.fontSize = 'medium'; r = parseFloat(getComputedStyle(p).fontSize) / 16; }
     p.remove(); } catch (e) {}
