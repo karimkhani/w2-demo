@@ -9681,6 +9681,21 @@ const _bankV29 = Tabs.bank.render;
 Tabs.bank.render = () => { const h = _bankV29(), t = document.createElement('template'); t.innerHTML = h;
   t.content.querySelectorAll('.bk-g .bk-r[data-to="assets"]').forEach(e => e.remove()); return t.innerHTML; };
 
+/* ---------- test hook: open a state directly (used to check the build in real Safari/WebKit) ----------
+   #w2t=bank|profile|swipe|sheets|search|tx|text140   optional &th=light|dark                           */
+(function w2TestHook() { const m = (location.hash || '').match(/w2t=([a-z0-9]+)/); if (!m) return; const th = (location.hash.match(/th=(light|dark|auto)/) || [])[1];
+  const go = () => { try { if (th) { S.themePref = th; applyTheme && applyTheme(true); } } catch (e) {}
+    setRoot('app'); const k = m[1];
+    setTimeout(() => {
+      if (k === 'profile' || k === 'swipe') push('profile');
+      if (k === 'swipe') setTimeout(() => { const top = S.stack[S.stack.length - 1]; const below = $('#root').lastElementChild; sprStop(top.el, 'x'); sprOf(top.el, 'x').x = -w2W() * .45; pgApply(top.el, below, -w2W() * .45); }, 900);
+      if (k === 'sheets') { openSheet('deposit'); setTimeout(() => openSheet('theme'), 700); }
+      if (k === 'search') { A.srOpen(); setTimeout(() => { const i = $('#srIn'); if (i) { i.value = 'طلا'; i.dispatchEvent(new Event('input')); } }, 500); }
+      if (k === 'tx') { const sw = $('.tx-sw'); if (sw) { sw.scrollIntoView({ block: 'center' }); setTimeout(() => springTo(sw, 'x', TXA, { damping: .86, response: .3, apply: x => txSet(sw, x) }), 400); } }
+      if (k === 'text140') { document.documentElement.style.setProperty('--ts', '1.4'); document.documentElement.style.setProperty('--tsL', '1.2'); rerenderTab(); }
+    }, 700); };
+  if (document.readyState === 'complete') setTimeout(go, 2600); else addEventListener('load', () => setTimeout(go, 2600)); })();
+
 /* ---------- global listeners ---------- */
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-act]'); if (!t || t.disabled) return;
